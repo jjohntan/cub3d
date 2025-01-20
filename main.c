@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:02:34 by jetan             #+#    #+#             */
-/*   Updated: 2025/01/20 16:52:18 by jetan            ###   ########.fr       */
+/*   Updated: 2025/01/20 20:24:49 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@
 // 	}
 // 	return (1);
 // }
-void	check_extension(char *av)
+static void	check_extension(char *av)
 {
 	int	len;
 	
 	len = ft_strlen(av) - 4;
-	if (ft_strncmp(&av[len], ".cub", 4) != 0)
+	if (len < 4 || ft_strncmp(&av[len], ".cub", 4) != 0)
 		ft_putstr_fd("Error\n invalid extension", 2);
 }
 
@@ -42,5 +42,7 @@ int main(int ac, char **av)
 	// t_data	data;
 	(void)ac;
 	
+	// ft_bzero(&data, sizeof(t_data);
 	check_extension(av[1]);
+	
 }
