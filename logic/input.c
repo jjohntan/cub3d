@@ -49,7 +49,7 @@ int keyboard(int key, t_game *g)
         g->ydir = sin(g->angle);
     }
     limit_range(g);
-    printf("X: %f , Y: %f  Angle: %f\n", g->xpos, g->ypos, g->angle);
+    //printf("X: %f , Y: %f  Angle: %f\n", g->xpos, g->ypos, g->angle);
     return (0);
 }
 

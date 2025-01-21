@@ -17,8 +17,8 @@ void init(t_game *g)
 	g->width = 1024;
 	g->height = 512;
 	
-	g->xpos = g->width / 2;
-	g->ypos = g->height / 2;
+	g->xpos = 100;
+	g->ypos = 180;
 	g->mv_step = 4.0;
 	
 	g->angle = NORTH;

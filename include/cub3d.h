@@ -78,15 +78,15 @@ typedef struct s_game
     int height;
     
     // Player movement - translational motion
-    double xpos;
-    double ypos;
-    double mv_step;
+    float xpos;
+    float ypos;
+    float mv_step;
 
     // Player movement - rotational motion
-    double angle;
-    double rt_step;
-    double xdir;
-    double ydir;
+    float angle;
+    float rt_step;
+    float xdir;
+    float ydir;
 
     // Mouse movement
     int xpoint;
@@ -125,6 +125,7 @@ void draw_on_canvas(t_game *g);
 void background(t_game *g);
 void player(t_game *g);
 void map(t_game *g);
+void raycast(t_game *g);
 
 // Utils
 void put_pixel(int x, int y, int color, t_game *g);

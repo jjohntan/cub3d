@@ -31,4 +31,5 @@ void draw_on_canvas(t_game *g)
 	background(g);
 	map(g);
 	player(g);
+	raycast(g);
 }
