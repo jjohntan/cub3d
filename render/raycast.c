@@ -12,21 +12,82 @@
 
 #include "../include/cub3d.h"
 
-int check_wall(int new[2], t_game *g)
+int check_wall(int p[2], t_game *g)
 {
     int x;
     int y;
 
-    x = (int)(new[X] / g->grid);
-    y = (int)(new[Y] / g->grid);
+    x = p[X] / g->grid;
+    y = p[Y] / g->grid;
 
-    if (g->angle >= PI)
+    if (g->side == HL && g->angle > PI)
         y--;
+    else if (g->side == VL && g->angle > Q1_REV && g->angle <= Q3_REV)
+        x--;
     if (g->map[y][x] == '1')
         return (true);
     return (false);
 }
 
+
+void raycast(t_game *g)
+{
+    int dy;
+    int dx;
+    float p[2];
+    int cell = g->grid;
+
+    p[X] = g->xpos;
+    p[Y] = g->ypos;
+    
+    if (g->angle > Q1_REV && g->angle <= Q3_REV)
+    {
+        dx = floor(p[X] / cell) * cell - p[X];
+        if (!dx)
+            dx = -1 *cell;
+    }
+    else 
+        dx = cell - (p[X] - floor(p[X] / cell) * cell);
+
+
+    if (g->angle > PI)
+    {
+        dy = floor(p[Y] / cell) * cell - p[Y];
+        if (!dy)
+            dy = -1 * cell;
+    }
+    else
+        dy = cell - (p[Y] - floor(p[Y] / cell) * cell);
+
+
+
+    if ( (dy / sin(g->angle)) > (dx / cos(g->angle)) )
+    {
+        p[X] += dx;
+        p[Y] += (dx / cos(g->angle)) * sin(g->angle);
+        g->side = VL;
+    }
+    else
+    {
+        p[X] += (dy / sin(g->angle)) * cos(g->angle);
+        p[Y] += dy;
+        g->side = HL;
+    }
+
+
+    if      (p[X] < 0)         p[X] = 0;
+    else if (p[X] >= cell * 8) p[X] = cell * 8 - 1;
+    
+    if      (p[Y] < 0)         p[Y] = 0;
+    else if (p[Y] >= cell * 8) p[Y] = cell * 8 - 1;
+
+    draw_line(
+        (int []){g->xpos, g->ypos}, 
+        (int []){p[X], p[Y]}, 
+        RED, g);
+}
+
+/*
 void raycast(t_game *g)
 {
     int old[2];
@@ -70,3 +131,4 @@ void raycast(t_game *g)
 
 
 }
+*/

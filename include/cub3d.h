@@ -51,8 +51,10 @@
 # define RIGHT 100 // D
 
 // Calculation
-#define PI 3.1415926535
-#define REV (2 * PI)  // Full revolution
+#define PI 3.1415926535      // Half revolution
+#define REV (2 * PI)         // Full revolution
+#define Q1_REV (PI / 2)      // Quarter revolution
+#define Q3_REV (PI / 2 * 3)  // 3 Quarter revolution
 
 // Access Coordinate
 # define X 0
@@ -64,6 +66,8 @@
 # define EAST PI
 # define WEST 0
 
+# define VL 10 // Vertical line
+# define HL 20 // Horizontal line
 // =========================================================================
 // STRUCT
 // =========================================================================
@@ -102,6 +106,7 @@ typedef struct s_game
     // 2D map
     char *map[9];
     int grid;
+    int side;
 
 }	t_game;
 
