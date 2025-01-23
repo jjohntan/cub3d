@@ -12,78 +12,55 @@
 
 #include "../include/cub3d.h"
 
-int check_wall(int p[2], t_game *g)
+int check_wall(float p[2], t_game *g)
 {
     int x;
     int y;
 
-    x = p[X] / g->grid;
-    y = p[Y] / g->grid;
-
-    if (g->side == HL && g->angle > PI)
+    x = p[X] / CELL;
+    y = p[Y] / CELL;
+    if (g->which_cal == Y_INTER && g->dir[Y] < 0)
         y--;
-    else if (g->side == VL && g->angle > Q1_REV && g->angle <= Q3_REV)
+    else if (g->which_cal == X_INTER && g->dir[X] < 0)
         x--;
     if (g->map[y][x] == '1')
         return (true);
     return (false);
 }
 
+void each_ray(float *p, float a, t_game *g)
+{
+    float ystep[2];
+    float xstep[2];
+
+    while (true)
+    {
+        if (y_only(a) && y_intercept(p, ystep, a))
+            g->which_cal = update_point(p, ystep, Y_INTER);
+        else if (x_only(a) && x_intercept(p, xstep, a))
+            g->which_cal = update_point(p, xstep, X_INTER);
+        else
+        {
+            if (x_intercept(p, xstep, a) >= y_intercept(p, ystep, a))
+                g->which_cal = update_point(p, ystep, Y_INTER);
+            else
+                g->which_cal = update_point(p, xstep, X_INTER);
+        }
+        if (check_wall(p, g))
+            break;
+    }
+}
 
 void raycast(t_game *g)
 {
-    int dy;
-    int dx;
     float p[2];
-    int cell = g->grid;
 
-    p[X] = g->xpos;
-    p[Y] = g->ypos;
-    
-    if (g->angle > Q1_REV && g->angle <= Q3_REV)
-    {
-        dx = floor(p[X] / cell) * cell - p[X];
-        if (!dx)
-            dx = -1 *cell;
-    }
-    else 
-        dx = cell - (p[X] - floor(p[X] / cell) * cell);
-
-
-    if (g->angle > PI)
-    {
-        dy = floor(p[Y] / cell) * cell - p[Y];
-        if (!dy)
-            dy = -1 * cell;
-    }
-    else
-        dy = cell - (p[Y] - floor(p[Y] / cell) * cell);
-
-
-
-    if ( (dy / sin(g->angle)) > (dx / cos(g->angle)) )
-    {
-        p[X] += dx;
-        p[Y] += (dx / cos(g->angle)) * sin(g->angle);
-        g->side = VL;
-    }
-    else
-    {
-        p[X] += (dy / sin(g->angle)) * cos(g->angle);
-        p[Y] += dy;
-        g->side = HL;
-    }
-
-
-    if      (p[X] < 0)         p[X] = 0;
-    else if (p[X] >= cell * 8) p[X] = cell * 8 - 1;
-    
-    if      (p[Y] < 0)         p[Y] = 0;
-    else if (p[Y] >= cell * 8) p[Y] = cell * 8 - 1;
-
+    p[X] = g->pos[X];
+    p[Y] = g->pos[Y];
+    each_ray(p, g->angle, g);
     draw_line(
-        (int []){g->xpos, g->ypos}, 
-        (int []){p[X], p[Y]}, 
+        (int []){g->pos[X], g->pos[Y]},
+        (int []){p[X], p[Y]},
         RED, g);
 }
 

@@ -14,6 +14,6 @@
 
 void put_pixel(int x, int y, int color, t_game *g)
 {
-	if (x >= 0 && x < g->width && y >= 0 && y < g->height)
-		g->buff[y * g->width + x] = color;
+	if (x >= 0 && x < W && y >= 0 && y < H)
+		g->buff[y * W + x] = color;
 }

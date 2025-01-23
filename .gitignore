@@ -1,3 +1,6 @@
+# Exclude mlx
+./include/mlx 
+
 # Executable
 .out
 

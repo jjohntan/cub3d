@@ -50,24 +50,36 @@
 # define LEFT 97   // A
 # define RIGHT 100 // D
 
-// Calculation
-#define PI 3.1415926535      // Half revolution
-#define REV (2 * PI)         // Full revolution
-#define Q1_REV (PI / 2)      // Quarter revolution
-#define Q3_REV (PI / 2 * 3)  // 3 Quarter revolution
+// Quadrant
+#define PI 3.14159265358979323846 
+# define DEG_90 (PI / 2)
+# define DEG_180 (PI)
+# define DEG_270 (3 * PI) / 2
+# define DEG_360 (2 * PI)
 
-// Access Coordinate
+// Window
+# define W 1024
+# define H 512
+
+// 2D Map
 # define X 0
 # define Y 1
+# define CELL 64
+
+// Player
+# define MV_STEP 4.0
+# define RT_STEP 0.1
 
 // Direction
-# define NORTH ((3 * PI) / 2)
-# define SOUTH (PI / 2)
-# define EAST PI
+# define NORTH DEG_270
+# define SOUTH DEG_90
+# define EAST DEG_180
 # define WEST 0
 
-# define VL 10 // Vertical line
-# define HL 20 // Horizontal line
+// DDA calculation
+# define X_INTER 1 
+# define Y_INTER 2
+
 // =========================================================================
 // STRUCT
 // =========================================================================
@@ -77,20 +89,10 @@ typedef struct s_game
 	void *mlx;
 	void *wind;
     
-    // Window size
-    int width;
-    int height;
-    
-    // Player movement - translational motion
-    float xpos;
-    float ypos;
-    float mv_step;
-
-    // Player movement - rotational motion
+    // Player
+    float pos[2];
     float angle;
-    float rt_step;
-    float xdir;
-    float ydir;
+    float dir[2];
 
     // Mouse movement
     int xpoint;
@@ -105,9 +107,7 @@ typedef struct s_game
 
     // 2D map
     char *map[9];
-    int grid;
-    int side;
-
+    int which_cal;
 }	t_game;
 
 // =========================================================================
@@ -136,4 +136,12 @@ void raycast(t_game *g);
 void put_pixel(int x, int y, int color, t_game *g);
 void draw_line(int start[2], int end[2], int color, t_game *g);
 void draw_rect(int start[2], int end[2], int color, t_game *g);
+
+// Raycast utils
+bool y_only(float a);
+bool x_only(float a);
+int update_point(float *p ,float *step, int which_cal);
+float x_intercept(float *p, float *step, float angle);
+float y_intercept(float *p, float *step, float angle);
+
 #endif

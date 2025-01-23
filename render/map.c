@@ -12,11 +12,11 @@
 
 #include "../include/cub3d.h"
 
-void draw_square(int x, int y, int color, t_game *g)
+void draw_cell(int x, int y, int color, t_game *g)
 {
     int offset;
 
-    offset = g->grid - 1;
+    offset = CELL - 1;
     draw_rect(
         (int []){x + 1, y + 1},
         (int []){x + offset, y + offset},
@@ -35,9 +35,9 @@ void map(t_game *g)
         while (g->map[y][x])
         {
             if (g->map[y][x] == '1')
-                draw_square(x * g->grid, y * g->grid, WHITE, g);
+                draw_cell(x * CELL, y * CELL, WHITE, g);
             else
-                draw_square(x * g->grid, y * g->grid, BLACK, g);
+                draw_cell(x * CELL, y * CELL, BLACK, g);
             x++;
         }
     }

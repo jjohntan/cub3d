@@ -12,17 +12,17 @@
 
 #include "../include/cub3d.h"
 
-int render(t_game *d)
+int render(t_game *g)
 {
 	void *canvas;
 
-	canvas = mlx_new_image(d->mlx, d->width, d->height);
-	d->buff = (int *)mlx_get_data_addr(canvas, &d->bpp, &d->row, &d->endian);
-	draw_on_canvas(d);
-	mlx_put_image_to_window(d->mlx, d->wind, canvas, 0, 0);
-	if (d->display)
-		mlx_destroy_image(d->mlx, d->display);
-	d->display = canvas;
+	canvas = mlx_new_image(g->mlx, W, H);
+	g->buff = (int *)mlx_get_data_addr(canvas, &g->bpp, &g->row, &g->endian);
+	draw_on_canvas(g);
+	mlx_put_image_to_window(g->mlx, g->wind, canvas, 0, 0);
+	if (g->display)
+		mlx_destroy_image(g->mlx, g->display);
+	g->display = canvas;
 	return (0);
 }
 

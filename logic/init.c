@@ -14,20 +14,14 @@
 
 void init(t_game *g)
 {	
-	g->width = 1024;
-	g->height = 512;
-	
-	g->xpos = 100;
-	g->ypos = 180;
-	g->mv_step = 4.0;
-	
+	g->pos[X] = 100;
+	g->pos[Y] = 180;
 	g->angle = NORTH;
-	g-> rt_step = 0.1;
-	g->xdir = cos(g->angle);
-    g->ydir = sin(g->angle);
+	g->dir[X] = cos(g->angle);
+	g->dir[Y] = sin(g->angle);
 
 	g->mlx = mlx_init();
-	g->wind = mlx_new_window(g->mlx, g->width, g->height, "Cub3D");
+	g->wind = mlx_new_window(g->mlx, W, H, "Cub3D");
 
 	g->map[0] = "11111111";
 	g->map[1] = "10000001";
@@ -38,6 +32,4 @@ void init(t_game *g)
 	g->map[6] = "10000001";
 	g->map[7] = "11111111";
 	g->map[8] = NULL;
-
-	g->grid = 64;
 }

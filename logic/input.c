@@ -19,48 +19,53 @@ int mouse(int x, int y, t_game *d)
     return (0);
 }
 
-int keyboard(int key, t_game *g)
+void translation_motion(int key, t_game *g)
 {
     if (key == UP)
     {
-        g->xpos += g->xdir * g->mv_step;
-        g->ypos += g->ydir * g->mv_step;
+        g->pos[X] += g->dir[X] * MV_STEP;
+        g->pos[Y] += g->dir[Y] * MV_STEP;
     }   
     else if (key == DOWN)
     {
-        g->xpos -= g->xdir * g->mv_step;
-        g->ypos -= g->ydir * g->mv_step;
+        g->pos[X] -= g->dir[X] * MV_STEP;
+        g->pos[Y] -= g->dir[Y] * MV_STEP;
     }    
     else if (key == LEFT)
     {
-        g->xpos += g->ydir * g->mv_step;
-        g->ypos -= g->xdir * g->mv_step;
+        g->pos[X] += g->dir[Y] * MV_STEP;
+        g->pos[Y] -= g->dir[X] * MV_STEP;
     }    
     else if (key == RIGHT)
     {
-        g->xpos -= g->ydir * g->mv_step;
-        g->ypos += g->xdir * g->mv_step;
+        g->pos[X] -= g->dir[Y] * MV_STEP;
+        g->pos[Y] += g->dir[X] * MV_STEP;
     }
+}
+
+int keyboard(int key, t_game *g)
+{
+    if (key == UP || key == DOWN || key == LEFT || key == RIGHT)
+        translation_motion(key, g);
     else if (key == AW_LEFT || key == AW_RIGHT)  
     {
-        if (key == AW_LEFT)   g->angle -= g->rt_step;
-        if (key == AW_RIGHT)  g->angle += g->rt_step;
-        g->xdir = cos(g->angle);
-        g->ydir = sin(g->angle);
+        if (key == AW_LEFT)        g->angle -= RT_STEP;
+        else if (key == AW_RIGHT)  g->angle += RT_STEP;
+        g->dir[X] = cos(g->angle);
+        g->dir[Y] = sin(g->angle);
     }
     limit_range(g);
-    //printf("X: %f , Y: %f  Angle: %f\n", g->xpos, g->ypos, g->angle);
     return (0);
 }
 
 void limit_range(t_game *g)
 {
-    if      (g->xpos >= g->width)  g->xpos = g->width - 1;
-    else if (g->xpos < 0)          g->xpos = 0;
+    if      (g->pos[X] >= W)  g->pos[X] = W - 1;
+    else if (g->pos[X] < 0)   g->pos[X] = 0;
 
-    if      (g->ypos >= g->height)  g->ypos = g->height - 1;
-    else if (g->ypos < 0)           g->ypos = 0;
+    if      (g->pos[Y] >= H)  g->pos[Y] = H - 1;
+    else if (g->pos[Y] < 0)   g->pos[Y] = 0;
 
-    if      (g->angle >= REV)       g->angle -= REV;
-    else if (g->angle < 0)          g->angle += REV;
+    if      (g->angle >= DEG_360)   g->angle -= DEG_360;
+    else if (g->angle < 0)          g->angle += DEG_360;
 }

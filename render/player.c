@@ -15,12 +15,11 @@
 void player(t_game *g)
 {
     draw_line(
-        (int []){g->xpos, g->ypos},
-        (int []){g->xpos + g->xdir * 7, g->ypos + g->ydir * 7},
+        (int []){g->pos[X], g->pos[Y]},
+        (int []){g->pos[X] + g->dir[X] * 7, g->pos[Y] + g->dir[Y] * 7},
         YELLOW, g);
-    
     draw_line(
-        (int []){g->xpos + g->ydir * 4, g->ypos - g->xdir * 4},
-        (int []){g->xpos - g->ydir * 4, g->ypos + g->xdir * 4},
+        (int []){g->pos[X] + g->dir[Y] * 4, g->pos[Y] - g->dir[X] * 4},
+        (int []){g->pos[X] - g->dir[Y] * 4, g->pos[Y] + g->dir[X] * 4},
         YELLOW, g);
 }

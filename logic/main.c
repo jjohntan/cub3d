@@ -17,13 +17,13 @@ void config(t_game *g)
 	mlx_loop(g->mlx);
 }
 
-int closewind(t_game *d)
+int closewind(t_game *g)
 {
-	if (d->display)
-		mlx_destroy_image(d->mlx, d->display);
-	mlx_destroy_window(d->mlx, d->wind);
-	mlx_destroy_display(d->mlx);
-	free(d->mlx);
+	if (g->display)
+		mlx_destroy_image(g->mlx, g->display);
+	mlx_destroy_window(g->mlx, g->wind);
+	mlx_destroy_display(g->mlx);
+	free(g->mlx);
 	exit(EXIT_SUCCESS);
 	return (0);
 }

@@ -16,6 +16,6 @@ void background(t_game *g)
 {
     draw_rect(
 		(int []){0,0}, 
-		(int []){g->width, g->height},
+		(int []){W, H},
 		GREY, g);
 }
