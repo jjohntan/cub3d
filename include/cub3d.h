@@ -60,6 +60,8 @@
 // Window
 # define W 1024
 # define H 512
+# define FOV 1.15192
+# define ANGLE_STEP (FOV / W)
 
 // 2D Map
 # define X 0
@@ -68,7 +70,7 @@
 
 // Player
 # define MV_STEP 4.0
-# define RT_STEP 0.1
+# define RT_STEP 0.05
 
 // Direction
 # define NORTH DEG_270
@@ -136,6 +138,7 @@ void raycast(t_game *g);
 void put_pixel(int x, int y, int color, t_game *g);
 void draw_line(int start[2], int end[2], int color, t_game *g);
 void draw_rect(int start[2], int end[2], int color, t_game *g);
+float angle(float i);
 
 // Raycast utils
 bool y_only(float a);

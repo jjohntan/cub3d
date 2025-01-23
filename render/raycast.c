@@ -54,14 +54,20 @@ void each_ray(float *p, float a, t_game *g)
 void raycast(t_game *g)
 {
     float p[2];
+    float i = angle(g->angle - FOV / 2);
+    int counter = W;
 
-    p[X] = g->pos[X];
-    p[Y] = g->pos[Y];
-    each_ray(p, g->angle, g);
-    draw_line(
-        (int []){g->pos[X], g->pos[Y]},
-        (int []){p[X], p[Y]},
-        RED, g);
+    while (counter--)
+    {
+        p[X] = g->pos[X];
+        p[Y] = g->pos[Y];
+        each_ray(p, i, g);
+        draw_line(
+            (int []){g->pos[X], g->pos[Y]},
+            (int []){p[X], p[Y]},
+            RED, g);
+        i = angle(i + ANGLE_STEP);
+    }
 }
 
 /*

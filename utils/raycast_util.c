@@ -14,12 +14,12 @@
 
 bool y_only(float a)
 {
-    return ((a > 1.544 && a < 1.597) || (a > 4.686 && a < 4.736));
+    return (a == DEG_90 || a == DEG_270);
 }
 
 bool x_only(float a)
 {
-    return ((a > 6.257 || a < 0.026) || (a > 3.115 && a < 3.168));
+    return (a == 0 || a == DEG_180);
 }
 
 int update_point(float *p ,float *step, int which_cal)
