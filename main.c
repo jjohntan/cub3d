@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:02:34 by jetan             #+#    #+#             */
-/*   Updated: 2025/01/21 17:01:13 by jetan            ###   ########.fr       */
+/*   Updated: 2025/01/23 17:05:58 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,21 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-// int	check_char()
+
+
+// static int	valid_color(int *color)
 // {
-// 	int	h;
-// 	int	w;
+// 	int	i;
 	
-// 	while (map[])
+// 	i = 0;
+// 	while (i < 3)
 // 	{
-// 		while (map[][])
-// 		{
-// 			if ([][] != '0'&& [][] != '1' && [][]!= 'N' && [][]!= 'S' && [][]!='E' && [][]!= 'W')
-// 				return (0);
-// 		}
+// 		if (color[i] < 0 || color[i] > 255)
+// 			return (0);
+// 		i++;
 // 	}
 // 	return (1);
 // }
-
-static int	valid_color(int *color)
-{
-	int	i;
-	
-	i = 0;
-	while (i < 3)
-	{
-		if (color[i] < 0 || color[i] > 255)
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 // static void	check_extension(char *av)
 // {
@@ -75,7 +61,17 @@ int main(int ac, char **av)
 	(void)ac;
 	(void)av;
 	
+	char *map[] = {
+		"111111",
+		"100101",
+		"101001",
+		"1100N1",
+		"111111",
+		NULL
+	};
 	// ft_bzero(&data, sizeof(t_data);
 	// check_extension(av[1]);
 	// reading_file();
+	// check_walls(map);
+	check_char(map);
 }
