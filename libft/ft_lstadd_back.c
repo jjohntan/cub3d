@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/14 16:09:21 by jetan             #+#    #+#             */
-/*   Updated: 2025/01/24 16:29:48 by jetan            ###   ########.fr       */
+/*   Created: 2023/11/16 21:11:15 by jetan             #+#    #+#             */
+/*   Updated: 2023/11/18 21:21:02 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-# include "minilibx-linux/mlx.h"
-# include "libft/libft.h"
-# include <stdio.h>
-
-typedef struct s_map
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	int	height;
-	int	width;
-	
-}	t_map;
+	t_list	*node;
 
-
-typedef struct s_data
-{
-	t_map	*map;
-}	t_data;
-
-void	check_walls(char **map);
-void	check_char(char **map);
-void	flood_fill(char **map, int x, int y);
-
-#endif
+	if (lst == NULL || new == NULL)
+		return ;
+	if (*lst == NULL)
+		*lst = new;
+	else
+	{
+		node = *lst;
+		while (node->next != NULL)
+			node = node->next;
+		node->next = new;
+	}
+}

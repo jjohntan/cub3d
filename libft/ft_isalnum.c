@@ -1,37 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/14 16:09:21 by jetan             #+#    #+#             */
-/*   Updated: 2025/01/24 16:29:48 by jetan            ###   ########.fr       */
+/*   Created: 2023/10/17 18:21:33 by jetan             #+#    #+#             */
+/*   Updated: 2023/11/05 20:23:32 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-# include "minilibx-linux/mlx.h"
-# include "libft/libft.h"
-# include <stdio.h>
-
-typedef struct s_map
+int	ft_isalnum(int c)
 {
-	int	height;
-	int	width;
-	
-}	t_map;
-
-
-typedef struct s_data
-{
-	t_map	*map;
-}	t_data;
-
-void	check_walls(char **map);
-void	check_char(char **map);
-void	flood_fill(char **map, int x, int y);
-
-#endif
+	return (ft_isalpha(c) || ft_isdigit(c));
+}

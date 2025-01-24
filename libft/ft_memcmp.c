@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/14 16:09:21 by jetan             #+#    #+#             */
-/*   Updated: 2025/01/24 16:29:48 by jetan            ###   ########.fr       */
+/*   Created: 2023/10/27 19:15:11 by jetan             #+#    #+#             */
+/*   Updated: 2023/11/18 01:44:34 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-# include "minilibx-linux/mlx.h"
-# include "libft/libft.h"
-# include <stdio.h>
-
-typedef struct s_map
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int	height;
-	int	width;
-	
-}	t_map;
+	size_t				i;
+	const unsigned char	*str1;
+	const unsigned char	*str2;
 
-
-typedef struct s_data
-{
-	t_map	*map;
-}	t_data;
-
-void	check_walls(char **map);
-void	check_char(char **map);
-void	flood_fill(char **map, int x, int y);
-
-#endif
+	i = 0;
+	str1 = (const unsigned char *)s1;
+	str2 = (const unsigned char *)s2;
+	while (i < n)
+	{
+		if (str1[i] != str2[i])
+			return (str1[i] - str2[i]);
+		i++;
+	}
+	return (0);
+}

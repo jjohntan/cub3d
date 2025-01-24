@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/14 16:09:21 by jetan             #+#    #+#             */
-/*   Updated: 2025/01/24 16:29:48 by jetan            ###   ########.fr       */
+/*   Created: 2023/11/01 16:58:47 by jetan             #+#    #+#             */
+/*   Updated: 2023/11/17 15:41:54 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-# include "minilibx-linux/mlx.h"
-# include "libft/libft.h"
-# include <stdio.h>
-
-typedef struct s_map
+char	*ft_strmapi(char const *s, char (*f)(unsigned
+int, char))
 {
-	int	height;
-	int	width;
-	
-}	t_map;
+	char	*str;
+	size_t	i;
+	size_t	len;
 
-
-typedef struct s_data
-{
-	t_map	*map;
-}	t_data;
-
-void	check_walls(char **map);
-void	check_char(char **map);
-void	flood_fill(char **map, int x, int y);
-
-#endif
+	if (!s || !f)
+		return (NULL);
+	i = 0;
+	len = ft_strlen(s);
+	str = (char *)malloc(sizeof(char) * len + 1);
+	if (!str)
+		return (NULL);
+	while (s[i])
+	{
+		str[i] = f(i, s[i]);
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}

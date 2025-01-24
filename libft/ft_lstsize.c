@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/14 16:09:21 by jetan             #+#    #+#             */
-/*   Updated: 2025/01/24 16:29:48 by jetan            ###   ########.fr       */
+/*   Created: 2023/11/16 21:02:46 by jetan             #+#    #+#             */
+/*   Updated: 2023/11/17 16:56:36 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-# include "minilibx-linux/mlx.h"
-# include "libft/libft.h"
-# include <stdio.h>
-
-typedef struct s_map
+int	ft_lstsize(t_list *lst)
 {
-	int	height;
-	int	width;
-	
-}	t_map;
+	int		count;
+	t_list	*node;
 
-
-typedef struct s_data
-{
-	t_map	*map;
-}	t_data;
-
-void	check_walls(char **map);
-void	check_char(char **map);
-void	flood_fill(char **map, int x, int y);
-
-#endif
+	count = 0;
+	node = lst;
+	while (node != NULL)
+	{
+		node = node->next;
+		count++;
+	}
+	return (count);
+}

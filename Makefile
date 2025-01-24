@@ -1,7 +1,7 @@
 NAME = cub3D
 
-SRCS =  main.c
-	
+SRCS = check_map.c \
+		main.c
       
 
 
@@ -9,7 +9,7 @@ OBJS = $(SRCS:.c=.o) $(UTILS:.c=.o)
 
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Iinc -Ilibft $(FSANTIZE)
+CFLAGS = -Wall -Wextra -Werror -Iinc -Ilibft #$(FSANTIZE)
 FSANTIZE = -fsanitize=address -g3
 all: $(NAME)
 
