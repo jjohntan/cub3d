@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:01:22 by jpaul             #+#    #+#             */
-/*   Updated: 2025/01/24 12:53:13 by jpaul            ###   ########.fr       */
+/*   Updated: 2025/01/24 15:34:08 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void each_ray(float *p, float a, t_game *g)
             g->which_cal = update_point(p, xstep, X_INTER);
         else
         {
-            if (x_intercept(p, xstep, a) >= y_intercept(p, ystep, a))
+            if (x_intercept(p, xstep, a) > y_intercept(p, ystep, a))
                 g->which_cal = update_point(p, ystep, Y_INTER);
             else
                 g->which_cal = update_point(p, xstep, X_INTER);
@@ -55,9 +55,9 @@ void raycast(t_game *g)
 {
     float p[2];
     float i = angle(g->angle - FOV / 2);
-    int counter = W;
+    int counter = -1;
 
-    while (counter--)
+    while (++counter < SCREEN)
     {
         p[X] = g->pos[X];
         p[Y] = g->pos[Y];
@@ -66,6 +66,7 @@ void raycast(t_game *g)
             (int []){g->pos[X], g->pos[Y]},
             (int []){p[X], p[Y]},
             RED, g);
+        cal_wall(counter, i, p, g);
         i = angle(i + ANGLE_STEP);
     }
 }

@@ -61,7 +61,8 @@
 # define W 1024
 # define H 512
 # define FOV 1.15192
-# define ANGLE_STEP (FOV / W)
+# define SCREEN (W / 2)
+# define ANGLE_STEP (FOV / SCREEN)
 
 // 2D Map
 # define X 0
@@ -110,6 +111,8 @@ typedef struct s_game
     // 2D map
     char *map[9];
     int which_cal;
+
+    float wall[SCREEN];
 }	t_game;
 
 // =========================================================================
