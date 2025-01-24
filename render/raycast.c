@@ -6,22 +6,22 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:01:22 by jpaul             #+#    #+#             */
-/*   Updated: 2025/01/22 13:18:22 by jpaul            ###   ########.fr       */
+/*   Updated: 2025/01/24 12:53:13 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int check_wall(float p[2], t_game *g)
+int check_wall(float p[2], float a, t_game *g)
 {
     int x;
     int y;
 
     x = p[X] / CELL;
     y = p[Y] / CELL;
-    if (g->which_cal == Y_INTER && g->dir[Y] < 0)
+    if (g->which_cal == Y_INTER && sin(a) < 0)
         y--;
-    else if (g->which_cal == X_INTER && g->dir[X] < 0)
+    else if (g->which_cal == X_INTER && cos(a) < 0)
         x--;
     if (g->map[y][x] == '1')
         return (true);
@@ -46,7 +46,7 @@ void each_ray(float *p, float a, t_game *g)
             else
                 g->which_cal = update_point(p, xstep, X_INTER);
         }
-        if (check_wall(p, g))
+        if (check_wall(p, a, g))
             break;
     }
 }
