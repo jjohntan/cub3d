@@ -40,6 +40,10 @@
 # define YELLOW 0xFFFF00
 # define WHITE 0xFFFFFF
 # define BLACK 0x0
+# define SKY 0xADD8E6
+# define FLOOR 0x363333
+# define WALL_1 0x32CD32
+# define WALL_2 0x0BDA51
 
 //Keyboard
 # define ESC 65307
@@ -61,8 +65,10 @@
 # define W 1024
 # define H 512
 # define FOV 1.15192
-# define SCREEN (W / 2)
-# define ANGLE_STEP (FOV / SCREEN)
+# define SCREEN_W 512
+# define SCREEN_H 288
+# define ANGLE_STEP (FOV / SCREEN_W)
+# define PROJECTED_D ((SCREEN_W / 2) / tan(FOV / 2));
 
 // 2D Map
 # define X 0
@@ -86,6 +92,12 @@
 // =========================================================================
 // STRUCT
 // =========================================================================
+
+typedef struct s_wall
+{
+    float height;
+    int color;
+}   t_wall;
 
 typedef struct s_game
 {
@@ -112,7 +124,7 @@ typedef struct s_game
     char *map[9];
     int which_cal;
 
-    float wall[SCREEN];
+    t_wall wall[SCREEN_W];
 }	t_game;
 
 // =========================================================================
@@ -136,12 +148,15 @@ void background(t_game *g);
 void player(t_game *g);
 void map(t_game *g);
 void raycast(t_game *g);
+void screen(t_game *g);
 
 // Utils
 void put_pixel(int x, int y, int color, t_game *g);
 void draw_line(int start[2], int end[2], int color, t_game *g);
 void draw_rect(int start[2], int end[2], int color, t_game *g);
 float angle(float i);
+void cal_wall(int i , float angle, float *p, t_game *g);
+
 
 // Raycast utils
 bool y_only(float a);
@@ -149,5 +164,4 @@ bool x_only(float a);
 int update_point(float *p ,float *step, int which_cal);
 float x_intercept(float *p, float *step, float angle);
 float y_intercept(float *p, float *step, float angle);
-
 #endif

@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:01:22 by jpaul             #+#    #+#             */
-/*   Updated: 2025/01/24 15:34:08 by jpaul            ###   ########.fr       */
+/*   Updated: 2025/01/25 12:12:11 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void raycast(t_game *g)
     float i = angle(g->angle - FOV / 2);
     int counter = -1;
 
-    while (++counter < SCREEN)
+    while (++counter < SCREEN_W)
     {
         p[X] = g->pos[X];
         p[Y] = g->pos[Y];

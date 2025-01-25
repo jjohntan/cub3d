@@ -32,4 +32,5 @@ void draw_on_canvas(t_game *g)
 	map(g);
 	player(g);
 	raycast(g);
+	screen(g);
 }
