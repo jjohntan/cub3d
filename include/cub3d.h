@@ -68,7 +68,7 @@
 # define SCREEN_W 512
 # define SCREEN_H 288
 # define ANGLE_STEP (FOV / SCREEN_W)
-# define PROJECTED_D ((SCREEN_W / 2) / tan(FOV / 2));
+# define PROJECTED_D ((SCREEN_W / 2) / tan(FOV / 2)) - 30;
 
 // 2D Map
 # define X 0
