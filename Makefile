@@ -11,20 +11,21 @@ RM = rm -f
 #==================================================
 
 NAME = cub3d
-INCLUDE = ./include/mlx/libmlx.a ./include/lib/libft.a
-MLX_FLAG = -L./include/mlx -lmlx -L/usr/lib/X11 -lXext -lX11 -lm -lz
+INCLUDE = ./_include/mlx/libmlx.a ./_include/lib/libft.a
+MLX_FLAG = -L./_include/mlx -lmlx -L/usr/lib/X11 -lXext -lX11 -lm -lz
 
-LIB_DIR = ./include/lib
-MLX_DIR = ./include/mlx
+LIB_DIR = ./_include/lib
+MLX_DIR = ./_include/mlx
 
 #==================================================
 # FILES
 #==================================================
 
-SRC = $(wildcard ./logic/*.c) \
+SRC = $(wildcard ./dummy/*.c) \
+	$(wildcard ./game/*.c) \
+	$(wildcard ./init/*.c) \
 	$(wildcard ./render/*.c) \
 	$(wildcard ./utils/*.c)
-
 OBJ = $(SRC:.c=.o)
 
 #===================================================

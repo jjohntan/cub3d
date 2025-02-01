@@ -5,15 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/19 12:12:29 by jpaul             #+#    #+#             */
-/*   Updated: 2025/01/19 12:12:29 by jpaul            ###   ########.fr       */
+/*   Created: 2025/02/01 20:32:06 by jpaul             #+#    #+#             */
+/*   Updated: 2025/02/01 20:32:06 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../_include/cub3d.h"
 
-void put_pixel(int x, int y, int color, t_game *g)
+void putpx_disp(int x, int y, int color, t_game *g)
 {
-	if (x >= 0 && x < W && y >= 0 && y < H)
-		g->buff[y * W + x] = color;
+    if (x >= 0 && x < WIND_W && y >= 0 && y < WIND_H)
+        g->disp.buf[y * WIND_W + x] = color; 
+}
+
+void putpx_img(int x, int y, int color ,t_game *g)
+{
+    if (x >= 0 && x < g->mini.w && y >= 0 && y < g->mini.h)
+        g->mini.buf[y * g->mini.w + x] = color; 
 }

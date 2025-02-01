@@ -5,26 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 01:27:46 by jpaul             #+#    #+#             */
-/*   Updated: 2025/01/21 01:27:46 by jpaul            ###   ########.fr       */
+/*   Created: 2025/01/30 12:33:23 by jpaul             #+#    #+#             */
+/*   Updated: 2025/01/30 12:33:23 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../_include/cub3d.h"
 
-void draw_line(int start[2], int end[2], int color, t_game *g)
+void draw_line(int p[2], int end[2], int color, t_game *g)
 {
-	int len;
     int i;
-	double dx;
-	double dy;
+	float len;
+	float dy;
+	float dx;
 	
-	dx = end[X] - start[X];
-	dy = end[Y] - start[Y];
-	len = hypot(dx, dy);
-	dx /= len;
-	dy /= len;
 	i = -1;
-	while (++i <= len)
-		put_pixel(start[X] + i * dx, start[Y] + i * dy, color, g);
+	len = hypot(end[X] - p[X], end[Y] - p[Y]);
+	dx = (end[X] - p[X]) / len;
+	dy = (end[Y] - p[Y]) / len;
+	while (++i <= (int)len)
+		putpx_disp(p[X] + round(i * dx), p[Y] + round(i * dy), color, g);
 }
