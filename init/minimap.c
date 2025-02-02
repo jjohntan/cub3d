@@ -42,7 +42,7 @@ void update_mini_img(t_game *g)
             if (c == '1')
                 put_tile(x, y, WALL, g);
             else if (c == 'D')
-                put_tile(x, y, DOOR, g);
+                put_tile(x, y, LOCK, g);
             else if (c == 'U')
                 put_tile(x, y, UNLOCK, g);
             else if (c != ' ')

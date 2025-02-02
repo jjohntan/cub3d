@@ -18,8 +18,6 @@ int mouse_up(int button, int x, int y, t_game *g)
     (void)y;
     if (button == LEFT_CLICK)
         g->mouse.enable = false;
-    else if (button == RIGHT_CLICK)
-        g->attack = true;
     return (0);
 }
 
@@ -31,6 +29,8 @@ int mouse_down(int button, int x, int y, t_game *g)
         g->mouse.enable = true;
         g->mouse.x = x;
     }
+     else if (button == RIGHT_CLICK)
+        g->attack = true;
     return (0);
 }
 

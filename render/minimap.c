@@ -45,6 +45,7 @@ void copy_maze_section(int x, int y, t_game *g)
     int i;
     int j;
     int xmin;
+    int color;
 
     j = -1;
     y -= MINI_W / 2;
@@ -56,9 +57,12 @@ void copy_maze_section(int x, int y, t_game *g)
         while (++i < MINI_W)
         {
             if (x >= 0 && x < g->mini.w && y >= 0 && y < g->mini.h)
-                putpx_disp(i, j, g->mini.buf[y * g->mini.w + x], g);
+            {
+                color = g->mini.buf[y * g->mini.w + x];
+                putpx_disp(i, j, color, g);
+            }
             else
-                putpx_disp(i, j, 0x0, g);
+                putpx_disp(i, j, VOID, g);
             x++;
         }
         y++;

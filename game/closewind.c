@@ -33,11 +33,6 @@ int closewind(t_game *g)
 	return (0);
 }
 
-void destroy_maze(t_game *g)
-{
-    freelist(g->maze.arr);
-}
-
 void destroy_asset(t_game *g)
 {
 	int x;
@@ -47,7 +42,21 @@ void destroy_asset(t_game *g)
 	while (++y < 2)
 	{
 		x = -1;
-		while (g->weapon[y][++x].ptr)
-			mlx_destroy_image(g->mlx, g->weapon[y][x].ptr);
+		while (!g->weapon[y][++x].end)
+		{
+			if (g->weapon[y][x].ptr)
+				mlx_destroy_image(g->mlx, g->weapon[y][x].ptr);
+		}
 	}
+	y = -1;
+	while (!g->texture[++y].end)
+	{
+		if (g->texture[y].ptr)
+			mlx_destroy_image(g->mlx, g->texture[y].ptr);
+	}
+}
+
+void destroy_maze(t_game *g)
+{
+    freelist(g->maze.arr);
 }

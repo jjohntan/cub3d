@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize.c                                       :+:      :+:    :+:   */
+/*   err_msg.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/29 13:15:59 by jpaul             #+#    #+#             */
-/*   Updated: 2025/02/02 13:36:48 by jpaul            ###   ########.fr       */
+/*   Created: 2025/02/02 19:02:55 by jpaul             #+#    #+#             */
+/*   Updated: 2025/02/02 19:02:55 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../_include/cub3d.h"
 
-void init(t_game *g)
+void err_msg(char *s)
 {
-    ft_memset(g, 0, sizeof(t_game));
-
-    g->ceiling = CEILING;
-    g->floor = FLOOR;
-    g->maze.arr = use_dummy_maze();
-    get_maze_info(g);
-
-    g->mlx = mlx_init();
-	g->wind = mlx_new_window(g->mlx, WIND_W, WIND_H, "Cub3D");
-    init_minimap(g);
-    get_asset(g);
+    ft_putstr_fd(RED "Error\n" RESET, 2);
+    ft_putstr_fd(s, 2);
+    ft_putstr_fd("\n", 2);
 }

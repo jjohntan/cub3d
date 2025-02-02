@@ -37,12 +37,12 @@ void check_collision(int x, int y, t_game *g);
 // Clean-up
 int closewind(t_game *g);
 
-
 //----------------------------------------------------------------------------
 // Render on screen
 //----------------------------------------------------------------------------
 
 int render(t_game *g);
+void update_mini_img(t_game *g);
 
 void draw_maze(t_game *g);
 void draw_player(t_game *g);
@@ -50,15 +50,13 @@ void draw_minimap(t_game *g);
 void draw_weapon(t_game *g);
 void draw_bg(t_game *g);
 
-// Minimap
-void update_mini_img(t_game *g);
-
 //----------------------------------------------------------------------------
 // Utils
 //----------------------------------------------------------------------------
 
 float angle_limit(float i);
 void freelist(char **list);
+void err_msg(char *s);
 
 // Drawing
 void draw_line(int p[2], int end[2], int color, t_game *g);

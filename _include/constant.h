@@ -36,7 +36,7 @@
 // Mouse
 # define LEFT_CLICK 1
 # define RIGHT_CLICK 3
-# define DIFF 10   // Mouse sensitivify. Increase to make player turn faster
+# define DIFF 10   // Mouse sensitivity. Increase to make player turn faster
 
 //----------------------------------------------------------------------------
 // 2d map
@@ -66,6 +66,8 @@
 # define ROTATE 0.0523599  // Turning speed
 # define BOUND 7    // Player's boundary - for collision detection
 # define REACH 25   // Player's reach to unlock door
+# define ANIMATE 10 // Delay time to switch images, 
+//-                    bigger value means slower animation
 
 //----------------------------------------------------------------------------
 // Color
@@ -76,12 +78,14 @@
 # define WALL     0xFF        // BLUE
 # define SPACE    0xA9A9A9    // LIGHT GREY
 # define UNLOCK   0xBACDBE    // LIGHT GREEN
-# define DOOR     0x364b3a    // DARK GREEN
-// VOID BLACK 
+# define LOCK     0x364b3a    // DARK GREEN
+# define VOID     0xFF000000  // BLACK / NOTHING 
 
-// 3D env
-# define CEILING 0x87CEFA  // LIGHT BLUR
+// 3D env (temporary)
+# define CEILING 0x87CEFA  // LIGHT BLUE
 # define FLOOR   0x474747  // DARK GREY
+# define WALL_1  0x32CD32
+# define WALL_2  0x0BDA51
 
 //----------------------------------------------------------------------------
 // Asset
@@ -97,5 +101,28 @@
 #define PISTOL_2 "./asset/sprite/pistol2.xpm"
 #define PISTOL_3 "./asset/sprite/pistol3.xpm"
 #define PISTOL_4 "./asset/sprite/pistol4.xpm"
+
+# define SPRITE_W 300
+# define SPRITE_H 200
+
+// Texture
+#define IMG_NORTH "./asset/texture/stone1.xpm"
+#define IMG_SOUTH "./asset/texture/stone0.xpm"
+#define IMG_EAST  "./asset/texture/wood.xpm"
+#define IMG_WEST  "./asset/texture/brick.xpm"
+#define IMG_DOOR  "./asset/texture/door.xpm"
+
+// Index to access texture array
+#define NORTH 0
+#define SOUTH 1
+#define EAST  2
+#define WEST  3
+#define DOOR  4
+
+//----------------------------------------------------------------------------
+// Output message color
+
+# define RED "\033[0;31m"
+# define RESET "\033[0m"
 
 #endif

@@ -15,6 +15,15 @@
 
 # include "constant.h"
 
+typedef struct s_img
+{
+    int bpp;
+    int row;
+    int end;
+    int w;
+    int h;
+} t_img;
+
 typedef struct s_minimap
 {
     void *ptr;
@@ -23,13 +32,11 @@ typedef struct s_minimap
     int h;
 } t_minimap;
 
-
 typedef struct s_display
 {
     void *ptr;
     int *buf;
 } t_display;
-
 
 typedef struct s_player
 {
@@ -39,7 +46,6 @@ typedef struct s_player
     float dx;
     float dy;
 } t_player;
-
 
 typedef struct s_maze
 {
@@ -58,20 +64,29 @@ typedef struct s_weapon
 {
     void *ptr;
     int *buf;
+    bool end;
 } t_weapon;
+
+typedef struct s_texture
+{
+    void *ptr;
+    int *buf;
+    bool end;
+} t_texture;
 
 typedef struct s_game
 {
     void *mlx;
     void *wind;
-    int equip;
-    bool view;
-    bool attack;
     int ceiling;
     int floor;
+    bool view;
+
+    bool attack;
+    int equip;
     int timer;
 
-
+    t_texture texture[6];
     t_weapon weapon[2][6];
     t_mouse mouse;
     t_maze maze;
@@ -81,14 +96,5 @@ typedef struct s_game
  
 } t_game;
 
-
-typedef struct s_img
-{
-    int bpp;
-    int row;
-    int end;
-    int w;
-    int h;
-} t_img;
 
 #endif

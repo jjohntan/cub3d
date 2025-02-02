@@ -12,33 +12,41 @@
 
 #include "../_include/cub3d.h"
 int animate(t_game *g);
-
-//----------------------------------------------------------------------------
+void put_img(int x, int y, int frame, t_game *g);
 
 // Sprite 300 x 200
+//----------------------------------------------------------------------------
+
 void draw_weapon(t_game *g)
+{
+    int xoffset; 
+    int yoffset;
+
+    yoffset = WIND_H - SPRITE_H;
+    xoffset = (WIND_W / 2) - (SPRITE_W / 2);
+    put_img(xoffset, yoffset, animate(g) ,g);
+
+}
+
+
+void put_img(int x, int y, int frame, t_game *g)
 {
     int i;
     int j;
-    int x;
     int xmin;
-    int y;
     int *buf;
-    int a;
 
     j = -1;
-    y = WIND_H - 200;
-    xmin = WIND_W / 2 - 150;
-    a = animate(g);
-    while (++j < 200)
+    xmin = x;
+    buf = g->weapon[g->equip][frame].buf;
+    while (++j < SPRITE_H)
     {
         i = -1;
         x = xmin;
-        while (++i < 300)
+        while (++i < SPRITE_W)
         {
-            buf = g->weapon[g->equip][a].buf;
-            if ((unsigned int)buf[j * 300 + i] != 0xFF000000)
-                putpx_disp(x, y, buf[j * 300 + i], g);
+            if ((unsigned int)buf[j * SPRITE_W + i] != VOID)
+                putpx_disp(x, y, buf[j * SPRITE_W + i], g);
             x++;
         }
         y++;
@@ -51,7 +59,7 @@ int animate(t_game *g)
 
     if (g->attack)
     {
-        i = (g->timer++) / 7;
+        i = (g->timer++) / 10;
         if (g->weapon[g->equip][i + 1].ptr)
             return (i + 1);
         else
