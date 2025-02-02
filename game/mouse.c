@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 11:30:47 by jpaul             #+#    #+#             */
-/*   Updated: 2025/01/31 11:30:47 by jpaul            ###   ########.fr       */
+/*   Updated: 2025/02/02 13:49:41 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int mouse_up(int button, int x, int y, t_game *g)
     (void)y;
     if (button == LEFT_CLICK)
         g->mouse.enable = false;
+    else if (button == RIGHT_CLICK)
+        g->attack = true;
     return (0);
 }
 

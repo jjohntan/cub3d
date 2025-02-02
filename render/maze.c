@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:07:47 by jpaul             #+#    #+#             */
-/*   Updated: 2025/01/31 13:07:47 by jpaul            ###   ########.fr       */
+/*   Updated: 2025/02/02 11:42:22 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void draw_maze(t_game *g)
                 put_tile(x, y, WALL, g);
             else if (c == 'D')
                 put_tile(x, y, DOOR, g);
+            else if (c == 'U')
+                put_tile(x, y, UNLOCK, g);
             else if (c != ' ')
                 put_tile(x, y, SPACE, g);
         }

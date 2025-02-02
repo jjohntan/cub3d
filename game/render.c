@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.c                                             :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 23:30:32 by jpaul             #+#    #+#             */
-/*   Updated: 2025/01/29 23:30:32 by jpaul            ###   ########.fr       */
+/*   Updated: 2025/02/02 13:42:50 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,17 @@
 
 void draw_on_canvas(t_game *g)
 {
-    draw_maze(g);
-    draw_player(g);
-    draw_minimap(g);
+    if (g->view)
+    {   
+        draw_maze(g);
+        draw_player(g);
+    }
+    else
+    {
+        draw_bg(g);
+        draw_minimap(g);
+        draw_weapon(g);
+    }
 }
 
 int render(t_game *g)

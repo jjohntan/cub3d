@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 22:03:00 by jpaul             #+#    #+#             */
-/*   Updated: 2025/01/29 22:03:00 by jpaul            ###   ########.fr       */
+/*   Updated: 2025/02/02 11:42:03 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void update_mini_img(t_game *g)
                 put_tile(x, y, WALL, g);
             else if (c == 'D')
                 put_tile(x, y, DOOR, g);
+            else if (c == 'U')
+                put_tile(x, y, UNLOCK, g);
             else if (c != ' ')
                 put_tile(x, y, SPACE, g);
         }

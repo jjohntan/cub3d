@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:46:14 by jpaul             #+#    #+#             */
-/*   Updated: 2025/01/29 12:46:14 by jpaul            ###   ########.fr       */
+/*   Updated: 2025/02/02 13:42:17 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 // Initialize
 void init(t_game *g);
 void get_maze_info(t_game *g);
+void get_asset(t_game *g);
 void init_minimap(t_game *g);
 char **use_dummy_maze(); // Remove later
 
@@ -46,6 +47,8 @@ int render(t_game *g);
 void draw_maze(t_game *g);
 void draw_player(t_game *g);
 void draw_minimap(t_game *g);
+void draw_weapon(t_game *g);
+void draw_bg(t_game *g);
 
 // Minimap
 void update_mini_img(t_game *g);

@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:46:11 by jpaul             #+#    #+#             */
-/*   Updated: 2025/01/29 12:46:11 by jpaul            ###   ########.fr       */
+/*   Updated: 2025/02/02 13:50:41 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,25 @@ typedef struct s_mouse
     bool enable;
 }  t_mouse;
 
+typedef struct s_weapon
+{
+    void *ptr;
+    int *buf;
+} t_weapon;
 
 typedef struct s_game
 {
     void *mlx;
     void *wind;
+    int equip;
+    bool view;
+    bool attack;
+    int ceiling;
+    int floor;
+    int timer;
 
+
+    t_weapon weapon[2][6];
     t_mouse mouse;
     t_maze maze;
     t_minimap mini;
@@ -74,6 +87,8 @@ typedef struct s_img
     int bpp;
     int row;
     int end;
+    int w;
+    int h;
 } t_img;
 
 #endif

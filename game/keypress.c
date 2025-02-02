@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyboard.c                                         :+:      :+:    :+:   */
+/*   keypress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:13:51 by jpaul             #+#    #+#             */
-/*   Updated: 2025/01/29 13:13:51 by jpaul            ###   ########.fr       */
+/*   Updated: 2025/02/02 13:52:09 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ int keypress(int key, t_game *g)
         rotational_motion(key, g);
     else if (key == SPACEBAR)
         open_door(g);
+    else if (key == NUM_1 && !g->attack)
+        g->equip = 0;
+    else if (key == NUM_2 && !g->attack)
+        g->equip = 1;
+    else if (key == VIEW)
+        g->view = !g->view;
     return (0);
 }
 
