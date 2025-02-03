@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:09:21 by jetan             #+#    #+#             */
-/*   Updated: 2025/01/24 16:29:48 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/03 15:22:30 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct s_data
 	t_map	*map;
 }	t_data;
 
-void	check_walls(char **map);
 void	check_char(char **map);
 void	flood_fill(char **map, int x, int y);
 

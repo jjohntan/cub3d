@@ -6,38 +6,37 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:57:51 by jetan             #+#    #+#             */
-/*   Updated: 2025/01/23 17:05:36 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/03 15:14:41 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	check_walls(char **map)
+/**
+ * 
+ */
+void	flood_fill(char **map, int x, int y)
 {
-	int	i;
-	int	j;
-	
-	int h = 5;
-	int w = 6;
-	i = 0;
-	while (i < h)
+	int w = 6, h = 5;
+
+	printf("Visiting (y: %d, x: %d): %c\n", y, x, map[y][x]);
+	if (x < 0 || x >= w || y < 0 || y >= h)
+		return ;
+	if  (map[y][x] == '1' || map[y][x] == 'F')
+		return ;
+	if (x == 0 || x == w - 1 || y == 0 || y == h - 1)
 	{
-		j = 0;
-		while (j < w)
+		if (map[y][x] != '1')
 		{
-			if (i == 0 || i == h - 1 ||
-			j == 0 || j == w - 1)
-			{
-				if (map[i][j] != '1')
-				{
-					ft_putstr_fd("Error\nmap must be closed by walls", 2);
-					return ;
-				}
-			}
-			j++;
+			ft_putstr_fd("Error\nThe map must be closed/surrounded by walls", 2);
+			exit(1) ;
 		}
-		i++;
 	}
+	map[y][x] = 'F';
+	flood_fill(map, x - 1, y);
+	flood_fill(map, x + 1, y);
+	flood_fill(map, x, y - 1);
+	flood_fill(map, x, y + 1);
 }
 
 void	check_char(char **map)
