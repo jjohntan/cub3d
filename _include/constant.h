@@ -84,9 +84,11 @@
 // 3D env (temporary)
 # define CEILING 0x87CEFA  // LIGHT BLUE
 # define FLOOR   0x474747  // DARK GREY
-# define WALL_1  0x32CD32
+# define WALL_1  0x42F5B0
 # define WALL_2  0x0BDA51
-
+# define WALL_3  0xCB42F5
+# define WALL_4  0xF59642
+# define WALL_5  0x4290F5
 //----------------------------------------------------------------------------
 // Asset
 
@@ -125,4 +127,11 @@
 # define RED "\033[0;31m"
 # define RESET "\033[0m"
 
+//----------------------------------------------------------------------------
+// Raycasting & wall slice parameter
+
+# define FOV  (PI / 3)       // Field of view - 60degree
+# define STEP (FOV / WIND_W) // Ray increment step
+
+# define PROJECTED_D ((WIND_W / 2) / tan(FOV / 2))
 #endif

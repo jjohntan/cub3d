@@ -44,11 +44,20 @@ int closewind(t_game *g);
 int render(t_game *g);
 void update_mini_img(t_game *g);
 
+// Draw on canvas
 void draw_maze(t_game *g);
 void draw_player(t_game *g);
 void draw_minimap(t_game *g);
 void draw_weapon(t_game *g);
 void draw_bg(t_game *g);
+void draw_wall(t_game *g);
+
+// Raycasting
+void raycast(t_game *g);
+bool check_wall(t_ray *ray, t_game *g);
+void update_point(t_ray *ray, float *step, int intercept);
+float x_intercept(float p, float angle, float *step);
+float y_intercept(float p, float angle, float *step);
 
 //----------------------------------------------------------------------------
 // Utils

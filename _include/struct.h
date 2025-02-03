@@ -74,6 +74,17 @@ typedef struct s_texture
     bool end;
 } t_texture;
 
+typedef struct s_ray
+{
+    float x;
+    float y;
+    float angle;
+    int intercept;
+    bool door;
+    int wall_h;
+    int whichtx;
+} t_ray;
+
 typedef struct s_game
 {
     void *mlx;
@@ -86,6 +97,7 @@ typedef struct s_game
     int equip;
     int timer;
 
+    t_ray ray[WIND_W];
     t_texture texture[6];
     t_weapon weapon[2][6];
     t_mouse mouse;

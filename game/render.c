@@ -14,6 +14,7 @@
 
 void draw_on_canvas(t_game *g)
 {
+    raycast(g);
     if (g->view)
     {   
         draw_maze(g);
@@ -22,6 +23,7 @@ void draw_on_canvas(t_game *g)
     else
     {
         draw_bg(g);
+        draw_wall(g);
         draw_minimap(g);
         draw_weapon(g);
     }

@@ -26,5 +26,6 @@ int main()
     mlx_hook(g.wind, 2, 1L<<0, keypress, &g);
 	mlx_hook(g.wind, 17, 1L<<17, closewind, &g);
     mlx_loop_hook(g.mlx, render, &g);
+    raycast(&g);
 	mlx_loop(g.mlx);
 }
