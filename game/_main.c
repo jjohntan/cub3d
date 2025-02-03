@@ -17,7 +17,6 @@ int main()
     t_game g;
     
     init(&g);
-    //mlx_put_image_to_window(g.mlx, g.wind, g.mini.ptr, 0, 0);
     
     mlx_hook(g.wind, 4, 1L<<2, mouse_down, &g);
     mlx_hook(g.wind, 5, 1L<<3, mouse_up, &g);
