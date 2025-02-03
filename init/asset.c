@@ -50,7 +50,8 @@ void download_img(t_game *g)
     g->texture[2].ptr = mlx_xpm_file_to_image(g->mlx, IMG_EAST, &i.w, &i.h);
     g->texture[3].ptr = mlx_xpm_file_to_image(g->mlx, IMG_WEST, &i.w, &i.h);
     g->texture[4].ptr = mlx_xpm_file_to_image(g->mlx, IMG_DOOR, &i.w, &i.h);
-    g->texture[5].end = true;
+    g->texture[5].ptr = mlx_xpm_file_to_image(g->mlx, IMG_GROUND, &i.w, &i.h);
+    g->texture[6].end = true;
 }
 
 bool validate_download(t_game *g)

@@ -64,8 +64,8 @@
 // Player
 # define MOVE 4.0          // Moving speed
 # define ROTATE 0.0523599  // Turning speed
-# define BOUND 7    // Player's boundary - for collision detection
-# define REACH 25   // Player's reach to unlock door
+# define BOUND 10    // Player's boundary - for collision detection
+# define REACH 60   // Player's reach to unlock door
 # define ANIMATE 10 // Delay time to switch images, 
 //-                    bigger value means slower animation
 
@@ -108,11 +108,12 @@
 # define SPRITE_H 200
 
 // Texture
-#define IMG_NORTH "./asset/texture/stone1.xpm"
-#define IMG_SOUTH "./asset/texture/stone0.xpm"
-#define IMG_EAST  "./asset/texture/wood.xpm"
-#define IMG_WEST  "./asset/texture/brick.xpm"
+#define IMG_NORTH "./asset/texture/stone2.xpm"
+#define IMG_SOUTH "./asset/texture/brick.xpm"
+#define IMG_EAST  "./asset/texture/stone1.xpm"
+#define IMG_WEST  "./asset/texture/basalt.xpm"
 #define IMG_DOOR  "./asset/texture/door.xpm"
+#define IMG_GROUND "./asset/texture/ground.xpm"
 
 // Index to access texture array
 #define NORTH 0
@@ -120,6 +121,7 @@
 #define EAST  2
 #define WEST  3
 #define DOOR  4
+#define GROUND 5
 
 //----------------------------------------------------------------------------
 // Output message color

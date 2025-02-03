@@ -98,7 +98,7 @@ typedef struct s_game
     int timer;
 
     t_ray ray[WIND_W];
-    t_texture texture[6];
+    t_texture texture[7];
     t_weapon weapon[2][6];
     t_mouse mouse;
     t_maze maze;
