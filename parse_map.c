@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 14:56:50 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/03 20:38:43 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/04 17:02:55 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,27 @@ void	check_char(char **map)
 		}
 		h++;
 	}
+}
+
+int	parse_map(char *file)
+{
+	int		fd;
+	char	*line;
+
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+	{
+		ft_putstr_fd("Error\n", 2);
+		return (0);
+	}
+	line = NULL;
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		if (!line)
+			return (0);
+		printf("%s", line);
+		free(line);
+	}
+	close(fd);
+	return (1);
 }
