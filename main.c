@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 #include <stdio.h>
-#include <fcntl.h>
+
 
 
 
@@ -39,37 +39,34 @@
 // 		ft_putstr_fd("Error\n invalid extension", 2);
 // }
 
-
-
-int	parse_map(char *file)
+void	valid_texture(char *file)
 {
-	int		fd;
-	char	*line;
+	int	fd;
 	
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		return (0);
-	line = NULL;
-	while ((line = get_next_line(fd)) != NULL)
 	{
-		printf("%s\n", line);
+		return ;
 	}
 	close(fd);
-	return (1);
+	int	len;
+	len = ft_strlen(file) - 4;
+	if (ft_strncmp(&file[len], ".xpm", 4) != 0)
+		printf("hello");
 }
+
 
 int main(int ac, char **av)
 {
 	// t_data	data;
 	(void)ac;
-	(void)av;
 	
-	 char row0[] = "111111";
-    char row1[] = "100101";
-    char row2[] = "101001";
-    char row3[] = "1100N1";
-    char row4[] = "111111";
-    char *map[] = { row0, row1, row2, row3, row4, NULL };
+	 // char row0[] = "111111";
+	 //   char row1[] = "100101";
+	 //   char row2[] = "101001";
+	 //   char row3[] = "1100N1";
+	 //   char row4[] = "111111";
+	 //   char *map[] = { row0, row1, row2, row3, row4, NULL };
 	// int i = 0;
 	// while (map[i])
 	// {
@@ -80,9 +77,10 @@ int main(int ac, char **av)
 	// check_extension(av[1]);
 	// check_walls(map);
 	// check_char(map);
-	parse_map(map);
 	// flood_fill(map, 4, 3);
 	// valid_map(map);
+	valid_texture(av[1]);
+	parse_map(av[1]);
 	// i = 0;
 	// while (map[i])
 	// {
