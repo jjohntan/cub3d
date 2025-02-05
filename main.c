@@ -14,7 +14,10 @@
 #include <stdio.h>
 
 
-
+int	color(int r, int g, int b)
+{
+	return (r << 16) | (g << 8) | (b);
+}
 
 // static int	valid_color(int *color)
 // {
@@ -42,7 +45,7 @@
 void	valid_texture(char *file)
 {
 	int	fd;
-	
+
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
@@ -55,18 +58,43 @@ void	valid_texture(char *file)
 		printf("hello");
 }
 
+void	count_players(char **map)
+{
+	int	h;
+	int	w;
+	char	current;
+	int	player_count;
+	
+	h = 0;
+	while (map[h])
+	{
+		w = 0;
+		while (map[h][w])
+		{
+			if (ft_strchr("NSEW", map[h][w]))
+			{
+				player_count++;
+				
+				return ;
+			}
+			w++;
+		}
+		h++;
+	}
+}
 
 int main(int ac, char **av)
 {
 	// t_data	data;
 	(void)ac;
+	(void)av;
 	
-	 // char row0[] = "111111";
-	 //   char row1[] = "100101";
-	 //   char row2[] = "101001";
-	 //   char row3[] = "1100N1";
-	 //   char row4[] = "111111";
-	 //   char *map[] = { row0, row1, row2, row3, row4, NULL };
+	 char row0[] = "111111";
+	   char row1[] = "100101";
+	   char row2[] = "101001";
+	   char row3[] = "1100N1";
+	   char row4[] = "111111";
+	   char *map[] = { row0, row1, row2, row3, row4, NULL };
 	// int i = 0;
 	// while (map[i])
 	// {
@@ -79,12 +107,13 @@ int main(int ac, char **av)
 	// check_char(map);
 	// flood_fill(map, 4, 3);
 	// valid_map(map);
-	valid_texture(av[1]);
-	parse_map(av[1]);
+	// valid_texture(av[1]);
+	// parse_map(av[1]);
 	// i = 0;
 	// while (map[i])
 	// {
 	// 	printf("%s\n", map[i]);
 	// 	i++;
 	// }
+	valid_player_position(map);
 }
