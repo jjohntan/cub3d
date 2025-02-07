@@ -6,11 +6,35 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 14:29:29 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/07 19:41:10 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/07 21:09:42 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	parse_color(char *line, t_game *data)
+{
+	char	**split;
+	char	**rgb;
+	int	r;
+	int	g;
+	int	b;
+	
+	split = ft_split(line, ' ');
+	if (!split)
+		return ;
+	if (split[0] && split[1] && !split[2])
+	{
+		rgb = ft_split(line, ',');
+		if (rgb[0] && rgb[1] && rgb[2] && !rgb[3])
+		{
+			r = ft_atoi(rgb[0]);
+			g = ft_atoi(rgb[1]);
+			b = ft_atoi(rgb[2]);
+			
+		}
+	}
+}
 
 void	parse_texture(char *line, t_game *data)
 {
