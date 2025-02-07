@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:57:51 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/03 17:39:27 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/06 20:15:59 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ void	check_walls(char **map)
 /**
  * if reach a boundary, map is not closed
  */
-void	flood_fill(char **map, int x, int y)
+void	flood_fill(char **map, int x, int y)//bug
 {
-	int w = 6, h = 5;
+	int w = 11, h = 5;
 
-	printf("Visiting (y: %d, x: %d): %c\n", y, x, map[y][x]);
+	printf("Visiting (y: %d, x: %d): %c\n", y, x, map[y][x]);//hello
 	if (x < 0 || x >= w || y < 0 || y >= h)
 		return ;
 	if  (map[y][x] == '1' || map[y][x] == 'F')
@@ -59,7 +59,7 @@ void	flood_fill(char **map, int x, int y)
 		if (map[y][x] != '1')
 		{
 			ft_putstr_fd("Error\nThe map must be closed/surrounded by walls", 2);
-			exit(1) ;
+			exit(1);
 		}
 	}
 	map[y][x] = 'F';
