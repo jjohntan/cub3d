@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 14:56:50 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/07 14:59:32 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/07 19:29:44 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,34 +34,27 @@ void	check_char(char **map)
 	}
 }
 
-void	parse_texture(char *line)
-{
-	int	i;
-	
-	i = 2;
-}
-
-void	identifier(char *line)
+static void	identifier(char *line, t_game *data)
 {
 	if (line[0] == 'N' && line[1] == 'O')
-		parse_texture(line);
+		parse_texture(line, data);
 	else if (line[0] == 'S' && line[1] == 'O')
-		parse_texture(line);
+		parse_texture(line, data);
 	else if (line[0] == 'W' && line[1] == 'E')
-		parse_texture(line);
+		parse_texture(line, data);
 	else if (line[0] == 'E' && line[1] == 'A')
-		parse_texture(line);
-	else if (line[0] == 'F')
-		parse_color(line);
-	else if (line[0] == 'C')
-		parse_color(line);
+		parse_texture(line, data);
+	// else if (line[0] == 'F')
+	// 	parse_color(line, data);
+	// else if (line[0] == 'C')
+	// 	parse_color(line, data);
 }
 
-char	**parse_map(char *file)
+int	parse_map(char *file, t_game *data)
 {
 	int		fd;
 	char	*line;
-	char    **map;
+	// char	**map;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
@@ -72,16 +65,10 @@ char	**parse_map(char *file)
 	line = NULL;
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		
-		// if (line[0] == '\n')
-		// {
-		// 	free(line);
-		// 	continue;
-		// }
-		identifier(line);
+		identifier(line, data);
 		printf("%s", line);//hello
 		free(line);
 	}
 	close(fd);
-	return (map);
+	return (1);
 }

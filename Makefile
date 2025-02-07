@@ -2,6 +2,7 @@ NAME = cub3D
 
 SRCS = check_map.c \
 		parse_map.c \
+		parse_texture.c \
 		main.c
       
 
