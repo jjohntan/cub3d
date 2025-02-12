@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:02:34 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/07 19:37:06 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/12 16:50:47 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 #include <stdio.h>
 
 
-int	color(int r, int g, int b)
-{
-	return (r << 16) | (g << 8) | (b);
-}
+
 
 // static int	valid_color(int *color)
 // {

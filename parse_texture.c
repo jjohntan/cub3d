@@ -6,34 +6,67 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 14:29:29 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/07 21:09:42 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/12 16:52:40 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+int	color(int r, int g, int b)
+{
+	return (r << 16) | (g << 8) | (b);
+}
+
 void	parse_color(char *line, t_game *data)
 {
 	char	**split;
-	char	**rgb;
 	int	r;
 	int	g;
 	int	b;
 	
-	split = ft_split(line, ' ');
-	if (!split)
-		return ;
-	if (split[0] && split[1] && !split[2])
+	split = ft_split(line + 1, ',');
+	if (split[0] && split[1] && split[2] && !split[3])
 	{
-		rgb = ft_split(line, ',');
-		if (rgb[0] && rgb[1] && rgb[2] && !rgb[3])
+		r = ft_atol(split[0]);
+		g = ft_atol(split[1]);
+		b = ft_atol(split[2]);
+		if (line[0] == 'F')
 		{
-			r = ft_atoi(rgb[0]);
-			g = ft_atoi(rgb[1]);
-			b = ft_atoi(rgb[2]);
-			
+			data->floor = color(r, g, b);
+			printf("floor: %d\n", data->floor);
+		}
+		else if (line[0] == 'C')
+		{
+			data->ceiling = color(r, g, b);
+			printf("ceiling: %d\n", data->ceiling);
 		}
 	}
+	free(split);
+}
+
+void	assign_path(char **split, char *path, t_game *data)
+{	
+	if (ft_strncmp(split[0], "NO", 2) == 0)
+	{
+		data->texture->no = path;
+		printf("NO: %s\n", data->texture->no);
+	}
+	else if (ft_strncmp(split[0], "SO", 2) == 0)
+	{
+		data->texture->so = path;
+		printf("SO: %s\n", data->texture->so);
+	}
+	else if (ft_strncmp(split[0], "WE", 2) == 0)
+	{
+		data->texture->we = path;
+		printf("WE: %s\n", data->texture->we);
+	}
+	else if (ft_strncmp(split[0], "EA", 2) == 0)
+	{
+		data->texture->ea = path;
+		printf("EA: %s\n", data->texture->ea);
+	}
+	free(split);
 }
 
 void	parse_texture(char *line, t_game *data)
@@ -49,27 +82,6 @@ void	parse_texture(char *line, t_game *data)
 		path = ft_strtrim(split[1], "\n");
 		if (!path)
 			return ;
-		if (ft_strncmp(split[0], "NO", 2) == 0)
-		{
-			data->texture->no = path;
-			printf("NO: %s\n", data->texture->no);
-		}
-		else if (ft_strncmp(split[0], "SO", 2) == 0)
-		{
-			data->texture->so = path;
-			printf("SO: %s\n", data->texture->so);
-		}
-		else if (ft_strncmp(split[0], "WE", 2) == 0)
-		{
-			data->texture->we = path;
-			printf("WE: %s\n", data->texture->we);
-		}
-		else if (ft_strncmp(split[0], "EA", 2) == 0)
-		{
-			data->texture->ea = path;
-			printf("EA: %s\n", data->texture->ea);
-		}
+		assign_path(split, path, data);
 	}
 }
-
-

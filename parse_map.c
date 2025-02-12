@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 14:56:50 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/07 19:29:44 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/12 16:54:24 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ static void	identifier(char *line, t_game *data)
 		parse_texture(line, data);
 	else if (line[0] == 'E' && line[1] == 'A')
 		parse_texture(line, data);
-	// else if (line[0] == 'F')
-	// 	parse_color(line, data);
-	// else if (line[0] == 'C')
-	// 	parse_color(line, data);
+	else if (line[0] == 'F')
+		parse_color(line, data);
+	else if (line[0] == 'C')
+		parse_color(line, data);
 }
 
 int	parse_map(char *file, t_game *data)
