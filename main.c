@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:02:34 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/12 16:50:47 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/12 20:57:07 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int main(int ac, char **av)
 	// }
 	// ft_bzero(&data, sizeof(t_game);
 	check_extension(av[1]);
-	parse_map(av[1], &data);
+	parser(av[1], &data);
 	// valid_map(map);
 	// check_walls(map);
 	// check_char(map);

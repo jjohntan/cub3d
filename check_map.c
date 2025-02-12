@@ -6,11 +6,33 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:57:51 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/06 20:15:59 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/12 21:05:47 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	check_char(char **map)
+{
+	int	h;
+	int	w;
+	
+	h = 0;
+	while (map[h])
+	{
+		w = 0;
+		while (map[h][w])
+		{
+			if (map[h][w] != '0'&& map[h][w] != '1' && map[h][w]!= 'N' && map[h][w]!= 'S' && map[h][w]!='E' && map[h][w]!= 'W' && map[h][w] != 'D')
+			{
+				ft_putstr_fd("Error\nInvalid character in map", 2);
+				return ;
+			}
+			w++;
+		}
+		h++;
+	}
+}
 
 void	check_walls(char **map)
 {

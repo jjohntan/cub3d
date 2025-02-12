@@ -6,32 +6,34 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 14:56:50 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/12 16:54:24 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/12 21:05:27 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	check_char(char **map)
+
+
+void	parse_map(char *line, t_game *data)
 {
-	int	h;
-	int	w;
-	
-	h = 0;
-	while (map[h])
+	while ()
 	{
-		w = 0;
-		while (map[h][w])
-		{
-			if (map[h][w] != '0'&& map[h][w] != '1' && map[h][w]!= 'N' && map[h][w]!= 'S' && map[h][w]!='E' && map[h][w]!= 'W' && map[h][w] != 'D')
-			{
-				ft_putstr_fd("Error\nInvalid character in map", 2);
-				return ;
-			}
-			w++;
-		}
-		h++;
+		
 	}
+}
+
+int	is_map(char *line)
+{
+	int	i;
+	
+	i = 0;
+	while (line[i])
+	{
+		if (ft_isdigit(line[i]) || line[i] == ' ' || line[i] == 'N' || line[i] == 'S' || line[i] == 'W' || line[i] == 'E')
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
 static void	identifier(char *line, t_game *data)
@@ -48,9 +50,12 @@ static void	identifier(char *line, t_game *data)
 		parse_color(line, data);
 	else if (line[0] == 'C')
 		parse_color(line, data);
+	else if (is_map(line))
+		// printf("hello");
+		parse_map(line, data);
 }
 
-int	parse_map(char *file, t_game *data)
+int	parser(char *file, t_game *data)
 {
 	int		fd;
 	char	*line;

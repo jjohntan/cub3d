@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 14:29:29 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/12 16:52:40 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/12 19:55:52 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ void	parse_color(char *line, t_game *data)
 	split = ft_split(line + 1, ',');
 	if (split[0] && split[1] && split[2] && !split[3])
 	{
-		r = ft_atol(split[0]);
+		r = ft_atol(split[0]); // "300" "    -23123abcc++"  "abc"
 		g = ft_atol(split[1]);
 		b = ft_atol(split[2]);
 		if (line[0] == 'F')
-		{
-			data->floor = color(r, g, b);
+		{                        // 0 - 255   
+			data->floor = color(r, g, b); // rgb value already correct
 			printf("floor: %d\n", data->floor);
 		}
 		else if (line[0] == 'C')
@@ -41,7 +41,7 @@ void	parse_color(char *line, t_game *data)
 			printf("ceiling: %d\n", data->ceiling);
 		}
 	}
-	free(split);
+	free(split);//bug
 }
 
 void	assign_path(char **split, char *path, t_game *data)

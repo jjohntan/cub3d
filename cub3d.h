@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:09:21 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/12 16:55:33 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/12 20:57:15 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdbool.h>
 #include "struct.h"
 //parse map
-int	parse_map(char *file, t_game *data);
+int	parser(char *file, t_game *data);
 //validate map
 void	check_char(char **map);
 void	check_walls(char **map);
