@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:09:21 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/12 20:57:15 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/14 20:21:19 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,5 @@ void	valid_player(char **map);
 void	parse_texture(char *line, t_game *data);
 void	parse_color(char *line, t_game *data);
 
+char	*skip_space(char *line);
 #endif

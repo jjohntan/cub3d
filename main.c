@@ -6,29 +6,12 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:02:34 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/12 20:57:07 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/14 18:33:39 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stdio.h>
-
-
-
-
-// static int	valid_color(int *color)
-// {
-// 	int	i;
-	
-// 	i = 0;
-// 	while (i < 3)
-// 	{
-// 		if (color[i] < 0 || color[i] > 255)
-// 			return (0);
-// 		i++;
-// 	}
-// 	return (1);
-// }
 
 static void	check_extension(char *av)
 {
@@ -57,27 +40,27 @@ void	valid_texture(char *file)
 
 int	count_players(char **map)
 {
-	int	h;
-	int	w;
+	int	y;
+	int	x;
 	int	player_count;
 	
 	player_count = 0;
-	h = 0;
-	while (map[h])
+	y = 0;
+	while (map[y])
 	{
-		w = 0;
-		while (map[h][w])
+		x = 0;
+		while (map[y][x])
 		{
-			if (ft_strchr("NSEW", map[h][w]))
+			if (ft_strchr("NSEW", map[y][x]))
 			{
 				player_count++;
-				// ->y = h;
-				// ->x = w;
-				// ->angle = map[h][w];
+				// ->y = y;
+				// ->x = x;
+				// ->angle = map[y][x];
 			}
-			w++;
+			x++;
 		}
-		h++;
+		y++;
 	}
 	return (player_count);
 }
@@ -124,7 +107,7 @@ int main(int ac, char **av)
 	// 	printf("%s\n", map[i]);
 	// 	i++;
 	// }
-	// ft_bzero(&data, sizeof(t_game);
+	ft_bzero(&data, sizeof(t_game));
 	check_extension(av[1]);
 	parser(av[1], &data);
 	// valid_map(map);

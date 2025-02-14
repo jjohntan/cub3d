@@ -6,15 +6,15 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 17:25:05 by jetan             #+#    #+#             */
-/*   Updated: 2024/05/23 16:55:10 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/14 22:35:59 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long	ft_atol(const char *str)
+int	ft_atoi(const char *str)
 {
-	long long	result;
+	int	result;
 	int			sign;
 
 	result = 0;
