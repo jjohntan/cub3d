@@ -70,15 +70,17 @@ char	*skip_space(char *line)
 
 static void	identifier(char *line, t_game *data)
 {
-	line = skip_space(line);
-	if ((line[0] == 'N' && line[1] == 'O') ||
-	 (line[0] == 'S' && line[1] == 'O') ||
-	 (line[0] == 'W' && line[1] == 'E') ||
-	 (line[0] == 'E' && line[1] == 'A'))
-		parse_texture(line, data);
-	// else if ((line[0] == 'F') ||
-	//  (line[0] == 'C'))
-	// 	parse_color(line, data);
+	char	*skip;
+	
+	skip = skip_space(line);
+	if ((skip[0] == 'N' && skip[1] == 'O') ||
+	 (skip[0] == 'S' && skip[1] == 'O') ||
+	 (skip[0] == 'W' && skip[1] == 'E') ||
+	 (skip[0] == 'E' && skip[1] == 'A'))
+		parse_texture(skip, data);
+	else if ((skip[0] == 'F') ||
+	 (skip[0] == 'C'))
+		parse_color(skip, data);
 	// else if (is_map(line))//
 	// 	printf("hello\n");
 		// parse_map(line, data);
