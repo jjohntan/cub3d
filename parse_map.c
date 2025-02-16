@@ -45,14 +45,18 @@ int	is_map(char *line)
 	int	i;
 	
 	i = 0;
-	if (line[i] == '\0' || line[i] == 'N' ||
-		line[i] == 'S' || line[i] == 'E' ||
-		line[i] == 'W' || line[i] == 'F' || line[i] == 'C')
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	if (line[i] == '\0' || line[i] == '\n')
 		return (0);
-	while (line[i])
+	while (line[i] != '\0' && line[i] != '\n')
 	{
-		if (!ft_strchr("01NSEWD", line[i]))
-			return (0);
+		if (line[i] != '0' && line[i] != '1' && line[i] != 'N' &&
+		 line[i] != 'S' && line[i] != 'E' && line[i] != 'W' && line[i] != 'D' && line[i] != ' ')
+		 {
+			printf("hello");
+			exit(1);
+		 }
 		i++;
 	}
 	return (1);
@@ -81,8 +85,8 @@ static void	identifier(char *line, t_game *data)
 	else if ((skip[0] == 'F') ||
 	 (skip[0] == 'C'))
 		parse_color(skip, data);
-	// else if (is_map(line))//
-	// 	printf("hello\n");
+	else if (is_map(skip))//
+		printf("hi\n");
 		// parse_map(line, data);
 }
 

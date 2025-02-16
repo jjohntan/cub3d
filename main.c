@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:02:34 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/14 18:33:39 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/16 19:09:56 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int main(int ac, char **av)
 	// {
 	// 	printf("%s\n", map[i]);
 	// 	i++;
-	// }
+	// 0}
 	ft_bzero(&data, sizeof(t_game));
 	check_extension(av[1]);
 	parser(av[1], &data);
