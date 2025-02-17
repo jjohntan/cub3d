@@ -6,39 +6,11 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 14:56:50 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/13 16:56:42jetan            ###   ########.fr       */
+/*   Updated: 2025/02/17 22:43:58 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// int	count_line(char *file)
-// {
-// 	int	fd;
-// 	int	count;
-// 	char	*line;
-	
-// 	fd = open(file, O_RDONLY);
-// 	if (fd < 0)
-// 		return (0);
-// 	count = 0;
-// 	while (line = get_next_line(fd))
-// 	{
-// 		count++;
-// 		free(line);
-// 	}
-// 	return (count);
-// }
-
-void	parse_map(char *line, t_game *data)
-{
-	int	i;
-	
-	i = 0;
-	data->map.arr[i] = ft_strdup(line);
-		i++;
-	data->map.height++;
-}
 
 int	is_map(char *line)
 {
@@ -54,7 +26,7 @@ int	is_map(char *line)
 		if (line[i] != '0' && line[i] != '1' && line[i] != 'N' &&
 		 line[i] != 'S' && line[i] != 'E' && line[i] != 'W' && line[i] != 'D' && line[i] != ' ')
 		 {
-			printf("hello");
+			ft_putstr_fd("Error\nInvalid character in map", 2);
 			exit(1);
 		 }
 		i++;
@@ -72,30 +44,97 @@ char	*skip_space(char *line)
 	return (&line[i]);
 }
 
-static void	identifier(char *line, t_game *data)
+int blankstr(char *str)
+{
+	while(*str)
+	{
+		if (*str != ' ' && *str != '\t' && *str != '\n')
+			return (0);
+		str++;
+	}
+	return (1);
+}
+
+/*
+- true : is an element  >> extract >> increment counter (max 6)
+- false: not an element >> err_msg
+- true : blank >> but no increment 
+*/
+static int	identifier(char *line, t_game *data, int *counter)
 {
 	char	*skip;
-	
+	// int i = -1;	
 	skip = skip_space(line);
+
+	if (blankstr(line))
+		return (1);
 	if ((skip[0] == 'N' && skip[1] == 'O') ||
 	 (skip[0] == 'S' && skip[1] == 'O') ||
 	 (skip[0] == 'W' && skip[1] == 'E') ||
 	 (skip[0] == 'E' && skip[1] == 'A'))
+	 {
 		parse_texture(skip, data);
+		(*counter)++;
+		return (1);
+	 }
 	else if ((skip[0] == 'F') ||
 	 (skip[0] == 'C'))
+	 {
 		parse_color(skip, data);
-	else if (is_map(skip))//
-		printf("hi\n");
+		(*counter)++;
+		return (1);
+	 }
+	// else if (is_map(skip))//
+	// 	printf("hi");
 		// parse_map(line, data);
+	return (0);
 }
 
+void freelist(char **list)
+{
+	int i = 0;
+	if (!list)
+		return ;
+	while (list[i])
+	{
+		free(list[i]);
+		i++;
+	}
+	free(list);
+}
 
+void parse_map(char *line, t_game *data)
+{
+	char **temp;
+	int i = 0;
+	
+	temp = (char **)malloc(sizeof(char *) * (++data->map.y + 1));
+	
+	while (data->map.arr && data->map.arr[i])
+	{
+		temp[i] = data->map.arr[i];
+		i++;
+	}
+		
+	temp[i++] = line;
+	temp[i] = NULL;
+	
+	// if (data->map.arr)
+	// 	freelist(data->map.arr);
+	data->map.arr = temp;
+}
+
+/*
+1 = success
+0 = false
+*/
 int	parser(char *file, t_game *data)
 {
 	int		fd;
 	char	*line;
-
+	
+		int counter;
+		counter = 0;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
@@ -105,9 +144,20 @@ int	parser(char *file, t_game *data)
 	line = NULL;
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		identifier(line, data);
-		printf("%s", line);//hello
-		free(line);
+		if (counter < 6)
+		{	
+			if (!identifier(line, data, &counter))
+				return (printf("Dont suppose to execute\n"), 0);
+			free(line);
+		}
+		else if (counter == 6 && blankstr(line))
+			free(line);
+		else
+		{
+			counter++; 
+			parse_map(line, data);
+		}
+		//printf("%d | %s", counter, line);//hello
 	}
 	close(fd);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:02:34 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/16 19:09:56 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/17 22:46:09 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int main(int ac, char **av)
 	//    char row3[] = "1100N1";
 	//    char row4[] = "111111";
 	//    char *map[] = { row0, row1, row2, row3, row4, NULL };
-	// int i = 0;
+	int i = 0;
 	// while (map[i])
 	// {
 	// 	printf("%s\n", map[i]);
@@ -116,10 +116,11 @@ int main(int ac, char **av)
 	// flood_fill(map, 5, 3);
 	// valid_texture(av[1]);
 	// i = 0;
-	// while (map[i])
-	// {
-	// 	printf("%s\n", map[i]);
-	// 	i++;
-	// }
+	printf("\n");
+	while (data.map.arr && data.map.arr[i])
+	{
+		printf("%s", data.map.arr[i]);
+		i++;
+	}
 	// valid_player(map);
 }
