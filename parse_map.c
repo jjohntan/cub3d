@@ -6,33 +6,33 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 14:56:50 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/17 22:43:58 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/18 22:03:31 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	is_map(char *line)
-{
-	int	i;
+// int	is_map(char *line)
+// {
+// 	int	i;
 	
-	i = 0;
-	while (line[i] == ' ' || line[i] == '\t')
-		i++;
-	if (line[i] == '\0' || line[i] == '\n')
-		return (0);
-	while (line[i] != '\0' && line[i] != '\n')
-	{
-		if (line[i] != '0' && line[i] != '1' && line[i] != 'N' &&
-		 line[i] != 'S' && line[i] != 'E' && line[i] != 'W' && line[i] != 'D' && line[i] != ' ')
-		 {
-			ft_putstr_fd("Error\nInvalid character in map", 2);
-			exit(1);
-		 }
-		i++;
-	}
-	return (1);
-}
+// 	i = 0;
+// 	while (line[i] == ' ' || line[i] == '\t')
+// 		i++;
+// 	if (line[i] == '\0' || line[i] == '\n')
+// 		return (0);
+// 	while (line[i] != '\0' && line[i] != '\n')
+// 	{
+// 		if (line[i] != '0' && line[i] != '1' && line[i] != 'N' &&
+// 		 line[i] != 'S' && line[i] != 'E' && line[i] != 'W' && line[i] != 'D' && line[i] != ' ')
+// 		 {
+// 			ft_putstr_fd("Error\nInvalid character in map", 2);
+// 			exit(1);
+// 		 }
+// 		i++;
+// 	}
+// 	return (1);
+// }
 
 char	*skip_space(char *line)
 {
@@ -63,9 +63,8 @@ int blankstr(char *str)
 static int	identifier(char *line, t_game *data, int *counter)
 {
 	char	*skip;
-	// int i = -1;	
-	skip = skip_space(line);
 
+	skip = skip_space(line);
 	if (blankstr(line))
 		return (1);
 	if ((skip[0] == 'N' && skip[1] == 'O') ||
@@ -84,9 +83,6 @@ static int	identifier(char *line, t_game *data, int *counter)
 		(*counter)++;
 		return (1);
 	 }
-	// else if (is_map(skip))//
-	// 	printf("hi");
-		// parse_map(line, data);
 	return (0);
 }
 
@@ -105,17 +101,16 @@ void freelist(char **list)
 
 void parse_map(char *line, t_game *data)
 {
-	char **temp;
-	int i = 0;
+	char	**temp;
+	int		i;
 	
+	i = 0;
 	temp = (char **)malloc(sizeof(char *) * (++data->map.y + 1));
-	
 	while (data->map.arr && data->map.arr[i])
 	{
 		temp[i] = data->map.arr[i];
 		i++;
 	}
-		
 	temp[i++] = line;
 	temp[i] = NULL;
 	
