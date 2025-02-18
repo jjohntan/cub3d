@@ -6,13 +6,13 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 20:13:24 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/15 22:41:38 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/18 17:04:19 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	valid_color(int *color)
+static void	color_range(int *color)
 {
 	int	i;
 	
@@ -30,6 +30,34 @@ static void	valid_color(int *color)
 	}
 }
 
+void	check_color_format(char *str)
+{
+	int	i;
+	int	comma;
+
+	i = 0;
+	comma = 0;
+	while (str[i])
+	{
+		if (str[i] == ',')
+		{
+			comma++;
+			i++;
+		}
+		else if (ft_isdigit(str[i]) != 0)
+			i++;
+		else
+		{
+			ft_putstr_fd("Error\nInvalid character", 2);
+			exit(1);
+		}
+	}
+	if (comma != 2)
+	{
+		ft_putstr_fd("Error\n2 comma needed", 2);
+		exit(1);
+	}
+}
 /**
  * @brief This function convert rgb from decimal to hexadecimal
  */
@@ -48,11 +76,12 @@ void	parse_color(char *line, t_game *data)
 	trimmed_line = line;
 	line += 1;
 	path = ft_strtrim(line, " \t\n");
+	check_color_format(path);
 	color_value = ft_split(path, ',');
 	rgb[0] = ft_atoi(color_value[0]);
 	rgb[1] = ft_atoi(color_value[1]);
 	rgb[2] = ft_atoi(color_value[2]);
-	valid_color(rgb);
+	color_range(rgb);
 	if (ft_strncmp(trimmed_line, "F", 1) == 0)
 	{
 		data->floor = color(rgb[0], rgb[1], rgb[2]);
