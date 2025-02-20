@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:46:11 by jpaul             #+#    #+#             */
-/*   Updated: 2025/02/07 17:06:40 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/20 14:53:32 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ typedef struct s_display
 
 typedef struct s_player
 {
-	float x;
-	float y;
+	int	player_count;
+	int x;
+	int y;
 	float angle;
 	float dx;
 	float dy;
@@ -49,12 +50,13 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	char **arr;
+	char	**arr;
+	char	**tmp_arr;
 	int	height;
 	int	width;
-	int x;
-	int y;
-} t_map;
+	int	x;
+	int	y;
+}	t_map;
 
 typedef struct s_mouse
 {

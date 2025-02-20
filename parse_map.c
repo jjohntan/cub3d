@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 14:56:50 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/18 22:03:31 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/20 15:58:07 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // int	is_map(char *line)
 // {
 // 	int	i;
-	
+
 // 	i = 0;
 // 	while (line[i] == ' ' || line[i] == '\t')
 // 		i++;
@@ -33,24 +33,16 @@
 // 	}
 // 	return (1);
 // }
-
-char	*skip_space(char *line)
+/**
+ * @brief This function skip empty line
+ */
+int	blankstr(char *line)
 {
-	int	i;
-	
-	i = 0;
-	while (line[i] == ' ' || line [i] == '\t')
-		i++;
-	return (&line[i]);
-}
-
-int blankstr(char *str)
-{
-	while(*str)
+	while (*line)
 	{
-		if (*str != ' ' && *str != '\t' && *str != '\n')
+		if (*line != ' ' && *line != '\t' && *line != '\n')
 			return (0);
-		str++;
+		line++;
 	}
 	return (1);
 }
@@ -60,100 +52,114 @@ int blankstr(char *str)
 - false: not an element >> err_msg
 - true : blank >> but no increment 
 */
+void	parse_map(char *line, t_game *data)
+{
+	char	**tmp;
+	int		i;
+
+	tmp = (char **)malloc(sizeof(char *) * (++data->map.y + 1));
+	if (!tmp)
+		exit(1);
+	i = 0;
+	while (data->map.arr && data->map.arr[i])
+	{
+		tmp[i] = data->map.arr[i];
+		i++;
+	}
+	tmp[i++] = line;
+	tmp[i] = NULL;
+	if (data->map.arr)
+		free(data->map.arr);
+	data->map.arr = tmp;
+	data->map.height = data->map.y;
+	i = -1;
+	while (data->map.arr[++i])
+	{
+		int len = ft_strlen(data->map.arr[i]);
+		if (len > data->map.width)
+			data->map.width = len;
+	}
+}
+
+/**
+ * @param line: The line to be processed. 
+ * @param data: data struct.
+ * @param counter: tracks the number of processed identifiers.
+ * @brief
+ * This function skips leading spaces in the given line and checks if the line
+ * is blank. If the line contains texture or color identifiers,
+ * it calls the appropriate parsing function and increments the counter.
+ */
 static int	identifier(char *line, t_game *data, int *counter)
 {
 	char	*skip;
-
+	
 	skip = skip_space(line);
-	if (blankstr(line))
+	// printf("Check:[%s] [%s]\n", skip, line);//
+	if (!skip[0])
 		return (1);
-	if ((skip[0] == 'N' && skip[1] == 'O') ||
-	 (skip[0] == 'S' && skip[1] == 'O') ||
-	 (skip[0] == 'W' && skip[1] == 'E') ||
-	 (skip[0] == 'E' && skip[1] == 'A'))
-	 {
+	if ((skip[0] == 'N' && skip[1] == 'O') || (skip[0] == 'S' && skip[1] == 'O')
+		|| (skip[0] == 'W' && skip[1] == 'E')
+		|| (skip[0] == 'E' && skip[1] == 'A'))
+	{
 		parse_texture(skip, data);
 		(*counter)++;
 		return (1);
-	 }
-	else if ((skip[0] == 'F') ||
-	 (skip[0] == 'C'))
-	 {
+	}
+	else if ((skip[0] == 'F') || (skip[0] == 'C'))
+	{
 		parse_color(skip, data);
 		(*counter)++;
 		return (1);
-	 }
+	}
 	return (0);
 }
 
-void freelist(char **list)
+int	open_file(char *file)
 {
-	int i = 0;
-	if (!list)
-		return ;
-	while (list[i])
-	{
-		free(list[i]);
-		i++;
-	}
-	free(list);
-}
+	int	fd;
 
-void parse_map(char *line, t_game *data)
-{
-	char	**temp;
-	int		i;
-	
-	i = 0;
-	temp = (char **)malloc(sizeof(char *) * (++data->map.y + 1));
-	while (data->map.arr && data->map.arr[i])
-	{
-		temp[i] = data->map.arr[i];
-		i++;
-	}
-	temp[i++] = line;
-	temp[i] = NULL;
-	
-	// if (data->map.arr)
-	// 	freelist(data->map.arr);
-	data->map.arr = temp;
-}
-
-/*
-1 = success
-0 = false
-*/
-int	parser(char *file, t_game *data)
-{
-	int		fd;
-	char	*line;
-	
-		int counter;
-		counter = 0;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-	{
-		ft_putstr_fd("Error\nNo such file", 2);
-		return (0);
-	}
+		error_exit("Error\nNo such file");
+	return (fd);
+}
+
+/**
+ * @brief Parses the given file and store into the struct.
+ *
+ * This function opens the specified file, reads its contents line by line.
+ * The first six lines are expected to contain identifiers, which are processed
+ * and stored in the struct. After the identifiers, the function processes
+ * the map data.
+ * @param file The path to the file to be parsed.
+ */
+void	parser(char *file, t_game *data)
+{
+	char	*line;
+	int		fd;
+	int		counter;
+
+	fd = open_file(file);
+	counter = 0;
 	line = NULL;
-	while ((line = get_next_line(fd)) != NULL)
+	while (line = get_next_line(fd), line)
 	{
+		// line = get_next_line(fd);
 		if (counter < 6)
 		{	
 			if (!identifier(line, data, &counter))
-				return (printf("Dont suppose to execute\n"), 0);
+				error_exit("Error\nhi");
 			free(line);
 		}
 		else if (counter == 6 && blankstr(line))
 			free(line);
 		else
 		{
-			counter++; 
+			counter++;
+			// char *trim_line = ft_strtrim(line, "\n");
 			parse_map(line, data);
 		}
-		//printf("%d | %s", counter, line);//hello
 	}
 	close(fd);
-	return (1);
 }

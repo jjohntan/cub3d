@@ -20,18 +20,19 @@
 # include <stdbool.h>
 #include "struct.h"
 //parse map
-int	parser(char *file, t_game *data);
+void	parser(char *file, t_game *data);
 //validate map
 void	check_char(char **map);
 void	check_walls(char **map);
-void	flood_fill(char **map, int x, int y);
-void	valid_map(char **map);
-int	count_players(char **map);
-void	valid_player(char **map);
+void	flood_fill(t_game *data, int x, int y);
+void	valid_map(t_game *data);
+void	count_players(t_game *data);
+void	valid_player(t_game *data);
 void	parse_texture(char *line, t_game *data);
 void	parse_color(char *line, t_game *data);
 int	get_map_height(int fd);
 int	is_map(char *line);
 
 char	*skip_space(char *line);
+void	error_exit(char *str);
 #endif

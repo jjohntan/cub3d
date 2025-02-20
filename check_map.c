@@ -6,113 +6,108 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:57:51 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/18 21:55:05by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/20 17:01:29 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-
-// void	check_walls(char **map)
+// void	check_frow_and_lrow(t_game *data, int h, int w)
 // {
-// 	int	i;
-// 	int	j;
-	
-// 	int h = 5;
-// 	int w = 6;
-// 	i = 0;
-// 	while (i < h)
+// 	while (data->map.arr[0][w] && data->map.arr[h - 1][w])
 // 	{
-// 		j = 0;
-// 		while (j < w)
+// 		if (data->map.arr[0][w] != '1' || data->map.arr[h - 1][w])
 // 		{
-// 			if (i == 0 || i == h - 1 ||
-// 			j == 0 || j == w - 1)
-// 			{
-// 				if (map[i][j] != '1' || map[i][j] != ' ')
-// 				{
-// 					ft_putstr_fd("Error\nmap must be closed by walls a", 2);
-// 					return ;
-// 				}
-// 			}
-// 			j++;
+// 			ft_putstr_fd("Error\n", 2);
+// 			exit(1);
 // 		}
-// 		i++;
 // 	}
 // }
 
 /**
  * @brief This function check that the map closed/surrounded by walls
  */
+
 void	flood_fill(t_game *data, int x, int y)
 {
-	char	**map;
-	
-	map = data->map.tmp_arr;
-	printf("Visiting (y: %d, x: %d): %c\n", y, x, map[y][x]);//hello
+	// char	**map;
+
+	// map = data->map.tmp_arr;
+	printf("x:%d y:%d width:%d height:%d\n", x, y, data->map.width, data->map.height);
 	if (x < 0 || x >= data->map.width || y < 0 || y >= data->map.height)
 		return ;
-	if  (map[y][x] == '1' || map[y][x] == 'F')
+	printf("Visiting (%d, %d): %c\n", x, y, data->map.tmp_arr[y][x]);
+	if (data->map.tmp_arr[y][x] == '1' || data->map.tmp_arr[y][x] == 'F')
 		return ;
-	if (x == 0 || x == data->map.width - 1 || y == 0 || y == data->map.height - 1)
+	if (x == 0 || x == data->map.width - 1 || y == 0
+		|| y == data->map.height - 1)
 	{
-		if (map[y][x] != '1')
-		{
-			ft_putstr_fd("Error\nThe map must be closed/surrounded by walls", 2);
-			exit(1);
-		}
+		if (data->map.tmp_arr[y][x] != '1')
+			error_exit("Error\nThe map must be closed/surrounded by walls");
 	}
-	map[y][x] = 'F';
-	flood_fill(map, x - 1, y);
-	flood_fill(map, x + 1, y);
-	flood_fill(map, x, y - 1);
-	flood_fill(map, x, y + 1);
+	data->map.tmp_arr[y][x] = 'F';
+	flood_fill(data, x - 1, y);
+	flood_fill(data, x + 1, y);
+	flood_fill(data, x, y - 1);
+	flood_fill(data, x, y + 1);
 }
 
+/**
+ * @brief This function check that is only one player starting position.
+ */
 void	check_player(t_game *data)
 {
-	
 	count_players(data);
 	if (data->p1.player_count == 0)
-	{
-		ft_putstr_fd("Error\nNo player starting position found", 2);
-		exit(1);
-	}
+		error_exit("Error\nNo player starting position found");
 	if (data->p1.player_count > 1)
-	{
-		ft_putstr_fd("Error\nMutiple player starting position found", 2);
-		exit(1);
-	}
+		error_exit("Error\nMutiple player starting position found");
 }
 
+/**
+ * @brief This function check the element in the map.
+ */
 void	check_char(char **map)
 {
-	int	h;
-	int	w;
-	
-	h = 0;
-	while (map[h])
+	int	row;
+	int	col;
+
+	row = 0;
+	while (map[row])
 	{
-		w = 0;
-		while (map[h][w])
+		col = 0;
+		while (map[row][col])
 		{
-			if (map[h][w] != '0'&& map[h][w] != '1' && map[h][w]!= 'N' &&
-			 map[h][w]!= 'S' && map[h][w]!='E' && map[h][w]!= 'W' &&
-			  map[h][w] != 'D' && map[h][w] != ' ')
-			{
-				ft_putstr_fd("Error\nInvalid character in map", 2);
-				exit(1);
-			}
-			w++;
+			if (map[row][col] != '0' && map[row][col] != '1' && map[row][col] != 'N'
+			&& map[row][col] != 'S' && map[row][col] != 'E' && map[row][col] != 'W'
+			&& map[row][col] != 'D' && map[row][col] != ' ' && map[row][col] != '\n')
+				error_exit("Error\nInvalid character in map");
+			col++;
 		}
-		h++;
+		row++;
 	}
 }
 
+char **dup_map(t_game *data)
+{
+    int i;
+    char **new_map;
+
+    i = -1;
+    new_map = (char **)malloc((data->map.y + 1) * sizeof(char *));
+    while (data->map.arr[++i])
+        new_map[i] = ft_strdup(data->map.arr[i]);
+    new_map[i] = NULL;
+    return (new_map);
+}
+
+/**
+ * @brief This function validate the specified map that parsed in
+ */
 void	valid_map(t_game *data)
 {
-
+	data->map.tmp_arr = dup_map(data);
 	check_char(data->map.arr);
 	check_player(data);
-	flood_fill(data, data->p1.x, data->p1.y);
+	flood_fill(data, 4, 5);
 }
