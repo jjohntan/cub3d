@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 14:56:50 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/20 15:58:07 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/20 21:00:29y jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	parse_map(char *line, t_game *data)
 	data->map.arr = tmp;
 	data->map.height = data->map.y;
 	i = -1;
-	while (data->map.arr[++i])
+	while (data->map.arr[++i] != NULL)
 	{
 		int len = ft_strlen(data->map.arr[i]);
 		if (len > data->map.width)
@@ -142,14 +142,15 @@ void	parser(char *file, t_game *data)
 
 	fd = open_file(file);
 	counter = 0;
-	line = NULL;
-	while (line = get_next_line(fd), line)
+	while (1)
 	{
-		// line = get_next_line(fd);
+		line = get_next_line(fd);
+		if (!line)
+			break;
 		if (counter < 6)
 		{	
 			if (!identifier(line, data, &counter))
-				error_exit("Error\nhi");
+				error_exit("Error\nFirst six must be identifier");
 			free(line);
 		}
 		else if (counter == 6 && blankstr(line))
@@ -157,7 +158,6 @@ void	parser(char *file, t_game *data)
 		else
 		{
 			counter++;
-			// char *trim_line = ft_strtrim(line, "\n");
 			parse_map(line, data);
 		}
 	}

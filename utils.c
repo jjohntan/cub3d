@@ -36,8 +36,8 @@ void	count_players(t_game *data)
 				data->p1.x = col;
 				data->p1.angle = data->map.arr[row][col];
 				printf("player count: %d\n", data->p1.player_count);//hello
-				printf("player y: %f\n", data->p1.y);//hello
-				printf("player x: %f\n", data->p1.x);//hello
+				printf("player y: %d\n", data->p1.y);//hello
+				printf("player x: %d\n", data->p1.x);//hello
 				printf("player angle: %f\n", data->p1.angle);//hello
 			}
 			col++;

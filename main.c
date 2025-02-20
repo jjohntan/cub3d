@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:02:34 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/20 14:32:47 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/20 20:57:44 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,24 +52,12 @@ int main(int ac, char **av)
 	t_game	data;
 	(void)ac;
 	
-	//  char row0[] = "111111";
-	//    char row1[] = "100101";
-	//    char row2[] = "101001";
-	//    char row3[] = "1100N1";
-	//    char row4[] = "111111";
-	//    char *map[] = { row0, row1, row2, row3, row4, NULL };
-	// int i = 0;
-	// while (map[i])
-	// {
-	// 	printf("%s\n", map[i]);
-	// 	i++;
-	// 0}
 	ft_bzero(&data, sizeof(t_game));
 	check_file_extension(av[1]);
 	parser(av[1], &data);
 	// valid_texture(&data);
 	valid_map(&data);
-	// i = 0;
+	// int i = 0;
 	// printf("\n");
 	// while (data.map.arr && data.map.arr[i])
 	// {
