@@ -35,4 +35,6 @@ int	is_map(char *line);
 
 char	*skip_space(char *line);
 void	error_exit(char *str);
+void	valid_texture(t_game *data);
+void	get_map_width(t_game *data);
 #endif

@@ -1,10 +1,11 @@
 NAME = cub3D
 
-SRCS = check_map.c \
+SRCS = main.c \
+		check_map.c \
+		check_texture.c \
 		parse_map.c \
 		parse_texture.c \
-		utils.c \
-		main.c
+		utils.c
       
 
 

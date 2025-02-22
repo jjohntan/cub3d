@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 20:13:24 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/19 22:32:45 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/21 17:10:34 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 static void	color_range(int *color)
 {
 	int	i;
-	
+
 	if (!color)
 		return ;
 	i = 0;
@@ -55,12 +55,13 @@ void	check_color_format(char *str)
 	if (comma != 2)
 		error_exit("Error\ntwo comma needed");
 }
+
 /**
  * @brief This function convert rgb from decimal to hexadecimal
  */
 int	color(int r, int g, int b)
 {
-	return (r << 16) | (g << 8) | (b);
+	return ((r << 16) | (g << 8) | (b));
 }
 
 /**
@@ -73,8 +74,8 @@ void	parse_color(char *line, t_game *data)
 	char	*trimmed_line;
 	char	*path;
 	char	**color_value;
-	int	rgb[3];
-	
+	int		rgb[3];
+
 	trimmed_line = line;
 	line += 1;
 	path = ft_strtrim(line, " \t\n");
@@ -101,9 +102,9 @@ void	parse_color(char *line, t_game *data)
  */
 void	parse_texture(char *line, t_game *data)
 {
-	char *trimmed_line;
-	char *path;
-	
+	char	*trimmed_line;
+	char	*path;
+
 	trimmed_line = line;
 	line += 2;
 	path = ft_strtrim(line, " \t\n");

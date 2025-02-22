@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 14:56:50 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/20 21:00:29y jetan            ###   ########.fr       */
+/*   Updated: 2025/02/21 17:13:30 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,7 @@ void	parse_map(char *line, t_game *data)
 		free(data->map.arr);
 	data->map.arr = tmp;
 	data->map.height = data->map.y;
-	i = -1;
-	while (data->map.arr[++i] != NULL)
-	{
-		int len = ft_strlen(data->map.arr[i]);
-		if (len > data->map.width)
-			data->map.width = len;
-	}
+	get_map_width(data);
 }
 
 /**

@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:57:51 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/20 20:56:04 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/22 19:52:40 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ void	flood_fill(t_game *data, int x, int y)
 	char	**map;
 
 	map = data->map.tmp_arr;
-	printf("x:%d y:%d width:%d height:%d\n", x, y, data->map.width, data->map.height);
+	// printf("x:%d y:%d width:%d height:%d\n", x, y, data->map.width, data->map.height);//hello
 	if (x < 0 || x >= data->map.width || y < 0 || y >= data->map.height)
 		return ;
-	printf("Visiting (%d, %d): %c\n", x, y, map[y][x]);
+	// printf("Visiting (%d, %d): %c\n", x, y, map[y][x]);//
 	if (map[y][x] == '1' || map[y][x] == 'F')
 		return ;
 	if (x == 0 || x == data->map.width - 1 || y == 0
@@ -45,7 +45,14 @@ void	flood_fill(t_game *data, int x, int y)
 		if (map[y][x] != '1')
 			error_exit("Error\nThe map must be closed/surrounded by walls");
 	}
-	data->map.tmp_arr[y][x] = 'F';
+	map[y][x] = 'F';
+	int i = 0;
+	while (data->map.tmp_arr[i])
+	{
+		printf("%s", data->map.tmp_arr[i]);
+		i++;
+	}
+	printf("\n\n");
 	flood_fill(data, x - 1, y);
 	flood_fill(data, x + 1, y);
 	flood_fill(data, x, y - 1);
@@ -110,10 +117,10 @@ void	valid_map(t_game *data)
 	check_char(data->map.arr);
 	check_player(data);
 	flood_fill(data, data->p1.x, data->p1.y);
-	int i = 0;
-	while (data->map.tmp_arr[i])
-	{
-		printf("%s", data->map.tmp_arr[i]);
-		i++;
-	}
+	// int i = 0;
+	// while (data->map.tmp_arr[i])
+	// {
+	// 	printf("%s", data->map.tmp_arr[i]);
+	// 	i++;
+	// }
 }
