@@ -1,0 +1,21 @@
+NO asset/test/north.xpm
+SO asset/test/south.xpm
+WE asset/test/west.xpm
+EA asset/test/east.xpm
+
+F 20,20,20
+C 200,200,200
+
+111
+1N1
+101
+101
+101
+101
+101
+101
+101
+101
+101
+101
+111
