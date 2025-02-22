@@ -10,7 +10,7 @@ RM = rm -f
 # DECLARATION
 #==================================================
 
-NAME = cub3d
+NAME = cub3D
 INCLUDE = ./_include/mlx/libmlx.a ./_include/lib/libft.a
 MLX_FLAG = -L./_include/mlx -lmlx -L/usr/lib/X11 -lXext -lX11 -lm -lz
 

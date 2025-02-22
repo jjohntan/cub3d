@@ -11,7 +11,7 @@ run_command() {
     echo -e "$INPUT"
 
     # Capture the command output
-    OUTPUT=$(./cub3d "$INPUT" 2>&1)
+    OUTPUT=$(./cub3D "$INPUT" 2>&1)
 
     echo -e "${PURPLE}Output: ${NC}"
     echo -e "$OUTPUT"
