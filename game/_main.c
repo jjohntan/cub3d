@@ -30,14 +30,14 @@ void show_control()
     ft_printf("| |   | | | |  _ \\    |_ \\| | | |\n");
     ft_printf("| |___| |_| | |_) |  ___) | |_| |\n");
     ft_printf(" \\____|\\___/|____/  |____/|____/ \n");
-    ft_printf("\n🎮CONTROLS🎮\n\n");
+    ft_printf("\n🎮 CONTROLS 🎮\n\n");
     ft_printf("🏃 Movement\n============\n"); 
     ft_printf("W, A, S, D\n\n");  
     ft_printf("🎥 Look Around\n================\n");  
     ft_printf("⬅️  AND ➡️ \n");
     ft_printf("or\n");
     ft_printf("🖱 Hold Left Click + Drag\n\n");
-    ft_printf("🔫Combat\n=========\n");
+    ft_printf("🔫 Combat\n=========\n");
     ft_printf("Knife  : 1️⃣ \n"); 
     ft_printf("Pistol : 2️⃣ \n");  
     ft_printf("Attack :🖱 Right Click\n\n");

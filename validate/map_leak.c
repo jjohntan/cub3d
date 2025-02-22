@@ -64,8 +64,8 @@ static char **dup_map(t_game *g)
     new_map = (char **)malloc(sizeof(char *) * (g->map.y + 1));
     while (g->map.ar[++i])
     {
-        new_map[i] = (char *)calloc(g->map.x + 1, 1);
-        strcpy(new_map[i], g->map.ar[i]);
+        new_map[i] = (char *)ft_calloc(g->map.x + 1, 1);
+        ft_strcpy(new_map[i], g->map.ar[i]);
     }
     new_map[i] = NULL;
     return (new_map);

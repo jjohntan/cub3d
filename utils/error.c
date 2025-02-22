@@ -16,13 +16,13 @@
 Error Message Output:
 
 Error
-//---------------------------------------------
+---------------------------------------------
 Issue : Input file extension is incorrect
 
 Expect: .cub
 
 >>> ./invalid_path.txt
-//---------------------------------------------
+---------------------------------------------
 
 */
 void err_msg(char *issue, char *expect, char *info)
@@ -30,7 +30,7 @@ void err_msg(char *issue, char *expect, char *info)
     if (issue)
     {
         print("Error\n");
-        print(RED "//---------------------------------------------" RESET);
+        print(RED "---------------------------------------------" RESET);
         print("\nIssue : ");
         print(issue);
         if (expect)
@@ -44,7 +44,7 @@ void err_msg(char *issue, char *expect, char *info)
             print(info);
         }
         print("\n");
-        print(RED "//---------------------------------------------" RESET);
+        print(RED "---------------------------------------------" RESET);
         print("\n\n");
     }
 }

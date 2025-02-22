@@ -78,7 +78,7 @@
 # define ROTATE 0.0523599  // Turning speed
 # define BOUND 10    // Player's boundary - for collision detection
 # define REACH 60   // Player's reach to unlock door
-# define ANIMATE 10 // Delay time to switch images, 
+# define ANIMATE 7 // Delay time to switch images, 
 //-                    bigger value means slower animation
 
 //----------------------------------------------------------------------------
