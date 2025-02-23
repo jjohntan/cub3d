@@ -25,40 +25,40 @@ Options available
 - BOTH  :  "_____hello____" -->  "hello"
 
 */
-char *trim_space(char *s, int option)
+char	*trim_space(char *s, int option)
 {
-    int i;
+	int	i;
 
-    if (option == L_TRIM || option == BOTH)
-    { 
-        while(ft_isspace(*s))
-            s++;
-    }
-    if (option == R_TRIM || option == BOTH)
-    {
-        i = ft_strlen(s);
-        while (i > 0 && ft_isspace(s[i - 1]))
-            s[--i] = '\0';
-    }
-    return (s);
+	if (option == L_TRIM || option == BOTH)
+	{
+		while (ft_isspace(*s))
+			s++;
+	}
+	if (option == R_TRIM || option == BOTH)
+	{
+		i = ft_strlen(s);
+		while (i > 0 && ft_isspace(s[i - 1]))
+			s[--i] = '\0';
+	}
+	return (s);
 }
 
 /*
 int main()
 {
-    char s1[] = "     hello    ";
-    printf("[%s]\n", trim_space(s1, L_TRIM));
+	char s1[] = "     hello    ";
+	printf("[%s]\n", trim_space(s1, L_TRIM));
 
-    char s2[] = "     hello    ";
-    printf("[%s]\n", trim_space(s2, R_TRIM));
+	char s2[] = "     hello    ";
+	printf("[%s]\n", trim_space(s2, R_TRIM));
 
-    char s3[] = "     hello    ";
-    printf("[%s]\n", trim_space(s3, BOTH));
+	char s3[] = "     hello    ";
+	printf("[%s]\n", trim_space(s3, BOTH));
 
-    char s4[] = "     \n    ";
-    printf("[%s]\n", trim_space(s4, BOTH));
+	char s4[] = "     \n    ";
+	printf("[%s]\n", trim_space(s4, BOTH));
 
-    char s5[] = "";
-    printf("[%s]\n", trim_space(s5, BOTH));
+	char s5[] = "";
+	printf("[%s]\n", trim_space(s5, BOTH));
 }
 */

@@ -11,7 +11,8 @@
 /* ************************************************************************** */
 
 #include "../_include/cub3d.h"
-static bool error_1(int count);
+
+static bool	error_1(int count);
 
 /*
 check_in
@@ -24,23 +25,23 @@ check the program's input
 Return
 - true : OK
 - false: either wrong argument count or not a game_scene file
-
 */
-bool check_in(int ac, char **av)
+
+bool	check_in(int ac, char **av)
 {
-    if ((ac != 2 && error_1(ac)) || !valid_file(av[1], ".cub"))
-        return (false);
-    return (true);
+	if ((ac != 2 && error_1(ac)) || !valid_file(av[1], ".cub"))
+		return (false);
+	return (true);
 }
 
-static bool error_1(int count)
-{   
-    char *s;
+static bool	error_1(int count)
+{
+	char	*s;
 
-    if (count > 2)
-        s = "Enter more that 1 argument";
-    else
-        s = "Please enter the scene_config_file";
-    err_msg(s, "./cub3d scene.cub", NULL);
-    return (true);
+	if (count > 2)
+		s = "Enter more that 1 argument";
+	else
+		s = "Please enter the scene_config_file";
+	err_msg(s, "./cub3d scene.cub", NULL);
+	return (true);
 }

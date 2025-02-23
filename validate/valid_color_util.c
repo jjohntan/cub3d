@@ -12,83 +12,83 @@
 
 #include "../_include/cub3d.h"
 
-bool check_comma(char *s)
+bool	check_comma(char *s)
 {
-    int i;
-    int count;
+	int	i;
+	int	count;
 
-    i = -1;
-    count = 0;
-    while (s[++i])
-    {
-        if (s[i] == ',')
-        {
-            if (i == 0 || s[i + 1] == ',' || !s[i + 1])
-                return (false);
-            count++;
-        }
-    }
-    return (count == 2);
+	i = -1;
+	count = 0;
+	while (s[++i])
+	{
+		if (s[i] == ',')
+		{
+			if (i == 0 || s[i + 1] == ',' || !s[i + 1])
+				return (false);
+			count++;
+		}
+	}
+	return (count == 2);
 }
 
-void split_rgb(char *s, char **split)
+void	split_rgb(char *s, char **split)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    split[i++] = s;
-    while (*s)
-    {
-        if (*s == ',')
-        {
-            *s = '\0';
-            split[i++] = s + 1;
-        }
-        s++;
-    }
+	i = 0;
+	split[i++] = s;
+	while (*s)
+	{
+		if (*s == ',')
+		{
+			*s = '\0';
+			split[i++] = s + 1;
+		}
+		s++;
+	}
 }
 
-bool valid_num(char **color)
+bool	valid_num(char **color)
 {
-    int i;
-    int j;
-    int len;
+	int	i;
+	int	j;
+	int	len;
 
-    i = -1;
-    while (++i < 3)
-    {
-        j = -1;
-        len = 0;
-        color[i] = trim_space(color[i], BOTH);
-        while (color[i][++j])
-        {
-            if (!ft_isdigit(color[i][j]))
-                return (false);
-            len++;
-        }
-        if (!len || len > 3)
-            return (false);
-    }
-    return (true);
+	i = -1;
+	while (++i < 3)
+	{
+		j = -1;
+		len = 0;
+		color[i] = trim_space(color[i], BOTH);
+		while (color[i][++j])
+		{
+			if (!ft_isdigit(color[i][j]))
+				return (false);
+			len++;
+		}
+		if (!len || len > 3)
+			return (false);
+	}
+	return (true);
 }
 
-bool in_range(char **color, int *num)
+bool	in_range(char **color, int *num)
 {
-    int i;
-    int result;
+	int	i;
+	int	result;
 
-    i = -1;
-    while (++i < 3)
-    {
-        result = ft_atoi(color[i]);
-        if (result < 0 || result > 255)
-            return (false);
-        num[i] = result;
-    }
-    return (true);
+	i = -1;
+	while (++i < 3)
+	{
+		result = ft_atoi(color[i]);
+		if (result < 0 || result > 255)
+			return (false);
+		num[i] = result;
+	}
+	return (true);
 }
 
-int rgb_2_color(int r, int g, int b)
+int	rgb_2_color(int r, int g, int b)
 {
-    return ((r << 16) | (g << 8) | b);
+	return ((r << 16) | (g << 8) | b);
 }

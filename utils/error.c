@@ -25,51 +25,50 @@ Expect: .cub
 ---------------------------------------------
 
 */
-void err_msg(char *issue, char *expect, char *info)
+void	err_msg(char *issue, char *expect, char *info)
 {
-    if (issue)
-    {
-        print("Error\n");
-        print(RED "---------------------------------------------" RESET);
-        print("\nIssue : ");
-        print(issue);
-        if (expect)
-        {
-            print("\n\nExpected : ");
-            print(expect);
-        }
-        if (info)
-        {
-            print("\n\n>>> ");
-            print(info);
-        }
-        print("\n");
-        print(RED "---------------------------------------------" RESET);
-        print("\n\n");
-    }
+	if (issue)
+	{
+		print("Error\n");
+		print(RED "---------------------------------------------" RESET);
+		print("\nIssue : ");
+		print(issue);
+		if (expect)
+		{
+			print("\n\nExpected : ");
+			print(expect);
+		}
+		if (info)
+		{
+			print("\n\n>>> ");
+			print(info);
+		}
+		print("\n");
+		print(RED "---------------------------------------------" RESET);
+		print("\n\n");
+	}
 }
 
-int print(char *s)
+int	print(char *s)
 {
-    return (write(2, s, ft_strlen(s)));
+	return (write(2, s, ft_strlen(s)));
 }
 
 /*
 int main()
 {
-    char *issue = "Input file extension is incorrect";
-    char *expect = ".cub";
-    char *filename = "./invalid_path";
-    
-    err_msg(issue, expect, filename);
-    printf("\n\n");
-    err_msg(NULL, expect, filename);
-    printf("\n\n\n");
-    err_msg(issue, NULL, filename);
-    printf("\n\n\n");
-    err_msg(issue, expect, NULL);
-    printf("\n\n\n");
-    err_msg(issue, NULL, NULL);
+	char *issue = "Input file extension is incorrect";
+	char *expect = ".cub";
+	char *filename = "./invalid_path";
+	
+	err_msg(issue, expect, filename);
+	printf("\n\n");
+	err_msg(NULL, expect, filename);
+	printf("\n\n\n");
+	err_msg(issue, NULL, filename);
+	printf("\n\n\n");
+	err_msg(issue, expect, NULL);
+	printf("\n\n\n");
+	err_msg(issue, NULL, NULL);
 }
 */
-

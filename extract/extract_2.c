@@ -22,27 +22,28 @@ Note: No strdup here, so no need to free() the line
 
 ----------------------------------------------------------------------------
 Return 
-- alway return = 1
+- alway return = +1
 */
-int extract_2(char *s, t_game *g)
-{
-    int i;
-    char **temp;
 
-    i = 0;
-    s = trim_space(s, R_TRIM);
-    temp = (char **)malloc(sizeof(char *) * (++g->map.y + 1));
-    while (g->map.ar && g->map.ar[i])
-    {
-        temp[i] = g->map.ar[i];
-        i++;
-    }
-    temp[i++] = s;
-    temp[i] = NULL;
-    if ((int)ft_strlen(s) > g->map.x)
-        g->map.x = ft_strlen(s);
-    if (g->map.ar)
-        free(g->map.ar);
-    g->map.ar = temp;
-    return (1);
+int	extract_2(char *s, t_game *g)
+{
+	int		i;
+	char	**temp;
+
+	i = 0;
+	s = trim_space(s, R_TRIM);
+	temp = (char **)malloc(sizeof(char *) * (++g->map.y + 1));
+	while (g->map.ar && g->map.ar[i])
+	{
+		temp[i] = g->map.ar[i];
+		i++;
+	}
+	temp[i++] = s;
+	temp[i] = NULL;
+	if ((int)ft_strlen(s) > g->map.x)
+		g->map.x = ft_strlen(s);
+	if (g->map.ar)
+		free(g->map.ar);
+	g->map.ar = temp;
+	return (1);
 }

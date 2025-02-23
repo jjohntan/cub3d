@@ -12,21 +12,21 @@
 
 #include "../_include/cub3d.h"
 
-void draw_bg(t_game *g)
+void	draw_bg(t_game *g)
 {
-    int x;
-    int y;
+	int	x;
+	int	y;
 
-    y = -1;
-    while (++y < WIND_H)
-    {
-        x = -1;
-        while (++x < WIND_W)
-        {
-            if (y < WIND_H / 2)
-                putpx_disp(x, y, g->ceiling, g);
-            else
-                putpx_disp(x, y, g->floor, g);
-        }
-    }
+	y = -1;
+	while (++y < WIND_H)
+	{
+		x = -1;
+		while (++x < WIND_W)
+		{
+			if (y < WIND_H / 2)
+				putpx_disp(x, y, g->ceiling, g);
+			else
+				putpx_disp(x, y, g->floor, g);
+		}
+	}
 }

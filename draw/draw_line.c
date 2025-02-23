@@ -12,8 +12,6 @@
 
 #include "../_include/cub3d.h"
 
-//----------------------------------------------------------------------------
-
 /*
 void draw_line(int p[2], int end[2], int color, t_game *g)
 {
@@ -31,19 +29,21 @@ void draw_line(int p[2], int end[2], int color, t_game *g)
 }
 */
 
-void init_bresenham(int *d, int *s, int *p, int *end)
+void	init_bresenham(int *d, int *s, int *p, int *end)
 {
 	d[X] = abs(end[X] - p[X]);
 	d[Y] = abs(end[Y] - p[Y]);
-	
-	if (p[X] < end[X])  s[X] = 1;
-	else                s[X] = -1;
-	
-	if (p[Y] < end[Y])  s[Y] = 1;
-	else                s[Y] = -1;
+	if (p[X] < end[X])
+		s[X] = 1;
+	else
+		s[X] = -1;
+	if (p[Y] < end[Y])
+		s[Y] = 1;
+	else
+		s[Y] = -1;
 }
 
-void draw_line(int p[2], int end[2], int color, t_game *g)
+void	draw_line(int p[2], int end[2], int color, t_game *g)
 {
 	int	d[2];
 	int	s[2];

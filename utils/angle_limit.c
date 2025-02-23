@@ -12,11 +12,11 @@
 
 #include "../_include/cub3d.h"
 
-float angle_limit(float i)
+float	angle_limit(float i)
 {
-    if (i >= DEG_360)
-        i -= DEG_360;
-    else if (i < 0)
-        i += DEG_360;
-    return (i);
+	if (i >= DEG_360)
+		i -= DEG_360;
+	else if (i < 0)
+		i += DEG_360;
+	return (i);
 }

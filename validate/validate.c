@@ -11,7 +11,8 @@
 /* ************************************************************************** */
 
 #include "../_include/cub3d.h"
-static bool valid_txt(t_game *g);
+
+static bool	valid_txt(t_game *g);
 
 /*
 validate
@@ -29,24 +30,24 @@ Access element info
 - info[F]  = Floor_rgb
 - info[C]  = Ceiling_rgb
 */
-bool validate(t_game *g)
+bool	validate(t_game *g)
 {
-    if (valid_txt(g) && valid_color(g) && valid_map(g))
-        return (true);
-    free_info(g->info);
-    free_map(g->map.ar);
-    return (false);
+	if (valid_txt(g) && valid_color(g) && valid_map(g))
+		return (true);
+	free_info(g->info);
+	free_map(g->map.ar);
+	return (false);
 }
 
-static bool valid_txt(t_game *g)
+static bool	valid_txt(t_game *g)
 {
-    int i;
+	int	i;
 
-    i = -1;
-    while (++i < 4)
-    {
-        if (!valid_file(g->info[i], ".xpm"))
-            return (false);
-    }
-    return (true);
+	i = -1;
+	while (++i < 4)
+	{
+		if (!valid_file(g->info[i], ".xpm"))
+			return (false);
+	}
+	return (true);
 }

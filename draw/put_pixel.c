@@ -12,14 +12,14 @@
 
 #include "../_include/cub3d.h"
 
-void putpx_disp(int x, int y, int color, t_game *g)
+void	putpx_disp(int x, int y, int color, t_game *g)
 {
-    if (x >= 0 && x < WIND_W && y >= 0 && y < WIND_H)
-        g->disp.buf[y * WIND_W + x] = color; 
+	if (x >= 0 && x < WIND_W && y >= 0 && y < WIND_H)
+		g->disp.buf[y * WIND_W + x] = color;
 }
 
-void putpx_img(int x, int y, int color ,t_game *g)
+void	putpx_img(int x, int y, int color, t_game *g)
 {
-    if (x >= 0 && x < g->mini.w && y >= 0 && y < g->mini.h)
-        g->mini.buf[y * g->mini.w + x] = color; 
+	if (x >= 0 && x < g->mini.w && y >= 0 && y < g->mini.h)
+		g->mini.buf[y * g->mini.w + x] = color;
 }

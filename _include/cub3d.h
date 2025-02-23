@@ -19,14 +19,14 @@
 # include <string.h>    // strerror (Also need errno)
 # include <error.h>
 # include <errno.h>
-# include <stdlib.h>    // exit, malloc, free 
-# include <math.h>      // All math function
-# include <stdbool.h>   // true ,false
+# include <stdlib.h>     // exit, malloc, free 
+# include <math.h>       // All math function
+# include <stdbool.h>    // true ,false
 # include <X11/keysym.h> // Linux key macros
 # include <X11/X.h>
 
-# include "mlx/mlx.h"   // All Minilibx functions
-# include "lib/libft.h" // libft authorize
+# include "mlx/mlx.h"    // All Minilibx functions
+# include "lib/libft.h"  // libft authorize
 
 # include "constant.h"
 # include "struct.h" 

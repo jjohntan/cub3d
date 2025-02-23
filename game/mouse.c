@@ -12,45 +12,45 @@
 
 #include "../_include/cub3d.h"
 
-int mouse_up(int button, int x, int y, t_game *g)
+int	mouse_up(int button, int x, int y, t_game *g)
 {
-    (void)x;
-    (void)y;
-    if (button == LEFT_CLICK)
-        g->mouse.enable = false;
-    return (0);
+	(void)x;
+	(void)y;
+	if (button == LEFT_CLICK)
+		g->mouse.enable = false;
+	return (0);
 }
 
-int mouse_down(int button, int x, int y, t_game *g)
+int	mouse_down(int button, int x, int y, t_game *g)
 {
-    (void)y;
-    if (button == LEFT_CLICK)
-    {
-        g->mouse.enable = true;
-        g->mouse.x = x;
-    }
-     else if (button == RIGHT_CLICK)
-        g->attack = true;
-    return (0);
+	(void)y;
+	if (button == LEFT_CLICK)
+	{
+		g->mouse.enable = true;
+		g->mouse.x = x;
+	}
+	else if (button == RIGHT_CLICK)
+		g->attack = true;
+	return (0);
 }
 
-int mouse_move(int x, int y, t_game *g)
+int	mouse_move(int x, int y, t_game *g)
 {
-    int diff;
+	int	diff;
 
-    (void)g;
-    (void)y;
-    if (g->mouse.enable)
-    {
-        diff =  x - g->mouse.x;
-        if (diff > DIFF || diff < -DIFF)
-        {
-            if (diff < 0)
-                rotational_motion(AW_LEFT, g);
-            else
-                rotational_motion(AW_RIGHT, g);
-            g->mouse.x = x;
-        }
-    }
-    return (0);
+	(void)g;
+	(void)y;
+	if (g->mouse.enable)
+	{
+		diff = x - g->mouse.x;
+		if (diff > DIFF || diff < -DIFF)
+		{
+			if (diff < 0)
+				rotational_motion(AW_LEFT, g);
+			else
+				rotational_motion(AW_RIGHT, g);
+			g->mouse.x = x;
+		}
+	}
+	return (0);
 }

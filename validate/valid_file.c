@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 #include "../_include/cub3d.h"
-static void error_1(char *filename, char *extension);
-static void error_2(int code, char *filename);
+
+static void	error_1(char *filename, char *extension);
+static void	error_2(int code, char *filename);
 
 /*
 valid_file
@@ -34,36 +35,36 @@ close()
 Return
 - true : valid filename
 - false: invalid filename
-
 */
-bool valid_file(char *filename, char *ext)
-{
-    int fd;
-    char *s;
 
-    s = ft_strrchr(filename, '.');
-    if (!s || ft_strcmp(s, ext))
-    {
-        error_1(filename, ext);
-        return (false);
-    }    
-    fd = open(filename, O_RDONLY);
-    if (fd < 0)
-    {
-        error_2(errno, filename);
-        return (false);
-    }
-    return (close(fd), true);
+bool	valid_file(char *filename, char *ext)
+{
+	int		fd;
+	char	*s;
+
+	s = ft_strrchr(filename, '.');
+	if (!s || ft_strcmp(s, ext))
+	{
+		error_1(filename, ext);
+		return (false);
+	}
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+	{
+		error_2(errno, filename);
+		return (false);
+	}
+	return (close(fd), true);
 }
 
-static void error_1(char *filename, char *extension)
+static void	error_1(char *filename, char *extension)
 {
-    err_msg("Invalid file extension", extension, filename);
+	err_msg("Invalid file extension", extension, filename);
 }
 
-static void error_2(int code, char *filename)
+static void	error_2(int code, char *filename)
 {
-    err_msg(strerror(code), NULL, filename);
+	err_msg(strerror(code), NULL, filename);
 }
 
 /*
