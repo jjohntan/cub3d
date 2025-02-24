@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 20:13:24 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/21 17:10:34 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/24 15:11:45 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	parse_color(char *line, t_game *data)
 {
 	char	*trimmed_line;
 	char	*path;
-	char	**color_value;
+	char	**color_value;//free
 	int		rgb[3];
 
 	trimmed_line = line;

@@ -6,41 +6,28 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:57:51 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/22 19:52:40 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/24 15:46:56 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// void	check_frow_and_lrow(t_game *data, int h, int w)
-// {
-// 	while (data->map.arr[0][w] && data->map.arr[h - 1][w])
-// 	{
-// 		if (data->map.arr[0][w] != '1' || data->map.arr[h - 1][w])
-// 		{
-// 			ft_putstr_fd("Error\n", 2);
-// 			exit(1);
-// 		}
-// 	}
-// }
-
 /**
  * @brief This function check that the map closed/surrounded by walls
  */
-
 void	flood_fill(t_game *data, int x, int y)
 {
 	char	**map;
 
 	map = data->map.tmp_arr;
-	// printf("x:%d y:%d width:%d height:%d\n", x, y, data->map.width, data->map.height);//hello
-	if (x < 0 || x >= data->map.width || y < 0 || y >= data->map.height)
+	// printf("x:%d y:%d w:%d h:%d\n", x, y, data->map.w, data->map.h);//hello
+	if (x < 0 || x >= data->map.w || y < 0 || y >= data->map.h)
 		return ;
 	// printf("Visiting (%d, %d): %c\n", x, y, map[y][x]);//
 	if (map[y][x] == '1' || map[y][x] == 'F')
 		return ;
-	if (x == 0 || x == data->map.width - 1 || y == 0
-		|| y == data->map.height - 1)
+	if (x == 0 || x == data->map.w - 1 || y == 0
+		|| y == data->map.h - 1)
 	{
 		if (map[y][x] != '1')
 			error_exit("Error\nThe map must be closed/surrounded by walls");
@@ -101,7 +88,7 @@ char **dup_map(t_game *data)
     char **new_map;
 
     i = -1;
-    new_map = (char **)malloc((data->map.y + 1) * sizeof(char *));
+    new_map = (char **)malloc((data->map.h + 1) * sizeof(char *));//h
     while (data->map.arr[++i])
         new_map[i] = ft_strdup(data->map.arr[i]);
     new_map[i] = NULL;

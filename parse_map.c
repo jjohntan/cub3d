@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 14:56:50 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/21 17:13:30 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/24 15:44:48 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ int	blankstr(char *line)
 - false: not an element >> err_msg
 - true : blank >> but no increment 
 */
-void	parse_map(char *line, t_game *data)
+int	parse_map(char *line, t_game *data)
 {
 	char	**tmp;
 	int		i;
 
-	tmp = (char **)malloc(sizeof(char *) * (++data->map.y + 1));
+	tmp = (char **)malloc(sizeof(char *) * (++data->map.h + 1));
 	if (!tmp)
 		exit(1);
 	i = 0;
@@ -71,8 +71,8 @@ void	parse_map(char *line, t_game *data)
 	if (data->map.arr)
 		free(data->map.arr);
 	data->map.arr = tmp;
-	data->map.height = data->map.y;
 	get_map_width(data);
+	return (1);
 }
 
 /**
@@ -150,10 +150,7 @@ void	parser(char *file, t_game *data)
 		else if (counter == 6 && blankstr(line))
 			free(line);
 		else
-		{
-			counter++;
-			parse_map(line, data);
-		}
+			counter += parse_map(line, data);
 	}
 	close(fd);
 }

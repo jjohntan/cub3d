@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:55:13 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/21 17:39:34 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/24 15:43:37 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,20 @@
  * For each player found, it increments the player count
  * and updates the player's coordinates and angle.
  */
+
+float get_angle(char c)
+{
+	if (c == 'N')
+		return (DEG_270);
+	else if (c == 'S')
+		return (DEG_90);
+	else if (c == 'E')
+		return (0);
+	else if (c == 'W')
+		return (DEG_180);
+	return (-1);
+}
+
 void	count_players(t_game *data)
 {
 	int	row;
@@ -35,13 +49,9 @@ void	count_players(t_game *data)
 			if (ft_strchr("NSEW", data->map.arr[row][col]))
 			{
 				data->p1.player_count++;
-				data->p1.y = row;
-				data->p1.x = col;
-				data->p1.angle = data->map.arr[row][col];
-				printf("player count: %d\n", data->p1.player_count);//hello
-				printf("player y: %d\n", data->p1.y);//hello
-				printf("player x: %d\n", data->p1.x);//hello
-				printf("player angle: %f\n", data->p1.angle);//hello
+				data->p1.y =  row * TILE + (TILE / 2);
+				data->p1.x = col * TILE + (TILE / 2);
+				data->p1.angle = get_p1_angle(data->map.arr[row][col]);
 			}
 			col++;
 		}
@@ -62,18 +72,18 @@ char	*skip_space(char *line)
 	return (&line[i]);
 }
 
-// static void free_list(char **list)
-// {
-// 	int i = 0;
-// 	if (!list)
-// 		return ;
-// 	while (list[i])
-// 	{
-// 		free(list[i]);
-// 		i++;
-// 	}
-// 	free(list);
-// }
+static void free_list(char **list)
+{
+	int i = 0;
+	if (!list)
+		return ;
+	while (list[i])
+	{
+		free(list[i]);
+		i++;
+	}
+	free(list);
+}
 
 /**
  * @param str: error message
@@ -94,8 +104,8 @@ void	get_map_width(t_game *data)
 	while (data->map.arr[++i] != NULL)
 	{
 		len = ft_strlen(data->map.arr[i]);
-		if (len > data->map.width)
-			data->map.width = len;
+		if (len > data->map.w)
+			data->map.w = len;
 	}
 
 }

@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:46:11 by jpaul             #+#    #+#             */
-/*   Updated: 2025/02/20 14:53:32 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/24 15:17:06 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,8 @@ typedef struct s_map
 {
 	char	**arr;
 	char	**tmp_arr;
-	int	height;
-	int	width;
-	int	x;
-	int	y;
+	int	h;//
+	int	w;//
 }	t_map;
 
 typedef struct s_mouse
@@ -73,10 +71,10 @@ typedef struct s_weapon
 
 typedef struct s_texture
 {
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
+	char	*no;//move to main
+	char	*so;//
+	char	*we;//
+	char	*ea;//
 	void *ptr;
 	int *buf;
 	bool end;
