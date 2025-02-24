@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 14:56:50 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/24 16:41:54 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/24 18:02:35 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,21 @@ int	open_file(char *file)
 	return (fd);
 }
 
+bool	read_line(char fd, char **s)
+{
+	int	i;
+
+	*s = get_next_line(fd);
+	if (*s)
+	{
+		i = ft_strlen(*s);
+		while (i > 0 && ((*s)[i - 1] == '\n' || (*s)[i - 1] == '\r'))
+			(*s)[--i] = '\0';
+		return (true);
+	}
+	return (false);
+}
+
 /**
  * @brief Parses the given file and store into the struct.
  *
@@ -136,11 +151,8 @@ void	parser(char *file, t_game *data)
 
 	fd = open_file(file);
 	counter = 0;
-	while (1)
+	while (read_line(fd, &line))
 	{
-		line = get_next_line(fd);
-		if (!line)
-			break;
 		if (counter < 6)
 		{	
 			if (!identifier(line, data, &counter))

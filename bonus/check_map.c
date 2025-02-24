@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:57:51 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/24 16:51:31 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/24 18:18:39 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	flood_fill(t_game *data, int x, int y)
 	char	**map;
 
 	map = data->map.tmp;
+	
 	// printf("x:%d y:%d w:%d h:%d\n", x, y, data->map.w, data->map.h);//hello
 	if (x < 0 || x >= data->map.w || y < 0 || y >= data->map.h)
 		return ;
@@ -33,13 +34,14 @@ void	flood_fill(t_game *data, int x, int y)
 			error_exit("Error\nThe map must be closed/surrounded by walls");
 	}
 	map[y][x] = 'F';
-	int i = 0;
-	while (data->map.tmp[i])
-	{
-		printf("%s", data->map.tmp[i]);
-		i++;
-	}
-	printf("\n\n");
+	// int i = 0;
+	// while (data->map.tmp[i])
+	// {
+	// 	printf("%s\n", data->map.tmp[i]);
+	// 	i++;
+	// }
+	// i = read(0, NULL, 0);
+	// printf("\n\n");
 	flood_fill(data, x - 1, y);
 	flood_fill(data, x + 1, y);
 	flood_fill(data, x, y - 1);
@@ -74,7 +76,7 @@ void	check_char(char **map)
 		{
 			if (map[row][col] != '0' && map[row][col] != '1' && map[row][col] != 'N'
 			&& map[row][col] != 'S' && map[row][col] != 'E' && map[row][col] != 'W'
-			&& map[row][col] != 'D' && map[row][col] != ' ' && map[row][col] != '\n')
+			&& map[row][col] != 'D' && map[row][col] != ' ')
 				error_exit("Error\nInvalid character in map");
 			col++;
 		}
@@ -100,10 +102,15 @@ char **dup_map(t_game *data)
  */
 void	valid_map(t_game *data)
 {
+	int x;
+	int y;
+	
 	data->map.tmp = dup_map(data);
 	check_char(data->map.ar);
 	check_player(data);
-	flood_fill(data, data->p1.x, data->p1.y);
+	x = (int)data->p1.x / TILE;
+	y = (int)data->p1.y / TILE;
+	flood_fill(data, x, y);
 	// int i = 0;
 	// while (data->map.tmp_arr[i])
 	// {

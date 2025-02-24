@@ -17,7 +17,7 @@ run_command() {
     echo -e "$OUTPUT"
 
     # Run valgrind and capture its output
-    valgrind -q --leak-check=full --error-exitcode=222 ./cub3d "$INPUT" &>/dev/null
+    valgrind -q --leak-check=full --show-leak-kinds=all --exit-on-first-error=yes ./cub3d "$INPUT" &>/dev/null
     if [ $? -eq 222 ]; then
         echo -e "${PURPLE}Valgrind: ${RED}KO${NC}"
     else

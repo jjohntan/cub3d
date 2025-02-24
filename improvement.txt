@@ -1,0 +1,2 @@
+1-Check duiplicate identifier
+2-Clean map data - remove new line
