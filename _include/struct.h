@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:46:11 by jpaul             #+#    #+#             */
-/*   Updated: 2025/02/24 16:39:41 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/24 21:56:00 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ typedef struct s_game
 	void		*wind;
 	int			ceiling;
 	int			floor;
+	int			ceiling_parsed;
+	int			floor_parsed;
 	bool		view;
 	bool		attack;
 	int			equip;
@@ -101,6 +103,8 @@ typedef struct s_game
 	char		*so;
 	char		*we;
 	char		*ea;
+	char 		*c;
+	char 		*f;
 	t_ray		ray[WIND_W];
 	t_texture	txt[6];
 	t_weapon	weapon[2][6];

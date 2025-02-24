@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:46:14 by jpaul             #+#    #+#             */
-/*   Updated: 2025/02/24 16:58:23 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/24 22:22:25 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,9 @@ void	flood_fill(t_game *data, int x, int y);
 void	valid_map(t_game *data);
 void	count_players(t_game *data);
 void	valid_player(t_game *data);
+void	free_info(t_game *g);
 void	valid_texture(t_game *data);
-
+void valid_color(t_game *data);
 //----------------------------------------------------------------------------
 // Utils
 //----------------------------------------------------------------------------
@@ -98,5 +99,8 @@ float	angle_limit(float i);
 
 void	error_exit(char *str);
 float get_angle(char c);
+
+void	parse_rgb(char *path, int *value);
+int	check_dup_color(t_game *data);
 
 #endif

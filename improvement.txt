@@ -1,2 +1,7 @@
-1-Check duiplicate identifier
-2-Clean map data - remove new line
+Flood fill buffer overflow
+
+Segfault maybe when reading the map
+     
+	 char **
+        |
+while (map.arr && map.arr[i])

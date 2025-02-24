@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:38:34 by jpaul             #+#    #+#             */
-/*   Updated: 2025/02/24 17:22:33 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/24 22:01:29 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	init(int ac, char **av, t_game *data)
 	check_file_extension(av[1]);
 	parser(av[1], data);
 	valid_texture(data);
+	valid_color(data);
 	valid_map(data);
 	data->mlx = mlx_init();
 	data->wind = mlx_new_window(data->mlx, WIND_W, WIND_H, "Cub3D");

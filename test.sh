@@ -77,6 +77,7 @@ run_command() {
     run_command "./map/bad/wall_none.cub"
     run_command "./map/bad/wall_hole_not_rect.cub"
     run_command "./map/bad/wall_hole_tri_upsidedown.cub"
+    run_command "./map/bad/incorrect_first_6_data.cub"
 
     
     echo -e "\n\n${YELLOW} Correct configuration ${NC}"

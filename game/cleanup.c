@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:27:58 by jpaul             #+#    #+#             */
-/*   Updated: 2025/02/24 16:47:02 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/24 22:19:24 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	closewind(t_game *g)
 {
 	free_map(g->map.ar);
-	free_texture(g);
+	free_info(g);
 	free_asset(g);
 	if (g->mini.ptr)
 		mlx_destroy_image(g->mlx, g->mini.ptr);
@@ -63,10 +63,12 @@ void	free_map(char **map)
 	free(map);
 }
 
-void	free_texture(t_game *g)
+void	free_info(t_game *g)
 {
 	free(g->no);
 	free(g->so);
 	free(g->we);
 	free(g->ea);
+	free(g->f);
+	free(g->c);
 }
