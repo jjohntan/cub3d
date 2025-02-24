@@ -6,11 +6,11 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 14:56:50 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/24 15:44:48 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/24 16:41:54 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../_include/cub3d.h"
 
 // int	is_map(char *line)
 // {
@@ -61,16 +61,16 @@ int	parse_map(char *line, t_game *data)
 	if (!tmp)
 		exit(1);
 	i = 0;
-	while (data->map.arr && data->map.arr[i])
+	while (data->map.ar && data->map.ar[i])
 	{
-		tmp[i] = data->map.arr[i];
+		tmp[i] = data->map.ar[i];
 		i++;
 	}
 	tmp[i++] = line;
 	tmp[i] = NULL;
-	if (data->map.arr)
-		free(data->map.arr);
-	data->map.arr = tmp;
+	if (data->map.ar)
+		free(data->map.ar);
+	data->map.ar = tmp;
 	get_map_width(data);
 	return (1);
 }

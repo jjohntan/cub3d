@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:27:58 by jpaul             #+#    #+#             */
-/*   Updated: 2025/02/18 16:27:58 by jpaul            ###   ########.fr       */
+/*   Updated: 2025/02/24 16:47:02 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	closewind(t_game *g)
 {
 	free_map(g->map.ar);
-	free_info(g->info);
+	free_texture(g);
 	free_asset(g);
 	if (g->mini.ptr)
 		mlx_destroy_image(g->mlx, g->mini.ptr);
@@ -63,14 +63,10 @@ void	free_map(char **map)
 	free(map);
 }
 
-void	free_info(char **info)
+void	free_texture(t_game *g)
 {
-	int	i;
-
-	i = -1;
-	while (++i < 7)
-	{
-		if (info[i])
-			free(info[i]);
-	}
+	free(g->no);
+	free(g->so);
+	free(g->we);
+	free(g->ea);
 }

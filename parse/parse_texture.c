@@ -6,11 +6,11 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 20:13:24 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/24 15:11:45 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/24 17:24:33 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../_include/cub3d.h"
 
 /**
  * @brief This function check the colors range in [0,255]
@@ -110,22 +110,22 @@ void	parse_texture(char *line, t_game *data)
 	path = ft_strtrim(line, " \t\n");
 	if (ft_strncmp(trimmed_line, "NO", 2) == 0)
 	{
-		data->texture->no = path;
-		printf("NO:%s\n", data->texture->no);//hi
+		data->no = path;
+		printf("NO:%s\n", data->no);//hi
 	}
 	else if (ft_strncmp(trimmed_line, "SO", 2) == 0)
 	{
-		data->texture->so = path;
-		printf("SO:%s\n", data->texture->so);//hi
+		data->so = path;
+		printf("SO:%s\n", data->so);//hi
 	}
 	else if (ft_strncmp(trimmed_line, "WE", 2) == 0)
 	{
-		data->texture->we = path;
-		printf("WE:%s\n", data->texture->we);//hi
+		data->we = path;
+		printf("WE:%s\n", data->we);//hi
 	}
 	else if (ft_strncmp(trimmed_line, "EA", 2) == 0)
 	{
-		data->texture->ea = path;
-		printf("EA:%s\n", data->texture->ea);//hi
+		data->ea = path;
+		printf("EA:%s\n", data->ea);//hi
 	}
 }

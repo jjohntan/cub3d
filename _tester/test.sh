@@ -69,6 +69,7 @@ run_command() {
     run_command "./map/bad/textures_none.cub"
     run_command "./map/bad/textures_not_xpm.cub"
     run_command "./map/bad/two_map.cub"
+    run_command "./map/bad/invalid_map2.cub"
     run_command "./map/bad/wall_hole_east.cub"
     run_command "./map/bad/wall_hole_north.cub"
     run_command "./map/bad/wall_hole_south.cub"

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asset.c                                            :+:      :+:    :+:   */
+/*   init_asset.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 11:56:49 by jpaul             #+#    #+#             */
-/*   Updated: 2025/02/02 13:15:27 by jpaul            ###   ########.fr       */
+/*   Updated: 2025/02/24 16:47:50 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ static void	download_img(t_game *g)
 	g->weapon[1][3].ptr = mlx_xpm_file_to_image(g->mlx, PISTOL_3, &i.w, &i.h);
 	g->weapon[1][4].ptr = mlx_xpm_file_to_image(g->mlx, PISTOL_4, &i.w, &i.h);
 	g->weapon[1][5].end = true;
-	g->txt[0].ptr = mlx_xpm_file_to_image(g->mlx, g->info[NO], &i.w, &i.h);
-	g->txt[1].ptr = mlx_xpm_file_to_image(g->mlx, g->info[SO], &i.w, &i.h);
-	g->txt[2].ptr = mlx_xpm_file_to_image(g->mlx, g->info[EA], &i.w, &i.h);
-	g->txt[3].ptr = mlx_xpm_file_to_image(g->mlx, g->info[WE], &i.w, &i.h);
+	g->txt[0].ptr = mlx_xpm_file_to_image(g->mlx, g->no, &i.w, &i.h);
+	g->txt[1].ptr = mlx_xpm_file_to_image(g->mlx, g->so, &i.w, &i.h);
+	g->txt[2].ptr = mlx_xpm_file_to_image(g->mlx, g->ea, &i.w, &i.h);
+	g->txt[3].ptr = mlx_xpm_file_to_image(g->mlx, g->we, &i.w, &i.h);
 	g->txt[4].ptr = mlx_xpm_file_to_image(g->mlx, IMG_DOOR, &i.w, &i.h);
 	g->txt[5].end = true;
 }

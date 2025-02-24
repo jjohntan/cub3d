@@ -22,15 +22,14 @@ MLX_DIR = ./_include/mlx
 #==================================================
 
 SRC = $(wildcard ./draw/*.c) \
-	$(wildcard ./extract/*.c) \
 	$(wildcard ./game/*.c) \
 	$(wildcard ./init/*.c) \
 	$(wildcard ./render/*.c) \
-	$(wildcard ./validate/*.c) \
 	$(wildcard ./utils/*.c) \
+	$(wildcard ./parse/*.c) \
 	
-SRC_M = ./bonus/valid_map_util.c
-SRC_B = ./bonus/valid_map_util_bonus.c
+SRC_M = ./bonus/check_map.c
+SRC_B = ./bonus/check_map_bonus.c
 
 OBJ = $(SRC:.c=.o)
 OBJ_M = $(SRC_M:.c=.o)

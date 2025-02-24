@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   constant.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:41:59 by jpaul             #+#    #+#             */
-/*   Updated: 2025/02/10 22:49:51 by jpaul            ###   ########.fr       */
+/*   Updated: 2025/02/24 16:47:28 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,15 +122,5 @@
 # define STEP 0.0008726646      // Ray increment step
 
 # define PROJECTED_D 1039.2304845413
-
-//----------------------------------------------------------------------------
-// Parsing
-
-# define NO 0
-# define SO 1
-# define EA 2
-# define WE 3
-# define F  4
-# define C  5
 
 #endif

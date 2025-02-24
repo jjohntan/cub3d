@@ -3,24 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   _main.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:38:34 by jpaul             #+#    #+#             */
-/*   Updated: 2025/02/02 12:01:30 by jpaul            ###   ########.fr       */
+/*   Updated: 2025/02/24 17:22:33 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../_include/cub3d.h"
 
-static void	init(int ac, char **av, t_game *g)
+static void	check_file_extension(char *av)
 {
-	ft_memset(g, 0, sizeof(t_game));
-	if (!check_in(ac, av) || !_extract(av[1], g) || !validate(g))
-		exit(EXIT_FAILURE);
-	g->mlx = mlx_init();
-	g->wind = mlx_new_window(g->mlx, WIND_W, WIND_H, "Cub3D");
-	init_asset(g);
-	init_minimap(g);
+	int	len;
+	
+	len = ft_strlen(av) - 4;
+	if (len < 4 || ft_strncmp(&av[len], ".cub", 4) != 0)
+		error_exit("Error\nInvalid extension");
+}
+
+static void	init(int ac, char **av, t_game *data)
+{
+	if (ac != 2)
+		error_exit("Error\nInvalid number of argument");
+	ft_memset(data, 0, sizeof(t_game));
+	check_file_extension(av[1]);
+	parser(av[1], data);
+	valid_texture(data);
+	valid_map(data);
+	data->mlx = mlx_init();
+	data->wind = mlx_new_window(data->mlx, WIND_W, WIND_H, "Cub3D");
+	data->p1.dx = cos(data->p1.angle);
+	data->p1.dy = sin(data->p1.angle);
+	init_asset(data);
+	init_minimap(data);
 }
 
 void	show_control(void)

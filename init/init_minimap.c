@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap.c                                          :+:      :+:    :+:   */
+/*   init_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 22:03:00 by jpaul             #+#    #+#             */
-/*   Updated: 2025/02/02 11:42:03 by jpaul            ###   ########.fr       */
+/*   Updated: 2025/02/24 16:48:06 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	init_minimap(t_game *g)
 {
 	t_img	i;
 
-	g->mini.h = g->map.y * MINI_T;
-	g->mini.w = g->map.x * MINI_T;
+	g->mini.h = g->map.h * MINI_T;
+	g->mini.w = g->map.w * MINI_T;
 	g->mini.ptr = mlx_new_image(g->mlx, g->mini.w, g->mini.h);
 	g->mini.buf = (int *)mlx_get_data_addr(g->mini.ptr, &i.bpp, &i.row, &i.end);
 	update_mini_img(g);

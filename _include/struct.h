@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:46:11 by jpaul             #+#    #+#             */
-/*   Updated: 2025/02/10 22:47:45 by jpaul            ###   ########.fr       */
+/*   Updated: 2025/02/24 16:39:41 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_display
 
 typedef struct s_player
 {
+	int	player_count;
 	float	x;
 	float	y;
 	float	angle;
@@ -50,8 +51,9 @@ typedef struct s_player
 typedef struct s_map
 {
 	char	**ar;
-	int		x;
-	int		y;
+	char	**tmp;
+	int		h;
+	int		w;
 }	t_map;
 
 typedef struct s_mouse
@@ -95,7 +97,10 @@ typedef struct s_game
 	bool		attack;
 	int			equip;
 	int			timer;
-	char		*info[7];
+	char		*no;
+	char		*so;
+	char		*we;
+	char		*ea;
 	t_ray		ray[WIND_W];
 	t_texture	txt[6];
 	t_weapon	weapon[2][6];

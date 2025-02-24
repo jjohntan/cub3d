@@ -6,11 +6,11 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:55:13 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/24 15:43:37 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/24 16:59:17 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../_include/cub3d.h"
 
 /**
  * @brief
@@ -22,7 +22,7 @@
  * and updates the player's coordinates and angle.
  */
 
-float get_angle(char c)
+float	get_angle(char c)
 {
 	if (c == 'N')
 		return (DEG_270);
@@ -41,17 +41,17 @@ void	count_players(t_game *data)
 	int	col;
 
 	row = 0;
-	while (data->map.arr[row])
+	while (data->map.ar[row])
 	{
 		col = 0;
-		while (data->map.arr[row][col])
+		while (data->map.ar[row][col])
 		{
-			if (ft_strchr("NSEW", data->map.arr[row][col]))
+			if (ft_strchr("NSEW", data->map.ar[row][col]))
 			{
 				data->p1.player_count++;
 				data->p1.y =  row * TILE + (TILE / 2);
 				data->p1.x = col * TILE + (TILE / 2);
-				data->p1.angle = get_p1_angle(data->map.arr[row][col]);
+				data->p1.angle = get_angle(data->map.ar[row][col]);
 			}
 			col++;
 		}
@@ -72,18 +72,18 @@ char	*skip_space(char *line)
 	return (&line[i]);
 }
 
-static void free_list(char **list)
-{
-	int i = 0;
-	if (!list)
-		return ;
-	while (list[i])
-	{
-		free(list[i]);
-		i++;
-	}
-	free(list);
-}
+// static void free_list(char **list)
+// {
+// 	int i = 0;
+// 	if (!list)
+// 		return ;
+// 	while (list[i])
+// 	{
+// 		free(list[i]);
+// 		i++;
+// 	}
+// 	free(list);
+// }
 
 /**
  * @param str: error message
@@ -101,9 +101,9 @@ void	get_map_width(t_game *data)
 	int	i;
 
 	i = -1;
-	while (data->map.arr[++i] != NULL)
+	while (data->map.ar[++i] != NULL)
 	{
-		len = ft_strlen(data->map.arr[i]);
+		len = ft_strlen(data->map.ar[i]);
 		if (len > data->map.w)
 			data->map.w = len;
 	}

@@ -6,11 +6,11 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:57:51 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/24 15:46:56 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/24 16:51:31 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../_include/cub3d.h"
 
 /**
  * @brief This function check that the map closed/surrounded by walls
@@ -19,7 +19,7 @@ void	flood_fill(t_game *data, int x, int y)
 {
 	char	**map;
 
-	map = data->map.tmp_arr;
+	map = data->map.tmp;
 	// printf("x:%d y:%d w:%d h:%d\n", x, y, data->map.w, data->map.h);//hello
 	if (x < 0 || x >= data->map.w || y < 0 || y >= data->map.h)
 		return ;
@@ -34,9 +34,9 @@ void	flood_fill(t_game *data, int x, int y)
 	}
 	map[y][x] = 'F';
 	int i = 0;
-	while (data->map.tmp_arr[i])
+	while (data->map.tmp[i])
 	{
-		printf("%s", data->map.tmp_arr[i]);
+		printf("%s", data->map.tmp[i]);
 		i++;
 	}
 	printf("\n\n");
@@ -89,8 +89,8 @@ char **dup_map(t_game *data)
 
     i = -1;
     new_map = (char **)malloc((data->map.h + 1) * sizeof(char *));//h
-    while (data->map.arr[++i])
-        new_map[i] = ft_strdup(data->map.arr[i]);
+    while (data->map.ar[++i])
+        new_map[i] = ft_strdup(data->map.ar[i]);
     new_map[i] = NULL;
     return (new_map);
 }
@@ -100,8 +100,8 @@ char **dup_map(t_game *data)
  */
 void	valid_map(t_game *data)
 {
-	data->map.tmp_arr = dup_map(data);
-	check_char(data->map.arr);
+	data->map.tmp = dup_map(data);
+	check_char(data->map.ar);
 	check_player(data);
 	flood_fill(data, data->p1.x, data->p1.y);
 	// int i = 0;
