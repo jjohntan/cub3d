@@ -16,7 +16,7 @@ static void	init(int ac, char **av, t_game *g)
 {
 	ft_memset(g, 0, sizeof(t_game));
 	if (!check_in(ac, av) || !_extract(av[1], g) || !validate(g))
-		exit(EXIT_FAILURE);
+		exit(EXIT_SUCCESS);
 	g->mlx = mlx_init();
 	g->wind = mlx_new_window(g->mlx, WIND_W, WIND_H, "Cub3D");
 	init_asset(g);

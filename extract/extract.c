@@ -40,7 +40,7 @@ bool	_extract(char *filename, t_game *g)
 	fd = open(filename, O_RDONLY);
 	if (read_content(fd, g) && all_fill(g))
 		return (close(fd), true);
-	return (close(fd), free_info(g->info), false);
+	return (close(fd), free_info(g->info), free_map(g->map.ar), false);
 }
 
 static bool	read_content(int fd, t_game *g)

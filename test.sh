@@ -10,19 +10,22 @@ run_command() {
     echo -e "${PURPLE}Input: ${NC}"
     echo -e "$INPUT"
 
-    # Capture the command output
-    OUTPUT=$(./cub3D "$INPUT" 2>&1)
+    # Run cub3D inside Valgrind and capture its output
+    OUTPUT=$(valgrind -q --leak-check=full --show-leak-kinds=all --errors-for-leak-kinds=all --error-exitcode=123 ./cub3D "$INPUT" 2>&1)
+
+    # Capture the exit status of Valgrind **immediately**
+    EXIT_STATUS=$?
 
     echo -e "${PURPLE}Output: ${NC}"
     echo -e "$OUTPUT"
 
-    # Run valgrind and capture its output
-    valgrind -q --leak-check=full --error-exitcode=222 ./cub3d "$INPUT" &>/dev/null
-    if [ $? -eq 222 ]; then
+    # Check Valgrind exit status for memory leaks
+    if [ $EXIT_STATUS -eq 123 ]; then
         echo -e "${PURPLE}Valgrind: ${RED}KO${NC}"
     else
         echo -e "${PURPLE}Valgrind: ${GREEN}OK${NC}"
     fi
+
     echo -e "${GREEN}--------------------------------------------------------------------${NC}"
 }
 
