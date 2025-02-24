@@ -1,42 +1,70 @@
-NAME = cub3D
-
-SRCS = main.c \
-		check_map.c \
-		check_texture.c \
-		parse_map.c \
-		parse_texture.c \
-		utils.c
-      
-
-
-OBJS = $(SRCS:.c=.o) $(UTILS:.c=.o)
-
+#==================================================
+# CONSTANT
+#==================================================
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Iinc -Ilibft #$(FSANTIZE)
-FSANTIZE = -fsanitize=address -g3
-all: $(NAME)
+FLAG = -Wall -Werror -Wextra -O3
+RM = rm -f
 
-$(NAME): $(OBJS) libft minilibx
-	$(CC) $(CFLAGS) $(OBJS) -Llibft -lft -Lminilibx-linux -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+#==================================================
+# DECLARATION
+#==================================================
+
+NAME = cub3D
+INCLUDE = ./_include/mlx/libmlx.a ./_include/lib/libft.a
+MLX_FLAG = -L./_include/mlx -lmlx -L/usr/lib/X11 -lXext -lX11 -lm -lz
+
+LIB_DIR = ./_include/lib
+MLX_DIR = ./_include/mlx
+
+#==================================================
+# FILES
+#==================================================
+
+SRC = $(wildcard ./draw/*.c) \
+	$(wildcard ./extract/*.c) \
+	$(wildcard ./game/*.c) \
+	$(wildcard ./init/*.c) \
+	$(wildcard ./render/*.c) \
+	$(wildcard ./validate/*.c) \
+	$(wildcard ./utils/*.c) \
+	
+SRC_M = ./bonus/valid_map_util.c
+SRC_B = ./bonus/valid_map_util_bonus.c
+
+OBJ = $(SRC:.c=.o)
+OBJ_M = $(SRC_M:.c=.o)
+OBJ_B = $(SRC_B:.c=.o)
+
+#===================================================
+# BUILD
+#===================================================
+
+all : lib $(NAME)
+bonus : lib mkbonus
+
+$(NAME) : $(OBJ) $(OBJ_M)
+	$(CC) $(FLAG) -o $@ $^ $(INCLUDE) $(MLX_FLAG) 
+
+mkbonus: $(OBJ) $(OBJ_B)
+	$(CC) $(FLAG) -o $(NAME) $^ $(INCLUDE) $(MLX_FLAG) 
+
+lib:
+	make -C $(LIB_DIR)
+	make -C $(MLX_DIR)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-minilibx:
-	make -C minilibx-linux
-
-libft:
-	make -C libft
+	$(CC) $(FLAG) -c $< -o $@
 
 clean:
-	rm -f $(OBJS) $(BONUS_OBJS)
-	make -C libft clean
+	$(RM) $(OBJ) $(OBJ_M) $(OBJ_B)
+	make -C $(LIB_DIR) clean
 
 fclean: clean
-	rm -f $(NAME)
-	rm -f libft/libft.a
+	$(RM) $(NAME) 
+	make -C $(LIB_DIR) fclean
+	make -C $(MLX_DIR) clean
 
 re: fclean all
 
-.PHONY: all libft clean fclean re
+.PHONY: all bonus lib clean fclean re
