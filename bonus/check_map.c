@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:57:51 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/25 19:15:58 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/25 19:17:19 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	flood_fill(t_game *data, int x, int y)
 		|| y == data->map.h - 1)
 	{
 		if (map[y][x] != '1')
-			error_exit("Error\nThe map must be closed/surrounded by walls");
+			error_exit("Error\nThe map must be closed/surrounded by walls\n");
 	}
 	map[y][x] = 'F';
 	flood_fill(data, x - 1, y);
@@ -46,9 +46,9 @@ void	check_player(t_game *data)
 {
 	count_players(data);
 	if (data->p1.player_count == 0)
-		error_exit("Error\nNo player starting position found");
+		error_exit("Error\nNo player starting position found\n");
 	if (data->p1.player_count > 1)
-		error_exit("Error\nMutiple player starting position found");
+		error_exit("Error\nMutiple player starting position found\n");
 }
 
 /**
@@ -69,7 +69,7 @@ void	check_char(char **map)
 			&& map[row][col] != 'N' && map[row][col] != 'S'
 			&& map[row][col] != 'E' && map[row][col] != 'W'
 			&& map[row][col] != 'D' && map[row][col] != ' ')
-				error_exit("Error\nInvalid character in map");
+				error_exit("Error\nInvalid character in map\n");
 			col++;
 		}
 		row++;
