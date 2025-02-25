@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:38:34 by jpaul             #+#    #+#             */
-/*   Updated: 2025/02/25 21:53:38 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/25 22:11:22 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	check_file_extension(char *av)
 {
 	int	len;
-	
+
 	len = ft_strlen(av) - 4;
 	if (len < 4 || ft_strncmp(&av[len], ".cub", 4) != 0)
 		error_exit("Error\nInvalid extension");
