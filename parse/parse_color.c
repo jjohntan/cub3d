@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 21:13:47 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/24 22:22:45 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/25 17:11:26 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,20 @@ int	color(int r, int g, int b)
 void	parse_rgb(char *path, int *value)
 {
 	int	rgb[3];
-	char **color_value;
+	char **split;
 	
 	check_color_format(path);
-	color_value = ft_split(path, ',');
-	rgb[0] = ft_atoi(color_value[0]);
-	rgb[1] = ft_atoi(color_value[1]);
-	rgb[2] = ft_atoi(color_value[2]);
+	split = ft_split(path, ',');
+	if (!split || !split[0] || !split[1] || !split[2])
+		error_exit("Error\nColor missing\n");
+	rgb[0] = ft_atoi(split[0]);
+	rgb[1] = ft_atoi(split[1]);
+	rgb[2] = ft_atoi(split[2]);
 	color_range(rgb);
 	*value = color(rgb[0], rgb[1], rgb[2]);
-	free(color_value[0]);
-	free(color_value[1]);
-	free(color_value[2]);
+	free(split[0]);
+	free(split[1]);
+	free(split[2]);
 }
 
 /**

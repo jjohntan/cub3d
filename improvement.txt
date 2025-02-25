@@ -5,3 +5,5 @@ Segfault maybe when reading the map
 	 char **
         |
 while (map.arr && map.arr[i])
+
+./map/bad/color_missing_ceiling_rgb.cub

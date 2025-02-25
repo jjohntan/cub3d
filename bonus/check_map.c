@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:57:51 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/24 18:18:39 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/25 16:49:14 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	flood_fill(t_game *data, int x, int y)
 	if (x < 0 || x >= data->map.w || y < 0 || y >= data->map.h)
 		return ;
 	// printf("Visiting (%d, %d): %c\n", x, y, map[y][x]);//
+	if (x >= (int)ft_strlen(map[y]))
+        return ;
 	if (map[y][x] == '1' || map[y][x] == 'F')
 		return ;
 	if (x == 0 || x == data->map.w - 1 || y == 0
