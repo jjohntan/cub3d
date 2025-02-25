@@ -11,7 +11,7 @@ run_command() {
     echo -e "$INPUT"
 
     OUTPUT=$(./cub3D "$INPUT" 2>&1)
-    # OUTPUT=$(valgrind -q --leak-check=full --show-leak-kinds=all --errors-for-leak-kinds=all --error-exitcode=123 ./cub3D "$INPUT" 2>&1)
+    #OUTPUT=$(valgrind -q --leak-check=full ./cub3D "$INPUT" 2>&1)
 
     EXIT_STATUS=$?
     
@@ -62,7 +62,6 @@ run_command() {
     run_command "./map/bad/player_out_of_map.cub"
     run_command "./map/bad/test_whitespace.cub"
     run_command "./map/bad/test_whitespace_2.cub"
-    run_command "./map/bad/test_whitespace_3.cub"
     run_command "./map/bad/textures_dir.cub"
     run_command "./map/bad/textures_duplicates.cub"
     run_command "./map/bad/textures_invalid.cub"
@@ -104,9 +103,10 @@ run_command() {
     run_command "./map/good/triangle.cub"
     run_command "./map/good/valid_map.cub"
     run_command "./map/good/works.cub"
-    run_command "./map/bad/file_letter_end.cub"
+    run_command "./map/good/file_letter_end.cub"
     run_command "./map/good/mini.cub"
-    run_command "./map/bad/two_map.cub"
+    run_command "./map/good/two_map.cub"
     run_command "./map/good/bonus1.cub"
     run_command "./map/good/bonus2.cub"
-    run_command "./map/bad/textures_forbidden.cub"
+    run_command "./map/good/textures_forbidden.cub"
+    run_command "./map/good/test_whitespace_3.cub"

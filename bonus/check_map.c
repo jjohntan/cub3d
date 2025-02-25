@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:57:51 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/25 19:17:19 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/25 21:59:08 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,14 @@ void	flood_fill(t_game *data, int x, int y)
 
 	map = data->map.tmp;
 	if (x < 0 || x >= data->map.w || y < 0 || y >= data->map.h)
+		error_exit("Error\nThe map must be closed/surrounded by walls\n");
+	if (map[y][x] == '1')
 		return ;
-	if (x >= (int)ft_strlen(map[y]))
-		return ;
-	if (map[y][x] == '1' || map[y][x] == 'F')
-		return ;
-	if (x == 0 || x == data->map.w - 1 || y == 0
-		|| y == data->map.h - 1)
-	{
-		if (map[y][x] != '1')
-			error_exit("Error\nThe map must be closed/surrounded by walls\n");
-	}
-	map[y][x] = 'F';
-	flood_fill(data, x - 1, y);
+	map[y][x] = '1';
 	flood_fill(data, x + 1, y);
-	flood_fill(data, x, y - 1);
+	flood_fill(data, x - 1, y);
 	flood_fill(data, x, y + 1);
+	flood_fill(data, x, y - 1);
 }
 
 /**
@@ -79,22 +71,19 @@ void	check_char(char **map)
 /**
  * @brief This function duplicate a temporary map for flood fill
  */
-char	**dup_map(t_game *data)
+static char	**dup_map(t_game *data)
 {
 	int		i;
 	char	**new_map;
 
-	if (!data->map.ar)
-		error_exit("Error\nMap missing\n");
 	i = -1;
-	new_map = (char **)malloc((data->map.h + 1) * sizeof(char *));
-	if (!new_map)
-		exit(1);
+	new_map = (char **)malloc(sizeof(char *) * (data->map.h + 1));
 	while (data->map.ar[++i])
 	{
-		new_map[i] = ft_strdup(data->map.ar[i]);
-		new_map[i] = NULL;
+		new_map[i] = (char *)ft_calloc(data->map.w + 1, 1);
+		ft_strcpy(new_map[i], data->map.ar[i]);
 	}
+	new_map[i] = NULL;
 	return (new_map);
 }
 
@@ -106,10 +95,13 @@ void	valid_map(t_game *data)
 	int	x;
 	int	y;
 
+	if (!data->map.ar)
+		error_exit("Error\nNo map data found\n");
 	data->map.tmp = dup_map(data);
 	check_char(data->map.ar);
 	check_player(data);
 	x = (int)data->p1.x / TILE;
 	y = (int)data->p1.y / TILE;
 	flood_fill(data, x, y);
+	free_map(data->map.tmp);
 }

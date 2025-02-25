@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 18:31:50 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/25 18:32:08 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/25 21:33:03 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	check_color_format(char *str)
 			comma++;
 			i++;
 		}
-		else if (ft_isdigit(str[i]) != 0)
+		else if (ft_isdigit(str[i]) || str[i] == ' ')
 			i++;
 		else
 			error_exit("Error\nInvalid character\n");

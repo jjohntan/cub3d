@@ -7,3 +7,8 @@ Segfault maybe when reading the map
 while (map.arr && map.arr[i])
 
 ./map/bad/color_missing_ceiling_rgb.cub
+
+
+
+   1F000| 
+11111111

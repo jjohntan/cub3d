@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 14:51:15 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/25 18:32:50 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/25 21:59:29 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	check_path(char *path)
 	int	fd;
 	int	len;
 
+	if (!path)
+		return (0);
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		return (0);
