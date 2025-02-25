@@ -14,7 +14,7 @@ void	color_range(int *color)
 	while (i < 3)
 	{
 		if (color[i] < 0 || color[i] > 255)
-			error_exit("Error\nInvalid color range");
+			error_exit("Error\nInvalid color range\n");
 		i++;
 	}
 }

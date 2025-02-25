@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 21:13:47 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/25 17:11:26 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/25 17:36:11 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,13 @@ int	color(int r, int g, int b)
 	return ((r << 16) | (g << 8) | (b));
 }
 
+/**
+ * @brief This function split color value into 2d array
+ */
 void	parse_rgb(char *path, int *value)
 {
-	int	rgb[3];
-	char **split;
+	int		rgb[3];
+	char	**split;
 	
 	check_color_format(path);
 	split = ft_split(path, ',');
@@ -37,6 +40,7 @@ void	parse_rgb(char *path, int *value)
 	free(split[0]);
 	free(split[1]);
 	free(split[2]);
+	free(split);
 }
 
 /**

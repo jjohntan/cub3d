@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:57:51 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/25 16:49:14 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/25 17:46:54 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,12 @@ char **dup_map(t_game *data)
     int i;
     char **new_map;
 
+	if (!data->map.ar)
+		error_exit("Error\nMap missing\n");
     i = -1;
     new_map = (char **)malloc((data->map.h + 1) * sizeof(char *));//h
+	if (!new_map)
+		exit(1);
     while (data->map.ar[++i])
         new_map[i] = ft_strdup(data->map.ar[i]);
     new_map[i] = NULL;
