@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 21:13:47 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/25 17:36:11 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/25 18:33:24 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	parse_rgb(char *path, int *value)
 {
 	int		rgb[3];
 	char	**split;
-	
+
 	check_color_format(path);
 	split = ft_split(path, ',');
 	if (!split || !split[0] || !split[1] || !split[2])

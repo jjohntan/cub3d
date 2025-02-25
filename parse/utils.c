@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:55:13 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/25 18:03:12 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/25 18:36:34 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	count_players(t_game *data)
 			if (ft_strchr("NSEW", data->map.ar[row][col]))
 			{
 				data->p1.player_count++;
-				data->p1.y =  row * TILE + (TILE / 2);
+				data->p1.y = row * TILE + (TILE / 2);
 				data->p1.x = col * TILE + (TILE / 2);
 				data->p1.angle = get_angle(data->map.ar[row][col]);
 			}
@@ -101,5 +101,4 @@ void	get_map_width(t_game *data)
 		if (len > data->map.w)
 			data->map.w = len;
 	}
-
 }

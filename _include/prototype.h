@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:46:14 by jpaul             #+#    #+#             */
-/*   Updated: 2025/02/24 22:22:25 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/25 19:12:26 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	draw_triangle(int x[3], int y[3], int color, t_game *g);
 void	putpx_disp(int x, int y, int color, t_game *g);
 void	putpx_img(int x, int y, int color, t_game *g);
 
-
 //----------------------------------------------------------------------------
 // Extract
 //----------------------------------------------------------------------------
@@ -95,16 +94,14 @@ void	valid_texture(t_game *data);
 void	valid_color(t_game *data);
 void	color_range(int *color);
 void	check_color_format(char *str);
+int		check_dup_color(t_game *data);
 
 //----------------------------------------------------------------------------
 // Utils
 //----------------------------------------------------------------------------
 void	err_msg(char *issue, char *expect, char *info);
 float	angle_limit(float i);
-
 void	error_exit(char *str);
-float 	get_angle(char c);
-
-int		check_dup_color(t_game *data);
+float	get_angle(char c);
 
 #endif

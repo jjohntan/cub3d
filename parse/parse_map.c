@@ -6,25 +6,11 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 14:56:50 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/24 18:02:35 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/25 19:08:35 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../_include/cub3d.h"
-
-/**
- * @brief This function skip empty line
- */
-int	blankstr(char *line)
-{
-	while (*line)
-	{
-		if (*line != ' ' && *line != '\t' && *line != '\n')
-			return (0);
-		line++;
-	}
-	return (1);
-}
 
 /*
 - true : is an element  >> extract >> increment counter (max 6)
@@ -66,9 +52,8 @@ int	parse_map(char *line, t_game *data)
 static int	identifier(char *line, t_game *data, int *counter)
 {
 	char	*skip;
-	
+
 	skip = skip_space(line);
-	// printf("Check:[%s] [%s]\n", skip, line);//
 	if (!skip[0])
 		return (1);
 	if ((skip[0] == 'N' && skip[1] == 'O') || (skip[0] == 'S' && skip[1] == 'O')

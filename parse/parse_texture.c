@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 20:13:24 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/24 22:18:15 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/25 18:36:04 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	parse_path(char *identify, char *path, t_game *data)
 {
 	if (ft_strncmp(identify, "NO", 2) == 0)
 	{
-	    if (data->no)
+		if (data->no)
 			error_exit("Error\nDuplicate data\n");
 		data->no = path;
 	}

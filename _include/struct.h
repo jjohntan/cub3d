@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:46:11 by jpaul             #+#    #+#             */
-/*   Updated: 2025/02/24 21:56:00 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/25 19:14:10 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_display
 
 typedef struct s_player
 {
-	int	player_count;
+	int		player_count;
 	float	x;
 	float	y;
 	float	angle;
@@ -103,8 +103,8 @@ typedef struct s_game
 	char		*so;
 	char		*we;
 	char		*ea;
-	char 		*c;
-	char 		*f;
+	char		*c;
+	char		*f;
 	t_ray		ray[WIND_W];
 	t_texture	txt[6];
 	t_weapon	weapon[2][6];

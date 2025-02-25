@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_color.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/25 18:31:50 by jetan             #+#    #+#             */
+/*   Updated: 2025/02/25 18:32:08 by jetan            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../_include/cub3d.h"
 
@@ -45,7 +56,7 @@ void	check_color_format(char *str)
 		error_exit("Error\ntwo comma needed\n");
 }
 
-void valid_color(t_game *data)
+void	valid_color(t_game *data)
 {
 	if (!data->c || !data->f)
 		error_exit("Error\nMissing color info\n");
