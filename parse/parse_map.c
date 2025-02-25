@@ -12,27 +12,6 @@
 
 #include "../_include/cub3d.h"
 
-// int	is_map(char *line)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (line[i] == ' ' || line[i] == '\t')
-// 		i++;
-// 	if (line[i] == '\0' || line[i] == '\n')
-// 		return (0);
-// 	while (line[i] != '\0' && line[i] != '\n')
-// 	{
-// 		if (line[i] != '0' && line[i] != '1' && line[i] != 'N' &&
-// 		 line[i] != 'S' && line[i] != 'E' && line[i] != 'W' && line[i] != 'D' && line[i] != ' ')
-// 		 {
-// 			ft_putstr_fd("Error\nInvalid character in map", 2);
-// 			exit(1);
-// 		 }
-// 		i++;
-// 	}
-// 	return (1);
-// }
 /**
  * @brief This function skip empty line
  */
@@ -115,7 +94,7 @@ int	open_file(char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		error_exit("Error\nNo such file");
+		error_exit("Error\nNo such file\n");
 	return (fd);
 }
 
@@ -156,7 +135,7 @@ void	parser(char *file, t_game *data)
 		if (counter < 6)
 		{	
 			if (!identifier(line, data, &counter))
-				error_exit("Error\nFirst six must be identifier");
+				error_exit("Error\nFirst six must be identifier\n");
 			free(line);
 		}
 		else if (counter == 6 && blankstr(line))

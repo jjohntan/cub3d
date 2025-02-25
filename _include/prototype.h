@@ -73,7 +73,9 @@ void	putpx_img(int x, int y, int color, t_game *g);
 //----------------------------------------------------------------------------
 void	parser(char *file, t_game *data);
 void	parse_texture(char *line, t_game *data);
+void	parse_path(char *identify, char *path, t_game *data);
 void	parse_color(char *line, t_game *data);
+void	parse_rgb(char *path, int *value);
 int		get_map_height(int fd);
 int		is_map(char *line);
 char	*skip_space(char *line);
@@ -90,7 +92,10 @@ void	count_players(t_game *data);
 void	valid_player(t_game *data);
 void	free_info(t_game *g);
 void	valid_texture(t_game *data);
-void valid_color(t_game *data);
+void	valid_color(t_game *data);
+void	color_range(int *color);
+void	check_color_format(char *str);
+
 //----------------------------------------------------------------------------
 // Utils
 //----------------------------------------------------------------------------
@@ -98,9 +103,8 @@ void	err_msg(char *issue, char *expect, char *info);
 float	angle_limit(float i);
 
 void	error_exit(char *str);
-float get_angle(char c);
+float 	get_angle(char c);
 
-void	parse_rgb(char *path, int *value);
-int	check_dup_color(t_game *data);
+int		check_dup_color(t_game *data);
 
 #endif

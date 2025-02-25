@@ -13,59 +13,6 @@
 #include "../_include/cub3d.h"
 
 /**
- * @brief This function check the colors range in [0,255]
- */
-static void	color_range(int *color)
-{
-	int	i;
-
-	if (!color)
-		return ;
-	i = 0;
-	while (i < 3)
-	{
-		if (color[i] < 0 || color[i] > 255)
-			error_exit("Error\nInvalid color range");
-		i++;
-	}
-}
-
-/**
- * @brief This function check the color format
- */
-void	check_color_format(char *str)
-{
-	int	i;
-	int	comma;
-
-	i = 0;
-	comma = 0;
-	while (str[i])
-	{
-		if (str[i] == ',')
-		{
-			comma++;
-			i++;
-		}
-		else if (ft_isdigit(str[i]) != 0)
-			i++;
-		else
-			error_exit("Error\nInvalid character");
-	}
-	if (comma != 2)
-		error_exit("Error\ntwo comma needed");
-}
-
-// int	check_dup_color(t_game *data)
-// {
-// 	if (data->floor != )
-// 		return (0);
-// 	else if (data->ceiling != )
-// 		return (0);
-// 	return (1);
-// }
-
-/**
  * @brief This function convert rgb from decimal to hexadecimal
  */
 int	color(int r, int g, int b)
@@ -88,7 +35,6 @@ void	parse_rgb(char *path, int *value)
 	free(color_value[0]);
 	free(color_value[1]);
 	free(color_value[2]);
-
 }
 
 /**
@@ -106,21 +52,13 @@ void	parse_color(char *line, t_game *data)
 	if (ft_strncmp(identify, "F", 1) == 0)
 	{
 		if (data->f)
-			error_exit("Error\nDuplicate color");
+			error_exit("Error\nDuplicate color\n");
 		data->f = path;
 	}
 	else if (ft_strncmp(identify, "C", 1) == 0)
 	{
 		if (data->c)
-			error_exit("Error\nDuplicate color");
+			error_exit("Error\nDuplicate color\n");
 		data->c = path;
 	}
-}
-
-void valid_color(t_game *data)
-{
-	if (!data->c || !data->f)
-		error_exit("Error\nMissing color info\n");
-	parse_rgb(data->c, &data->ceiling);
-	parse_rgb(data->f, &data->floor);
 }

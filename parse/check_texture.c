@@ -31,5 +31,5 @@ void	valid_texture(t_game *data)
 {
 	if ((check_path(data->no) == 0) || (check_path(data->so) == 0) ||
 	(check_path(data->we) == 0) || (check_path(data->ea) == 0))
-		error_exit("Error\nInvalid path");
+		error_exit("Error\nInvalid path\n");
 }
