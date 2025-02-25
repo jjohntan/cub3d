@@ -6,22 +6,19 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 14:56:50 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/25 19:08:35 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/25 19:47:38 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../_include/cub3d.h"
 
-/*
-- true : is an element  >> extract >> increment counter (max 6)
-- false: not an element >> err_msg
-- true : blank >> but no increment 
-*/
 int	parse_map(char *line, t_game *data)
 {
 	char	**tmp;
 	int		i;
 
+	if (!line)
+		exit (1);
 	tmp = (char **)malloc(sizeof(char *) * (++data->map.h + 1));
 	if (!tmp)
 		exit(1);
@@ -105,6 +102,9 @@ bool	read_line(char fd, char **s)
  * The first six lines are expected to contain identifiers, which are processed
  * and stored in the struct. After the identifiers, the function processes
  * the map data.
+ *true : is an element  >> extract >> increment counter (max 6)
+ *false: not an element >> err_msg
+ *true : blank >> but no increment 
  * @param file The path to the file to be parsed.
  */
 void	parser(char *file, t_game *data)
