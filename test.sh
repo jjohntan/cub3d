@@ -10,25 +10,28 @@ run_command() {
     echo -e "${PURPLE}Input: ${NC}"
     echo -e "$INPUT"
 
-    # Capture the command output
     OUTPUT=$(./cub3D "$INPUT" 2>&1)
+    # OUTPUT=$(valgrind -q --leak-check=full --show-leak-kinds=all --errors-for-leak-kinds=all --error-exitcode=123 ./cub3D "$INPUT" 2>&1)
 
+    EXIT_STATUS=$?
+    
     echo -e "${PURPLE}Output: ${NC}"
     echo -e "$OUTPUT"
 
-    # Run valgrind and capture its output
-    valgrind -q --leak-check=full --show-leak-kinds=all --exit-on-first-error=yes ./cub3d "$INPUT" &>/dev/null
-    if [ $? -eq 222 ]; then
+    if [ $EXIT_STATUS -eq 123 ]; then
         echo -e "${PURPLE}Valgrind: ${RED}KO${NC}"
     else
         echo -e "${PURPLE}Valgrind: ${GREEN}OK${NC}"
     fi
+
     echo -e "${GREEN}--------------------------------------------------------------------${NC}"
 }
-
     echo -e "\n\n${YELLOW} Wrong configuration ${NC}"
     echo -e "${YELLOW} =================== ${NC}\n\n"
 
+    run_command ""
+    run_command "invalid path"
+    run_command "path_1 path_2"
     run_command "./map/bad/color_invalid_rgb.cub"
     run_command "./map/bad/color_missing.cub"
     run_command "./map/bad/color_missing_ceiling_rgb.cub"
@@ -38,7 +41,6 @@ run_command() {
     run_command "./map/bad/duplicate_color.cub"
     run_command "./map/bad/duplicate_texture.cub"
     run_command "./map/bad/empty.cub"
-    run_command "./map/bad/file_letter_end.cub"
     run_command "./map/bad/filetype_missing"
     run_command "./map/bad/filetype_wrong.buc"
     run_command "./map/bad/invalid_identifier.cub"
@@ -63,12 +65,10 @@ run_command() {
     run_command "./map/bad/test_whitespace_3.cub"
     run_command "./map/bad/textures_dir.cub"
     run_command "./map/bad/textures_duplicates.cub"
-    run_command "./map/bad/textures_forbidden.cub"
     run_command "./map/bad/textures_invalid.cub"
     run_command "./map/bad/textures_missing.cub"
     run_command "./map/bad/textures_none.cub"
     run_command "./map/bad/textures_not_xpm.cub"
-    run_command "./map/bad/two_map.cub"
     run_command "./map/bad/invalid_map2.cub"
     run_command "./map/bad/wall_hole_east.cub"
     run_command "./map/bad/wall_hole_north.cub"
@@ -104,6 +104,9 @@ run_command() {
     run_command "./map/good/triangle.cub"
     run_command "./map/good/valid_map.cub"
     run_command "./map/good/works.cub"
+    run_command "./map/bad/file_letter_end.cub"
     run_command "./map/good/mini.cub"
+    run_command "./map/bad/two_map.cub"
     run_command "./map/good/bonus1.cub"
     run_command "./map/good/bonus2.cub"
+    run_command "./map/bad/textures_forbidden.cub"

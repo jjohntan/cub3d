@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototype.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:46:14 by jpaul             #+#    #+#             */
-/*   Updated: 2025/02/25 19:12:26 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/25 20:09:52 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,6 @@ void	err_msg(char *issue, char *expect, char *info);
 float	angle_limit(float i);
 void	error_exit(char *str);
 float	get_angle(char c);
+int		blankstr(char *line);
 
 #endif
