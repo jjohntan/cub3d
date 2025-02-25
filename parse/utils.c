@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:55:13 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/25 17:30:08 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/25 18:03:12 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ float	get_angle(char c)
 	return (-1);
 }
 
+/**
+ * @brief This function loop though the map find player
+ * stating position and update player data
+ */
 void	count_players(t_game *data)
 {
 	int	row;
@@ -72,19 +76,6 @@ char	*skip_space(char *line)
 	return (&line[i]);
 }
 
-// static void free_list(char **list)
-// {
-// 	int i = 0;
-// 	if (!list)
-// 		return ;
-// 	while (list[i])
-// 	{
-// 		free(list[i]);
-// 		i++;
-// 	}
-// 	free(list);
-// }
-
 /**
  * @param str: error message
  * @brief This function return a error message and exit the program
@@ -95,6 +86,9 @@ void	error_exit(char *str)
 	exit(1);
 }
 
+/**
+ * @brief This function get the maximum map width
+ */
 void	get_map_width(t_game *data)
 {
 	int	len;

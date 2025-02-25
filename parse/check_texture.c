@@ -6,21 +6,24 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 14:51:15 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/24 16:41:31 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/25 17:56:40 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../_include/cub3d.h"
 
+/**
+ * @brief This function check texture path
+ */
 int	check_path(char *path)
 {
 	int	fd;
+	int	len;
 
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		return (0);
 	close(fd);
-	int	len;
 	len = ft_strlen(path) - 4;
 	if (ft_strncmp(&path[len], ".xpm", 4) != 0)
 		return (0);

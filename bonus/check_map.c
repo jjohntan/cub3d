@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:57:51 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/25 17:46:54 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/25 17:53:25 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,9 @@ void	check_char(char **map)
 	}
 }
 
+/**
+ * @brief This function duplicate a temporary map for flood fill
+ */
 char **dup_map(t_game *data)
 {
     int i;
