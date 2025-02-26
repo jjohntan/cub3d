@@ -3,52 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   parse_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 20:13:24 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/25 18:36:04 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/26 15:36:33 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../_include/cub3d.h"
 
-void	parse_path(char *identify, char *path, t_game *data)
+bool	parse_path(char *identify, char *path, t_game *data)
 {
 	if (ft_strncmp(identify, "NO", 2) == 0)
 	{
 		if (data->no)
-			error_exit("Error\nDuplicate data\n");
+			return (false);
 		data->no = path;
 	}
 	else if (ft_strncmp(identify, "SO", 2) == 0)
 	{
 		if (data->so)
-			error_exit("Error\nDuplicate data\n");
+			return (false);
 		data->so = path;
 	}
 	else if (ft_strncmp(identify, "WE", 2) == 0)
 	{
 		if (data->we)
-			error_exit("Error\nDuplicate data\n");
+			return (false);
 		data->we = path;
 	}
 	else if (ft_strncmp(identify, "EA", 2) == 0)
 	{
 		if (data->ea)
-			error_exit("Error\nDuplicate data\n");
+			return (false);
 		data->ea = path;
 	}
+	return (true);
 }
 
 /**
  * @brief This function store texture path into struct follow by indentifier
  */
-void	parse_texture(char *line, t_game *data)
+bool	parse_texture(char *line, t_game *data)
 {
 	char	*identify;
 	char	*path;
 
 	identify = line;
 	path = ft_strtrim(line + 2, " \t\n");
-	parse_path(identify, path, data);
+	if (!parse_path(identify, path, data))
+		return (free(line), free(path), false);
+	return (true);
 }

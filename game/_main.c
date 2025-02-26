@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _main.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:38:34 by jpaul             #+#    #+#             */
-/*   Updated: 2025/02/25 22:11:22 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/26 15:18:37 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static void	check_file_extension(char *av)
 
 	len = ft_strlen(av) - 4;
 	if (len < 4 || ft_strncmp(&av[len], ".cub", 4) != 0)
-		error_exit("Error\nInvalid extension");
+		error_exit("Map file: Invalid extension", NULL);
 }
 
 static void	init(int ac, char **av, t_game *data)
 {
 	if (ac != 2)
-		error_exit("Error\nInvalid number of argument");
+		error_exit("Invalid number of argument", NULL);
 	ft_memset(data, 0, sizeof(t_game));
 	check_file_extension(av[1]);
 	parser(av[1], data);

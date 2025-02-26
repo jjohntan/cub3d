@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   parse_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:55:13 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/25 18:36:34 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/26 15:40:02 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,17 @@ char	*skip_space(char *line)
  * @param str: error message
  * @brief This function return a error message and exit the program
  */
-void	error_exit(char *str)
+void	error_exit(char *str, t_game *data)
 {
+	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(str, 2);
+	ft_putstr_fd("\n", 2);
+	if (data)
+	{
+		free_map(data->map.ar);
+		free_map(data->map.tmp);
+		free_info(data);
+	}	
 	exit(1);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 18:31:50 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/25 21:33:03 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/26 15:24:51 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,26 @@
 /**
  * @brief This function check the colors range in [0,255]
  */
-void	color_range(int *color)
+bool	color_range(int *color)
 {
 	int	i;
 
 	if (!color)
-		return ;
+		return (false);
 	i = 0;
 	while (i < 3)
 	{
 		if (color[i] < 0 || color[i] > 255)
-			error_exit("Error\nInvalid color range\n");
+			return (false);
 		i++;
 	}
+	return (true);
 }
 
 /**
  * @brief This function check the color format
  */
-void	check_color_format(char *str)
+void	check_color_format(char *str, t_game *data)
 {
 	int	i;
 	int	comma;
@@ -50,16 +51,16 @@ void	check_color_format(char *str)
 		else if (ft_isdigit(str[i]) || str[i] == ' ')
 			i++;
 		else
-			error_exit("Error\nInvalid character\n");
+			error_exit("Color: Invalid character", data);
 	}
 	if (comma != 2)
-		error_exit("Error\ntwo comma needed\n");
+		error_exit("Color: Two commas needed", data);
 }
 
 void	valid_color(t_game *data)
 {
 	if (!data->c || !data->f)
-		error_exit("Error\nMissing color info\n");
-	parse_rgb(data->c, &data->ceiling);
-	parse_rgb(data->f, &data->floor);
+		error_exit("Color: Missing info", data);
+	parse_rgb(data->c, &data->ceiling, data);
+	parse_rgb(data->f, &data->floor, data);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   check_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:57:51 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/26 15:24:35 by jpaul            ###   ########.fr       */
+/*   Updated: 2025/02/26 15:22:59 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	check_char(char **map, t_game *data)
 			if (map[row][col] != '0' && map[row][col] != '1'
 			&& map[row][col] != 'N' && map[row][col] != 'S'
 			&& map[row][col] != 'E' && map[row][col] != 'W'
-			&& map[row][col] != ' ')
+			&& map[row][col] != ' ' && map[row][col] != 'D')
 				error_exit("Map: Invalid character found", data);
 			col++;
 		}

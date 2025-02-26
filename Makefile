@@ -3,7 +3,7 @@
 #==================================================
 
 CC = gcc
-FLAG = -Wall -Werror -Wextra -O3 -fsanitize=address -g3
+FLAG = -Wall -Werror -Wextra -O3 #-g3 -fsanitize=address
 RM = rm -f
 
 #==================================================

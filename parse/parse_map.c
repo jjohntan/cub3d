@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 14:56:50 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/25 19:47:38 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/26 15:43:02 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,14 @@ int	parse_map(char *line, t_game *data)
 	return (1);
 }
 
+bool	is_identifier(char *skip)
+{
+	return ((skip[0] == 'N' && skip[1] == 'O')
+		|| (skip[0] == 'S' && skip[1] == 'O')
+		|| (skip[0] == 'W' && skip[1] == 'E')
+		|| (skip[0] == 'E' && skip[1] == 'A'));
+}
+
 /**
  * @param line: The line to be processed. 
  * @param data: data struct.
@@ -46,26 +54,30 @@ int	parse_map(char *line, t_game *data)
  * is blank. If the line contains texture or color identifiers,
  * it calls the appropriate parsing function and increments the counter.
  */
-static int	identifier(char *line, t_game *data, int *counter)
+static int	identifier(char *line, t_game *data, int *counter, int fd)
 {
 	char	*skip;
 
 	skip = skip_space(line);
 	if (!skip[0])
 		return (1);
-	if ((skip[0] == 'N' && skip[1] == 'O') || (skip[0] == 'S' && skip[1] == 'O')
-		|| (skip[0] == 'W' && skip[1] == 'E')
-		|| (skip[0] == 'E' && skip[1] == 'A'))
+	if (is_identifier(skip))
 	{
-		parse_texture(skip, data);
-		(*counter)++;
-		return (1);
+		if (!parse_texture(skip, data))
+		{
+			flush_gnl(fd);
+			error_exit("Texture: Duplicate data", data);
+		}
+		return ((*counter)++, 1);
 	}
 	else if ((skip[0] == 'F') || (skip[0] == 'C'))
 	{
-		parse_color(skip, data);
-		(*counter)++;
-		return (1);
+		if (!parse_color(skip, data))
+		{
+			flush_gnl(fd);
+			error_exit("Color: Duplicate data", data);
+		}
+		return ((*counter)++, 1);
 	}
 	return (0);
 }
@@ -76,23 +88,8 @@ int	open_file(char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		error_exit("Error\nNo such file\n");
+		error_exit("\nNo such file", NULL);
 	return (fd);
-}
-
-bool	read_line(char fd, char **s)
-{
-	int	i;
-
-	*s = get_next_line(fd);
-	if (*s)
-	{
-		i = ft_strlen(*s);
-		while (i > 0 && ((*s)[i - 1] == '\n' || (*s)[i - 1] == '\r'))
-			(*s)[--i] = '\0';
-		return (true);
-	}
-	return (false);
 }
 
 /**
@@ -119,8 +116,12 @@ void	parser(char *file, t_game *data)
 	{
 		if (counter < 6)
 		{	
-			if (!identifier(line, data, &counter))
-				error_exit("Error\nFirst six must be identifier\n");
+			if (!identifier(line, data, &counter, fd))
+			{
+				free(line);
+				flush_gnl(fd);
+				error_exit("First 6 datas must be game elements", data);
+			}
 			free(line);
 		}
 		else if (counter == 6 && blankstr(line))

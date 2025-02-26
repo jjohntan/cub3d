@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 21:13:47 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/25 21:30:44 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/26 15:37:09 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,25 @@ int	color(int r, int g, int b)
 /**
  * @brief This function split color value into 2d array
  */
-void	parse_rgb(char *path, int *value)
+void	parse_rgb(char *path, int *value, t_game *data)
 {
 	int		rgb[3];
 	char	**split;
 
-	check_color_format(path);
+	check_color_format(path, data);
 	split = ft_split(path, ',');
 	if (!split || !split[0] || !split[1] || !split[2])
-		error_exit("Error\nColor missing\n");
+	{
+		free_map(split);
+		error_exit("Color: Missing / incomplete data", data);
+	}	
 	rgb[0] = ft_atoi(split[0]);
 	rgb[1] = ft_atoi(split[1]);
 	rgb[2] = ft_atoi(split[2]);
-	color_range(rgb);
+	if (!color_range(rgb))
+		error_exit("Color: Invalid range", data);
 	*value = color(rgb[0], rgb[1], rgb[2]);
-	free(split[0]);
-	free(split[1]);
-	free(split[2]);
-	free(split);
+	free_map(split);
 }
 
 /**
@@ -48,7 +49,7 @@ void	parse_rgb(char *path, int *value)
  * 
  * This function parse color into struct
  */
-void	parse_color(char *line, t_game *data)
+bool	parse_color(char *line, t_game *data)
 {
 	char	*identify;
 	char	*path;
@@ -58,13 +59,14 @@ void	parse_color(char *line, t_game *data)
 	if (ft_strncmp(identify, "F", 1) == 0)
 	{
 		if (data->f)
-			error_exit("Error\nDuplicate color\n");
+			return (free(line), free(path), false);
 		data->f = path;
 	}
 	else if (ft_strncmp(identify, "C", 1) == 0)
 	{
 		if (data->c)
-			error_exit("Error\nDuplicate color\n");
+			return (free(line), free(path), false);
 		data->c = path;
 	}
+	return (true);
 }

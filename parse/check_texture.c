@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 14:51:15 by jetan             #+#    #+#             */
-/*   Updated: 2025/02/25 21:59:29 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/26 15:36:47 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ void	valid_texture(t_game *data)
 {
 	if ((check_path(data->no) == 0) || (check_path(data->so) == 0)
 		|| (check_path(data->we) == 0) || (check_path(data->ea) == 0))
-		error_exit("Error\nInvalid path\n");
+		error_exit("Texture: Invalid path", data);
 }

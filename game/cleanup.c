@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:27:58 by jpaul             #+#    #+#             */
-/*   Updated: 2025/02/24 22:19:24 by jetan            ###   ########.fr       */
+/*   Updated: 2025/02/26 13:02:46 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,16 @@ void	free_map(char **map)
 
 void	free_info(t_game *g)
 {
-	free(g->no);
-	free(g->so);
-	free(g->we);
-	free(g->ea);
-	free(g->f);
-	free(g->c);
+	if (g->no)
+		free(g->no);
+	if (g->so)
+		free(g->so);
+	if (g->we)
+		free(g->we);
+	if (g->ea)
+		free(g->ea);
+	if (g->f)
+		free(g->f);
+	if (g->c)
+		free(g->c);
 }
