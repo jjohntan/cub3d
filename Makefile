@@ -67,3 +67,6 @@ fclean: clean
 re: fclean all
 
 .PHONY: all bonus lib clean fclean re
+
+#https://permadi.com/1996/05/ray-casting-tutorial-5/
+#https://medium.com/@abdelhadi-salah/ray-casting-cub3d-bb5d99de742d
